@@ -53,6 +53,14 @@ Miesbach. Sobald die echte Adresse feststeht:
 
 ## Foto austauschen oder ergänzen
 
+> **Wichtig:** Bitte nur **eigene** Fotos verwenden – also selbst gemachte
+> Bilder vom Café, den Speisen usw. Fotos aus dem Internet (z. B. aus der
+> Google-Suche, von Bewertungsportalen oder von fremden Instagram-Profilen)
+> dürfen nicht einfach übernommen werden. In Deutschland kann das teure
+> Abmahnungen nach sich ziehen, selbst wenn das Foto das eigene Café zeigt –
+> die Rechte liegen nämlich bei der Person, die das Foto gemacht hat.
+
+
 1. Das neue Foto in den Ordner `assets/img/` kopieren (z. B. `foto1.jpg`).
    Tipp: Fotos vorher nicht zu groß speichern (unter 500 KB reicht für die
    Website völlig aus), damit die Seite schnell lädt.

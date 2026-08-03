@@ -87,19 +87,24 @@
         <h2>Anfahrt</h2>
         <div class="anfahrt-inhalt">
           <div class="anfahrt-text">
-            <!-- TODO: echte Adresse eintragen -->
             <p><strong>b.ellers</strong><br>
-            Musterstraße 1<br>
+            Stadtplatz 1<br>
             83714 Miesbach</p>
-            <p class="hinweis-platzhalter">Platzhalter-Adresse – bitte anpassen.</p>
+            <p>Mitten am Miesbacher Stadtplatz – mit sonniger Dachterrasse.</p>
           </div>
           <div class="anfahrt-karte">
-            <!-- TODO: echte Adresse eintragen und Karten-URL unter https://www.openstreetmap.org (Button "Exportieren") neu erzeugen -->
+            <!-- Kartenausschnitt: Stadtplatz Miesbach. Falls der Marker verschoben werden soll,
+                 auf https://www.openstreetmap.org die Adresse suchen, "Exportieren" klicken und
+                 den dort angezeigten iframe-Code hier ersetzen. -->
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=11.8262%2C47.7867%2C11.8462%2C47.7967&amp;layer=mapnik&amp;marker=47.7917%2C11.8362"
-              title="Anfahrt zu b.ellers in Miesbach"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=11.8287%2C47.7866%2C11.8387%2C47.7916&amp;layer=mapnik&amp;marker=47.7891%2C11.8337"
+              title="Karte: b.ellers, Stadtplatz 1, 83714 Miesbach"
               loading="lazy">
             </iframe>
+            <p class="karten-link">
+              <a href="https://www.openstreetmap.org/?mlat=47.7891&amp;mlon=11.8337#map=18/47.7891/11.8337"
+                 target="_blank" rel="noopener">Größere Karte öffnen</a>
+            </p>
           </div>
         </div>
       </div>
@@ -108,31 +113,49 @@
     <section id="galerie">
       <div class="container">
         <h2>Galerie</h2>
-        <!-- TODO: echte Fotos in assets/img/ ablegen und hier statt der Platzhalter-Boxen ein <img>-Tag einsetzen -->
+        <!-- TODO: eigene Fotos in assets/img/ ablegen und hier je eine Platzhalter-Box
+             ersetzen durch:
+             <div class="galerie-bild"><img src="assets/img/foto1.jpg" alt="Kurze Beschreibung"></div>
+             Bitte nur eigene Fotos verwenden (siehe INHALTE-BEARBEITEN.md). -->
         <div class="galerie-grid">
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
         </div>
+        <p class="galerie-hinweis">
+          Aktuelle Bilder aus dem Café findet ihr solange auf
+          <a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">Instagram</a>.
+        </p>
       </div>
     </section>
 
     <section id="kontakt">
       <div class="container kontakt-inhalt">
         <h2>Kontakt</h2>
-        <!-- TODO: echte Telefonnummer und E-Mail-Adresse eintragen -->
-        <p>Telefon: <a href="tel:+498025123456">08025 123456</a></p>
-        <p>E-Mail: <a href="mailto:info@bellers-miesbach.de">info@bellers-miesbach.de</a></p>
-        <p class="hinweis-platzhalter">Platzhalter-Kontaktdaten – bitte anpassen.</p>
+        <p><strong>b.ellers</strong><br>
+        Stadtplatz 1<br>
+        83714 Miesbach</p>
+        <!-- TODO: echte Telefonnummer eintragen. Dann diese Zeile ersetzen durch z.B.:
+             <p>Telefon: <a href="tel:+4980251234567">08025 1234567</a></p> -->
+        <p class="hinweis-platzhalter">Telefonnummer noch eintragen</p>
+        <!-- TODO: echte E-Mail-Adresse eintragen. Dann ersetzen durch z.B.:
+             <p>E-Mail: <a href="mailto:hallo@bellers.de">hallo@bellers.de</a></p> -->
+        <p class="hinweis-platzhalter">E-Mail-Adresse noch eintragen</p>
+        <p>
+          <a class="button" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+            Folgt uns auf Instagram
+          </a>
+        </p>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <!-- TODO: Adresse/Telefonnummer im Footer synchron zu oben halten -->
-    <p><strong>b.ellers</strong> – Musterstraße 1, 83714 Miesbach · Tel. 08025 123456</p>
+    <!-- TODO: Telefonnummer ergänzen, sobald bekannt -->
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach</p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
     <p class="footer-links">
       <a href="impressum.html">Impressum</a> ·
       <a href="datenschutz.html">Datenschutz</a>
