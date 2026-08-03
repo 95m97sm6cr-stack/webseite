@@ -26,6 +26,15 @@ body {
   color: var(--braun);
   background: var(--creme);
   line-height: 1.6;
+  /* Sorgt dafür, dass der Footer auch auf kurzen Seiten (z. B. 404)
+     am unteren Bildschirmrand sitzt und nicht in der Mitte hängt. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
+  flex: 1 0 auto;
 }
 
 img {

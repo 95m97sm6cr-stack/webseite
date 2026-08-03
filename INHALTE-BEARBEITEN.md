@@ -133,3 +133,25 @@ Veröffentlichung vollständig ausgefüllt sein.
 
 Nach dem Speichern einfach `index.html` im Browser öffnen (Doppelklick) – so
 sieht man sofort, ob alles passt, bevor die Seite hochgeladen wird.
+
+## Änderungen ins Internet stellen
+
+Die Website liegt bei Hostinger. Damit eine Änderung auch für Besucher
+sichtbar wird, muss die geänderte Datei dort hochgeladen werden:
+
+1. Bei [hpanel.hostinger.com](https://hpanel.hostinger.com) einloggen.
+2. **Dateien → Dateimanager** öffnen und in den Ordner `public_html` gehen.
+3. Die geänderte Datei hochladen – z. B. `index.html`. Die Nachfrage, ob die
+   vorhandene Datei überschrieben werden soll, mit Ja beantworten.
+4. Die Website im Browser öffnen und die Ansicht mit **Strg + F5**
+   (am Mac: **Cmd + Shift + R**) neu laden.
+
+> **Warum Strg + F5?** Browser merken sich Seiten kurzzeitig, um sie schneller
+> anzuzeigen. Nach einer Änderung sieht man deshalb oft noch die alte Version.
+> Mit Strg + F5 wird die Seite wirklich neu geladen. Wenn also nach dem
+> Hochladen scheinbar „nichts passiert" ist, liegt es fast immer daran – nicht
+> an einem Fehler.
+
+Wichtig: Immer nur die Dateien austauschen, die man wirklich geändert hat.
+Der Ordner `assets` muss dabei so bleiben, wie er ist (dort liegen Bilder und
+das Design).

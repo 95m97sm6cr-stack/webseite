@@ -12,6 +12,8 @@ index.html            Startseite (Willkommen, Öffnungszeiten, Anfahrt, Galerie,
 speisekarte.html      Speisekarte inkl. Preise und Allergen-Legende
 impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
+404.html              Fehlerseite bei falsch eingetippter Adresse
+.htaccess             Servereinstellungen (HTTPS, Caching, Fehlerseite)
 assets/css/style.css  Gesamtes Styling
 assets/img/           Bilder (u.a. logo.jpeg)
 assets/js/main.js     Kleines Skript fürs mobile Menü
@@ -32,31 +34,63 @@ python3 -m http.server 8000
 
 und dann `http://localhost:8000/` im Browser aufrufen.
 
-## Veröffentlichen (Hosting)
+## Veröffentlichen bei Hostinger
 
-Das Hosting ist noch nicht final entschieden. Da die Seite aus reinen
-statischen Dateien besteht, funktionieren beide folgenden Wege ohne
-Änderungen am Code:
+Die Seite besteht aus reinen statischen Dateien – es ist kein Build-Schritt,
+keine Datenbank und keine Installation nötig. Hochladen genügt.
 
-### Option A: Bestehender Webspace (z. B. Ionos oder Hostinger)
+### Dateien hochladen
 
-1. Im Kundenportal des Hosters (Ionos/Hostinger) den Datei-Manager öffnen
-   oder die FTP-Zugangsdaten heraussuchen.
-2. Den kompletten Inhalt dieses Repos (`index.html`, `impressum.html`,
-   `datenschutz.html`, den Ordner `assets/`) in das Wurzelverzeichnis des
-   Webspace hochladen (oft `public_html/` oder `htdocs/` – Name hängt vom
-   Hoster ab, im Kundenportal nachsehen).
-3. Fertig – kein Build, keine Installation nötig.
+1. Bei [hpanel.hostinger.com](https://hpanel.hostinger.com) einloggen.
+2. **Dateien → Dateimanager** öffnen und in den Ordner `public_html`
+   wechseln. Das ist das Wurzelverzeichnis der Website.
+3. Falls dort noch eine Platzhalterseite von Hostinger liegt (z. B. eine
+   `default.php` oder `index.html`), diese Dateien löschen.
+4. Folgende Dateien und Ordner hochladen:
 
-### Option B: GitHub Pages (kostenlos)
+   ```
+   index.html
+   speisekarte.html
+   impressum.html
+   datenschutz.html
+   404.html
+   .htaccess
+   assets/          (kompletter Ordner mit css/, img/, js/)
+   ```
 
-1. Im GitHub-Repository unter **Settings → Pages** als Quelle den Branch
-   (z. B. `main`) und das Root-Verzeichnis auswählen.
-2. GitHub stellt die Seite kostenlos unter einer Adresse wie
-   `https://<benutzername>.github.io/webseite/` bereit.
-3. Optional kann später eine eigene Domain (z. B. cafe-bellers.de) verbunden
-   werden – das verursacht nur die üblichen Domain-Kosten (ca. 10–15 €/Jahr),
-   das Hosting selbst bleibt kostenlos.
+   **Wichtig:** Die Ordnerstruktur muss erhalten bleiben – `style.css` muss
+   also unter `public_html/assets/css/style.css` landen, nicht lose im
+   Hauptverzeichnis. Am einfachsten lädt man den Ordner `assets` als Ganzes
+   hoch bzw. entpackt ein hochgeladenes ZIP direkt im Dateimanager.
+
+   **Zur `.htaccess`:** Der Dateiname beginnt mit einem Punkt, deshalb ist sie
+   in manchen Datei-Managern zunächst unsichtbar. Im Hostinger-Dateimanager
+   unter den Einstellungen „versteckte Dateien anzeigen" aktivieren.
+
+5. Website im Browser aufrufen – fertig.
+
+### HTTPS aktivieren
+
+Unter **Websites → (Domain wählen) → SSL** ein kostenloses SSL-Zertifikat
+ausstellen lassen und anschließend „Force HTTPS" einschalten. Damit ist die
+Seite über `https://` erreichbar. (Die mitgelieferte `.htaccess` leitet
+zusätzlich selbst von `http://` auf `https://` um.)
+
+### Domain
+
+Bei den meisten Hostinger-Paketen ist im ersten Jahr eine Domain enthalten.
+Diese unter **Domains** registrieren bzw. eine vorhandene Domain verbinden.
+
+### Alternative: FTP
+
+Statt des Dateimanagers geht auch FTP, z. B. mit
+[FileZilla](https://filezilla-project.org/). Die Zugangsdaten (Server,
+Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
+
+> Falls das Hosting später einmal wegfallen sollte: Die Seite läuft
+> unverändert auch auf jedem anderen Webspace oder kostenlos über GitHub
+> Pages bzw. Netlify – es sind nur statische Dateien, nichts ist an
+> Hostinger gebunden.
 
 ## Wichtig vor dem Veröffentlichen
 
