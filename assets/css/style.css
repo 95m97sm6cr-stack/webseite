@@ -1,0 +1,348 @@
+/* b.ellers – Café Miesbach
+   Farben aus dem Logo abgeleitet */
+
+:root {
+  --rose: #f4c9bc;
+  --rose-light: #fbe4dc;
+  --creme: #fbf5f1;
+  --braun: #3c2a1e;
+  --terracotta: #a66f4e;
+  --terracotta-dunkel: #8a5a3c;
+  --schrift: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --schrift-akzent: "Brush Script MT", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--schrift);
+  color: var(--braun);
+  background: var(--creme);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+a {
+  color: var(--terracotta-dunkel);
+}
+
+/* Header / Navigation */
+
+.kopfbereich {
+  background: var(--rose);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 4px rgba(60, 42, 30, 0.15);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.25rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--braun);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.nav-logo img {
+  height: 44px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--braun);
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--braun);
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--terracotta-dunkel);
+}
+
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    order: 3;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-links.offen {
+    display: flex;
+  }
+
+  .nav-links li {
+    border-top: 1px solid rgba(60, 42, 30, 0.15);
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.7rem 1.25rem;
+  }
+}
+
+/* Hero */
+
+.hero {
+  background: linear-gradient(180deg, var(--rose) 0%, var(--rose-light) 100%);
+  text-align: center;
+  padding: 3.5rem 1.25rem 3rem;
+}
+
+.hero-logo {
+  max-width: 220px;
+  margin: 0 auto 1.5rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin: 0 0 0.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.ueber-uns {
+  max-width: 40rem;
+  margin: 1.5rem auto 0;
+  padding: 0 1.25rem;
+  text-align: center;
+  color: var(--braun);
+}
+
+/* Abschnitte */
+
+section {
+  padding: 3rem 0;
+}
+
+section h2 {
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--braun);
+}
+
+section:nth-of-type(even) {
+  background: var(--rose-light);
+}
+
+/* Öffnungszeiten */
+
+.oeffnungszeiten-tabelle {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: var(--creme);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(60, 42, 30, 0.1);
+}
+
+.oeffnungszeiten-tabelle th,
+.oeffnungszeiten-tabelle td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--rose-light);
+}
+
+.oeffnungszeiten-tabelle tr:last-child td {
+  border-bottom: none;
+}
+
+.oeffnungszeiten-tabelle th {
+  background: var(--terracotta);
+  color: #fff;
+}
+
+.hinweis-platzhalter {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--terracotta-dunkel);
+  margin-top: 0.8rem;
+}
+
+/* Anfahrt */
+
+.anfahrt-inhalt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.anfahrt-text {
+  flex: 1 1 260px;
+  max-width: 320px;
+}
+
+.anfahrt-karte {
+  flex: 1 1 320px;
+  max-width: 500px;
+}
+
+.anfahrt-karte iframe {
+  width: 100%;
+  height: 320px;
+  border: 0;
+  border-radius: 8px;
+}
+
+/* Galerie */
+
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .galerie-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.galerie-bild {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.galerie-bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galerie-platzhalter {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--rose);
+  color: var(--braun);
+  font-size: 0.85rem;
+  padding: 0.5rem;
+}
+
+/* Kontakt */
+
+.kontakt-inhalt {
+  text-align: center;
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.kontakt-inhalt a {
+  font-weight: 600;
+}
+
+/* Footer */
+
+footer {
+  background: var(--braun);
+  color: var(--rose-light);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--rose-light);
+}
+
+footer .footer-links {
+  margin-top: 0.8rem;
+}
+
+footer .footer-links a {
+  margin: 0 0.5rem;
+}
+
+/* Rechtsseiten (Impressum/Datenschutz) */
+
+.rechtsseite {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.rechtsseite h1 {
+  margin-top: 0;
+}
+
+.rechtsseite .zurueck {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.rechtsseite .hinweis {
+  background: var(--rose-light);
+  border-left: 4px solid var(--terracotta);
+  padding: 0.8rem 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
