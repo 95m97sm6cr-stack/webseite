@@ -19,6 +19,7 @@
       <button class="nav-toggle" aria-label="Menü öffnen">&#9776;</button>
       <ul class="nav-links">
         <li><a href="#hero">Willkommen</a></li>
+        <li><a href="speisekarte.html">Speisekarte</a></li>
         <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
         <li><a href="#anfahrt">Anfahrt</a></li>
         <li><a href="#galerie">Galerie</a></li>
@@ -32,18 +33,26 @@
     <section id="hero" class="hero">
       <img src="assets/img/logo.jpeg" alt="b.ellers Logo" class="hero-logo">
       <h1>Willkommen bei b.ellers</h1>
+      <p class="claim">Das Café in Miesbach</p>
       <!-- TODO: Willkommenstext nach Wunsch anpassen -->
-      <p>Unser familiengeführtes Café in Miesbach – guter Kaffee, hausgemachte Kuchen und ein gemütlicher Platz zum Verweilen.</p>
+      <p>Unser familiengeführtes Café in Miesbach – guter Kaffee, hausgemachtes Frühstück und ein gemütlicher Platz zum Verweilen.</p>
       <div class="ueber-uns">
         <!-- TODO: kurzen "Über uns"-Text der Familie ergänzen -->
-        <p>Bei uns gibt es frisch gerösteten Kaffee, hausgemachten Kuchen und ein herzliches Willkommen mitten in Miesbach. Schaut vorbei – wir freuen uns auf euch!</p>
+        <p>Bei uns gibt es guten Kaffee, hausgemachtes Frühstück und ein herzliches Willkommen mitten in Miesbach. Schaut vorbei – wir freuen uns auf euch!</p>
+      </div>
+    </section>
+
+    <section id="speisekarte-teaser">
+      <div class="container karte-teaser">
+        <h2>Unsere Speisekarte</h2>
+        <p>Frühstück, Eierspeisen, Kaffeespezialitäten und Getränke – vieles davon hausgemacht.</p>
+        <a class="button" href="speisekarte.html">Zur Speisekarte</a>
       </div>
     </section>
 
     <section id="oeffnungszeiten">
       <div class="container">
         <h2>Öffnungszeiten</h2>
-        <!-- TODO: echte Öffnungszeiten eintragen -->
         <table class="oeffnungszeiten-tabelle">
           <thead>
             <tr>
@@ -52,12 +61,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Montag – Freitag</td><td>08:00 – 18:00 Uhr</td></tr>
-            <tr><td>Samstag</td><td>09:00 – 14:00 Uhr</td></tr>
-            <tr><td>Sonntag</td><td>geschlossen</td></tr>
+            <tr><td>Montag</td><td>Ruhetag</td></tr>
+            <tr><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
+            <tr><td>Samstag</td><td>8:00 – 17:00 Uhr</td></tr>
+            <tr><td>Sonntag</td><td>8:00 – 17:00 Uhr</td></tr>
           </tbody>
         </table>
-        <p class="hinweis-platzhalter">Platzhalter-Öffnungszeiten – bitte durch die echten Zeiten ersetzen.</p>
+
+        <div class="info-boxen">
+          <div class="info-box">
+            <h2>Frühstückszeiten</h2>
+            <p>Dienstag – Freitag<br>8:00 – 11:30 Uhr</p>
+            <p>Samstag / Sonntag / Feiertag<br>8:00 – 13:00 Uhr</p>
+          </div>
+          <div class="info-box">
+            <h2>Mittagstisch</h2>
+            <p>Dienstag – Freitag<br>11:30 – 14:00 Uhr</p>
+          </div>
+        </div>
       </div>
     </section>
 

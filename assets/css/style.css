@@ -159,6 +159,14 @@ a {
   margin: 0 auto;
 }
 
+.hero .claim {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+  color: var(--terracotta-dunkel);
+  margin-bottom: 1rem;
+}
+
 .ueber-uns {
   max-width: 40rem;
   margin: 1.5rem auto 0;
@@ -180,7 +188,9 @@ section h2 {
   color: var(--braun);
 }
 
-section:nth-of-type(even) {
+/* Abwechselnde Hintergrundfarben nur für die Abschnitte der Startseite
+   (direkte Kinder von <main>), nicht für die Speisekarten-Abschnitte. */
+main > section:nth-of-type(even) {
   background: var(--rose-light);
 }
 
@@ -320,6 +330,195 @@ footer .footer-links {
 
 footer .footer-links a {
   margin: 0 0.5rem;
+}
+
+/* Seitenkopf für Unterseiten */
+
+.seiten-kopf {
+  background: linear-gradient(180deg, var(--rose) 0%, var(--rose-light) 100%);
+  text-align: center;
+  padding: 2.5rem 1.25rem 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.seiten-kopf h1 {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+}
+
+.seiten-kopf p {
+  margin: 0;
+}
+
+/* Info-Boxen (Frühstückszeiten / Mittagstisch) */
+
+.info-boxen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+#oeffnungszeiten .info-boxen {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.info-box {
+  flex: 1 1 240px;
+  max-width: 340px;
+  background: var(--rose-light);
+  border: 1px solid var(--rose);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.info-box h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--terracotta-dunkel);
+}
+
+.info-box p {
+  margin: 0.4rem 0;
+}
+
+/* Speisekarte */
+
+.karte-bereich {
+  padding: 0 0 2.5rem;
+}
+
+.karte-bereich h2 {
+  font-size: 1.5rem;
+  text-align: left;
+  border-bottom: 2px solid var(--rose);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.2rem;
+  color: var(--terracotta-dunkel);
+}
+
+.karte-eintrag {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dotted var(--rose);
+}
+
+.karte-eintrag:last-child {
+  border-bottom: none;
+}
+
+.karte-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.karte-name {
+  display: block;
+  font-weight: 600;
+}
+
+.karte-name-gross {
+  font-size: 1.2rem;
+}
+
+.karte-beschreibung {
+  display: block;
+  font-size: 0.9rem;
+  color: #6b5344;
+  margin-top: 0.15rem;
+}
+
+.allergene {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--terracotta);
+}
+
+.karte-preis {
+  flex: 0 0 auto;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.karte-highlight {
+  background: var(--rose-light);
+  border: 1px solid var(--rose);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+}
+
+.karte-zusatz {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dotted var(--terracotta);
+}
+
+.karte-zusatz .karte-eintrag {
+  border-bottom: none;
+  padding: 0.25rem 0;
+}
+
+.karte-zusatz .karte-name {
+  font-weight: 400;
+}
+
+.karte-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  border: 1px solid var(--terracotta);
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 600;
+  color: var(--terracotta-dunkel);
+}
+
+.karte-hinweis {
+  background: var(--rose-light);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.karte-hinweis p {
+  margin: 0.4rem 0;
+}
+
+.legende {
+  font-size: 0.78rem;
+  color: #6b5344;
+  line-height: 1.5;
+  padding-bottom: 3rem;
+}
+
+/* Speisekarten-Teaser auf der Startseite */
+
+.karte-teaser {
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  background: var(--terracotta);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  margin-top: 0.5rem;
+}
+
+.button:hover {
+  background: var(--terracotta-dunkel);
+  color: #fff;
 }
 
 /* Rechtsseiten (Impressum/Datenschutz) */

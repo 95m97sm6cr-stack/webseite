@@ -8,8 +8,9 @@ minimal.
 ## Struktur
 
 ```
-index.html          Startseite (Willkommen, Öffnungszeiten, Anfahrt, Galerie, Kontakt)
-impressum.html       Impressum (Vorlage, muss ausgefüllt werden)
+index.html            Startseite (Willkommen, Öffnungszeiten, Anfahrt, Galerie, Kontakt)
+speisekarte.html      Speisekarte inkl. Preise und Allergen-Legende
+impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
 assets/css/style.css  Gesamtes Styling
 assets/img/           Bilder (u.a. logo.jpeg)

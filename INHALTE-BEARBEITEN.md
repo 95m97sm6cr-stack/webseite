@@ -10,6 +10,8 @@ eingebautem Editor).
 
 - **`index.html`** – die Startseite. Hier stehen der Willkommenstext, die
   Öffnungszeiten, die Adresse, die Kontaktdaten und der Text im Footer.
+- **`speisekarte.html`** – die Speisekarte mit allen Speisen, Getränken und
+  Preisen sowie der Allergen-Legende.
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
 - **`assets/img/`** – der Ordner mit allen Bildern, z. B. `logo.jpeg`.
@@ -68,6 +70,42 @@ Miesbach. Sobald die echte Adresse feststeht:
    ```
 
    (Dateinamen jeweils an das eigene Foto anpassen.)
+
+## Speisekarte ändern (Preise, Gerichte)
+
+Die Speisekarte steht in der Datei `speisekarte.html`. Jeder Eintrag sieht so
+aus:
+
+```
+<div class="karte-eintrag">
+  <div class="karte-text">
+    <span class="karte-name">Cappuccino klein <span class="allergene">(7, g)</span></span>
+  </div>
+  <span class="karte-preis">3,80&nbsp;€</span>
+</div>
+```
+
+- **Preis ändern:** die Zahl bei `karte-preis` anpassen (das `&nbsp;` davor
+  bitte stehen lassen, es sorgt nur dafür, dass Zahl und € zusammenbleiben).
+- **Name ändern:** den Text bei `karte-name` anpassen.
+- **Beschreibung ändern:** falls vorhanden, den Text bei `karte-beschreibung`
+  anpassen.
+- **Gericht entfernen:** den kompletten Block von `<div class="karte-eintrag">`
+  bis zum passenden `</div>` löschen.
+- **Gericht hinzufügen:** einen bestehenden Block kopieren, einfügen und die
+  Texte anpassen.
+
+Auch die Frühstückszeiten und der Mittagstisch stehen ganz oben in
+`speisekarte.html` – und zusätzlich auf der Startseite im Bereich
+„Öffnungszeiten". Wenn sich diese Zeiten ändern, bitte an **beiden** Stellen
+anpassen.
+
+### Wichtig: Allergen-Legende
+
+Ganz unten auf der Speisekarte steht die Legende mit den Nummern und
+Buchstaben. Auf der gedruckten Karte fehlen dort aktuell die Nummern (5), (6)
+und (7) – obwohl (7) bei allen Kaffees verwendet wird. Das sollte geprüft und
+ergänzt werden (in `speisekarte.html` bei `class="legende"`).
 
 ## Telefonnummer / E-Mail ändern
 
