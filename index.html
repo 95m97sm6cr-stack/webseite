@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>b.ellers – Café in Miesbach</title>
-  <meta name="description" content="b.ellers – das familiengeführte Café in Miesbach. Öffnungszeiten, Adresse und Kontakt auf einen Blick.">
-  <link rel="icon" href="assets/img/logo.jpeg">
+  <title>b.ellers – Das Café in Miesbach</title>
+  <meta name="description" content="b.ellers – das familiengeführte Café am Stadtplatz in Miesbach. Frühstück, Kaffee, Öffnungszeiten und Anfahrt auf einen Blick.">
+  <link rel="icon" href="assets/img/signet.png">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -13,10 +13,10 @@
   <header class="kopfbereich">
     <nav class="nav">
       <a href="#hero" class="nav-logo">
-        <img src="assets/img/logo.jpeg" alt="b.ellers Logo">
+        <img src="assets/img/signet.png" alt="">
         <span>b.ellers</span>
       </a>
-      <button class="nav-toggle" aria-label="Menü öffnen">&#9776;</button>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">&#9776;</button>
       <ul class="nav-links">
         <li><a href="#hero">Willkommen</a></li>
         <li><a href="speisekarte.html">Speisekarte</a></li>
@@ -31,28 +31,47 @@
   <main>
 
     <section id="hero" class="hero">
-      <img src="assets/img/logo.jpeg" alt="b.ellers Logo" class="hero-logo">
-      <h1>Willkommen bei b.ellers</h1>
+      <img src="assets/img/logo-freigestellt.png" alt="b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn" class="hero-logo">
       <p class="claim">Das Café in Miesbach</p>
       <!-- TODO: Willkommenstext nach Wunsch anpassen -->
-      <p>Unser familiengeführtes Café in Miesbach – guter Kaffee, hausgemachtes Frühstück und ein gemütlicher Platz zum Verweilen.</p>
-      <div class="ueber-uns">
-        <!-- TODO: kurzen "Über uns"-Text der Familie ergänzen -->
-        <p>Bei uns gibt es guten Kaffee, hausgemachtes Frühstück und ein herzliches Willkommen mitten in Miesbach. Schaut vorbei – wir freuen uns auf euch!</p>
+      <p class="hero-text">
+        Guter Kaffee, hausgemachtes Frühstück und ein gemütlicher Platz zum
+        Verweilen – mitten am Stadtplatz. Schaut vorbei, wir freuen uns auf euch!
+      </p>
+
+      <!-- Wird per JavaScript gefüllt; ohne JavaScript bleibt sie ausgeblendet. -->
+      <p class="status" data-status hidden></p>
+
+      <div class="hero-aktionen">
+        <a class="button" href="speisekarte.html">Zur Speisekarte</a>
+        <a class="button button-hell" href="tel:+4980259924355">Anrufen</a>
       </div>
+
+      <svg class="hero-welle" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,48 C240,8 480,0 720,12 C960,24 1200,40 1440,20 L1440,48 Z"></path>
+      </svg>
     </section>
 
     <section id="speisekarte-teaser">
-      <div class="container karte-teaser">
+      <div class="container karte-teaser einblenden">
         <h2>Unsere Speisekarte</h2>
-        <p>Frühstück, Eierspeisen, Kaffeespezialitäten und Getränke – vieles davon hausgemacht.</p>
-        <a class="button" href="speisekarte.html">Zur Speisekarte</a>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <p>
+          Frühstück von der Lieblingsbowl bis zum Gönnerbrunch, Eierspeisen,
+          Kaffeespezialitäten und frische Säfte – vieles davon hausgemacht.
+        </p>
+        <a class="button" href="speisekarte.html">Speisekarte ansehen</a>
       </div>
     </section>
 
     <section id="oeffnungszeiten">
-      <div class="container">
+      <div class="container einblenden">
         <h2>Öffnungszeiten</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <!-- data-tage: 0 = Sonntag, 1 = Montag ... 6 = Samstag.
+             Damit hebt das Skript automatisch den heutigen Tag hervor.
+             Bei Änderungen bitte auch assets/js/main.js anpassen. -->
         <table class="oeffnungszeiten-tabelle">
           <thead>
             <tr>
@@ -61,10 +80,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Montag</td><td>Ruhetag</td></tr>
-            <tr><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
-            <tr><td>Samstag</td><td>8:00 – 17:00 Uhr</td></tr>
-            <tr><td>Sonntag</td><td>8:00 – 17:00 Uhr</td></tr>
+            <tr data-tage="1"><td>Montag</td><td>Ruhetag</td></tr>
+            <tr data-tage="2,3,4,5"><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
+            <tr data-tage="6"><td>Samstag</td><td>8:00 – 17:00 Uhr</td></tr>
+            <tr data-tage="0"><td>Sonntag</td><td>8:00 – 17:00 Uhr</td></tr>
           </tbody>
         </table>
 
@@ -83,8 +102,9 @@
     </section>
 
     <section id="anfahrt">
-      <div class="container">
+      <div class="container einblenden">
         <h2>Anfahrt</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
         <div class="anfahrt-inhalt">
           <div class="anfahrt-text">
             <p><strong>b.ellers</strong><br>
@@ -111,8 +131,9 @@
     </section>
 
     <section id="galerie">
-      <div class="container">
+      <div class="container einblenden">
         <h2>Galerie</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
         <!-- TODO: eigene Fotos in assets/img/ ablegen und hier je eine Platzhalter-Box
              ersetzen durch:
              <div class="galerie-bild"><img src="assets/img/foto1.jpg" alt="Kurze Beschreibung"></div>
@@ -131,26 +152,30 @@
     </section>
 
     <section id="kontakt">
-      <div class="container kontakt-inhalt">
+      <div class="container kontakt-inhalt einblenden">
         <h2>Kontakt</h2>
-        <p><strong>b.ellers</strong><br>
-        Stadtplatz 1<br>
-        83714 Miesbach</p>
-        <p>Telefon: <a href="tel:+4980259924355">08025 9924355</a></p>
-        <!-- TODO: echte E-Mail-Adresse eintragen. Dann ersetzen durch z.B.:
-             <p>E-Mail: <a href="mailto:hallo@bellers.de">hallo@bellers.de</a></p> -->
-        <p class="hinweis-platzhalter">E-Mail-Adresse noch eintragen</p>
-        <p>
-          <a class="button" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
-            Folgt uns auf Instagram
-          </a>
-        </p>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <div class="kontakt-karte">
+          <p><strong>b.ellers</strong><br>
+          Stadtplatz 1<br>
+          83714 Miesbach</p>
+          <p>Telefon: <a href="tel:+4980259924355">08025 9924355</a></p>
+          <!-- TODO: echte E-Mail-Adresse eintragen. Dann ersetzen durch z.B.:
+               <p>E-Mail: <a href="mailto:hallo@bellers.de">hallo@bellers.de</a></p> -->
+          <p class="hinweis-platzhalter">E-Mail-Adresse noch eintragen</p>
+          <p>
+            <a class="button" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+              Folgt uns auf Instagram
+            </a>
+          </p>
+        </div>
       </div>
     </section>
 
   </main>
 
   <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
     <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
     <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
     <p class="footer-links">

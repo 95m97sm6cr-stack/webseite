@@ -1,15 +1,25 @@
 /* b.ellers – Café Miesbach
-   Farben aus dem Logo abgeleitet */
+   Farben und Motive sind aus dem Logo und der gedruckten Speisekarte abgeleitet. */
 
 :root {
-  --rose: #f4c9bc;
-  --rose-light: #fbe4dc;
+  /* Das Rosé entspricht exakt dem Hintergrund des Logos, damit das
+     freigestellte Logo nahtlos auf der Fläche sitzt. */
+  --rose: #fdc3b8;
+  --rose-mittel: #fbd8d0;
+  --rose-light: #fdece7;
   --creme: #fbf5f1;
   --braun: #3c2a1e;
+  --braun-weich: #6b5344;
   --terracotta: #a66f4e;
   --terracotta-dunkel: #8a5a3c;
+  --gruen: #4d7c56;
+
   --schrift: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --schrift-akzent: "Brush Script MT", cursive;
+  --schrift-titel: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+
+  --schatten-weich: 0 2px 12px rgba(60, 42, 30, 0.08);
+  --schatten-stark: 0 8px 28px rgba(60, 42, 30, 0.16);
+  --rund: 14px;
 }
 
 * {
@@ -18,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -25,9 +36,7 @@ body {
   font-family: var(--schrift);
   color: var(--braun);
   background: var(--creme);
-  line-height: 1.6;
-  /* Sorgt dafür, dass der Footer auch auf kurzen Seiten (z. B. 404)
-     am unteren Bildschirmrand sitzt und nicht in der Mitte hängt. */
+  line-height: 1.7;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -53,14 +62,21 @@ a {
   color: var(--terracotta-dunkel);
 }
 
-/* Header / Navigation */
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Kopfbereich / Navigation ---------- */
 
 .kopfbereich {
-  background: var(--rose);
+  background: rgba(253, 195, 184, 0.92);
+  backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
-  z-index: 10;
-  box-shadow: 0 1px 4px rgba(60, 42, 30, 0.15);
+  z-index: 20;
+  box-shadow: 0 1px 0 rgba(60, 42, 30, 0.08);
 }
 
 .nav {
@@ -68,25 +84,27 @@ a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 1.25rem;
-  max-width: 960px;
+  padding: 0.5rem 1.25rem;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   text-decoration: none;
   color: var(--braun);
+  font-family: var(--schrift-titel);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
 }
 
 .nav-logo img {
-  height: 44px;
-  width: auto;
-  border-radius: 6px;
+  height: 42px;
+  width: 42px;
+  object-fit: contain;
 }
 
 .nav-toggle {
@@ -94,32 +112,50 @@ a {
   background: none;
   border: none;
   font-size: 1.6rem;
+  line-height: 1;
   color: var(--braun);
   cursor: pointer;
+  padding: 0.3rem 0.4rem;
 }
 
 .nav-links {
   display: flex;
-  gap: 1.4rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .nav-links a {
+  position: relative;
   text-decoration: none;
   color: var(--braun);
   font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.3rem 0;
 }
 
-.nav-links a:hover {
-  color: var(--terracotta-dunkel);
+/* Unterstrich wächst beim Darüberfahren von links nach rechts */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--terracotta-dunkel);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
 
-@media (max-width: 700px) {
-  .nav-toggle {
-    display: block;
-  }
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 780px) {
+  .nav-toggle { display: block; }
 
   .nav-links {
     display: none;
@@ -127,109 +163,223 @@ a {
     gap: 0;
     width: 100%;
     order: 3;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
   }
 
-  .nav-links.offen {
-    display: flex;
-  }
+  .nav-links.offen { display: flex; }
 
-  .nav-links li {
-    border-top: 1px solid rgba(60, 42, 30, 0.15);
-  }
+  .nav-links li { border-top: 1px solid rgba(60, 42, 30, 0.12); }
 
   .nav-links a {
     display: block;
-    padding: 0.7rem 1.25rem;
+    padding: 0.8rem 0.25rem;
   }
+
+  .nav-links a::after { display: none; }
 }
 
-/* Hero */
+/* ---------- Hero ---------- */
 
 .hero {
-  background: linear-gradient(180deg, var(--rose) 0%, var(--rose-light) 100%);
+  background: var(--rose);
   text-align: center;
-  padding: 3.5rem 1.25rem 3rem;
+  padding: 3rem 1.25rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-logo {
-  max-width: 220px;
-  margin: 0 auto 1.5rem;
+  max-width: 340px;
+  width: 78%;
+  margin: 0 auto 1.2rem;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  margin: 0 0 0.5rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  max-width: 40rem;
-  margin: 0 auto;
+  font-size: clamp(1.9rem, 5vw, 2.7rem);
+  margin: 0 0 0.3rem;
 }
 
 .hero .claim {
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--terracotta-dunkel);
-  margin-bottom: 1rem;
+  margin: 0 0 1.2rem;
 }
 
-.ueber-uns {
-  max-width: 40rem;
-  margin: 1.5rem auto 0;
-  padding: 0 1.25rem;
-  text-align: center;
+.hero-text {
+  font-size: 1.08rem;
+  max-width: 34rem;
+  margin: 0 auto;
   color: var(--braun);
 }
 
-/* Abschnitte */
+.hero-aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: 1.8rem 0 0;
+}
+
+/* Geschwungener Übergang vom Hero zum nächsten Abschnitt */
+.hero-welle {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 2.5rem;
+}
+
+.hero-welle path { fill: var(--creme); }
+
+/* ---------- Öffnungs-Status ---------- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  box-shadow: var(--schatten-weich);
+}
+
+.status-punkt {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--braun-weich);
+  flex: none;
+}
+
+.status.ist-offen .status-punkt {
+  background: var(--gruen);
+  box-shadow: 0 0 0 0 rgba(77, 124, 86, 0.6);
+  animation: pulsieren 2.4s infinite;
+}
+
+.status.ist-offen { color: var(--gruen); }
+.status.ist-zu { color: var(--braun-weich); }
+
+@keyframes pulsieren {
+  70%  { box-shadow: 0 0 0 8px rgba(77, 124, 86, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(77, 124, 86, 0); }
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-block;
+  background: var(--terracotta);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.7rem;
+  border-radius: 999px;
+  box-shadow: var(--schatten-weich);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--terracotta-dunkel);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--schatten-stark);
+}
+
+.button-hell {
+  background: #fff;
+  color: var(--terracotta-dunkel);
+}
+
+.button-hell:hover,
+.button-hell:focus-visible {
+  background: #fff;
+  color: var(--braun);
+}
+
+/* ---------- Abschnitte ---------- */
 
 section {
-  padding: 3rem 0;
+  padding: 3.5rem 0;
 }
 
 section h2 {
-  font-size: 1.7rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin: 0 0 0.4rem;
   text-align: center;
-  color: var(--braun);
 }
 
-/* Abwechselnde Hintergrundfarben nur für die Abschnitte der Startseite
-   (direkte Kinder von <main>), nicht für die Speisekarten-Abschnitte. */
+/* Herz-Trenner – greift das Motiv der gedruckten Speisekarte auf */
+.trenner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: 0 auto 2rem;
+  max-width: 260px;
+  color: var(--terracotta);
+}
+
+.trenner::before,
+.trenner::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.trenner span { font-size: 1rem; line-height: 1; }
+
 main > section:nth-of-type(even) {
   background: var(--rose-light);
 }
 
-/* Öffnungszeiten */
+/* ---------- Öffnungszeiten ---------- */
 
 .oeffnungszeiten-tabelle {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
   border-collapse: collapse;
-  background: var(--creme);
-  border-radius: 8px;
+  background: #fff;
+  border-radius: var(--rund);
   overflow: hidden;
-  box-shadow: 0 1px 6px rgba(60, 42, 30, 0.1);
+  box-shadow: var(--schatten-weich);
 }
 
 .oeffnungszeiten-tabelle th,
 .oeffnungszeiten-tabelle td {
-  padding: 0.7rem 1rem;
+  padding: 0.75rem 1.1rem;
   text-align: left;
   border-bottom: 1px solid var(--rose-light);
 }
 
-.oeffnungszeiten-tabelle tr:last-child td {
-  border-bottom: none;
-}
+.oeffnungszeiten-tabelle tr:last-child td { border-bottom: none; }
 
 .oeffnungszeiten-tabelle th {
   background: var(--terracotta);
   color: #fff;
+  font-family: var(--schrift-titel);
+}
+
+/* Der heutige Tag wird per JavaScript hervorgehoben */
+.oeffnungszeiten-tabelle tr.heute td {
+  background: var(--rose-light);
+  font-weight: 700;
+}
+
+.oeffnungszeiten-tabelle tr.heute td:first-child::after {
+  content: " · heute";
+  font-weight: 600;
+  color: var(--terracotta-dunkel);
+  font-size: 0.85em;
 }
 
 .hinweis-platzhalter {
@@ -239,143 +389,12 @@ main > section:nth-of-type(even) {
   margin-top: 0.8rem;
 }
 
-/* Anfahrt */
-
-.anfahrt-inhalt {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.anfahrt-text {
-  flex: 1 1 260px;
-  max-width: 320px;
-}
-
-.anfahrt-karte {
-  flex: 1 1 320px;
-  max-width: 500px;
-}
-
-.anfahrt-karte iframe {
-  width: 100%;
-  height: 320px;
-  border: 0;
-  border-radius: 8px;
-}
-
-/* Galerie */
-
-.galerie-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-@media (min-width: 600px) {
-  .galerie-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.galerie-bild {
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.galerie-bild img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.galerie-hinweis {
-  text-align: center;
-  margin-top: 1.2rem;
-  font-size: 0.95rem;
-}
-
-.karten-link {
-  margin: 0.5rem 0 0;
-  font-size: 0.9rem;
-}
-
-.galerie-platzhalter {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: var(--rose);
-  color: var(--braun);
-  font-size: 0.85rem;
-  padding: 0.5rem;
-}
-
-/* Kontakt */
-
-.kontakt-inhalt {
-  text-align: center;
-  max-width: 30rem;
-  margin: 0 auto;
-}
-
-.kontakt-inhalt a {
-  font-weight: 600;
-}
-
-/* Footer */
-
-footer {
-  background: var(--braun);
-  color: var(--rose-light);
-  padding: 2rem 1.25rem;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-footer a {
-  color: var(--rose-light);
-}
-
-footer .footer-links {
-  margin-top: 0.8rem;
-}
-
-footer .footer-links a {
-  margin: 0 0.5rem;
-}
-
-/* Seitenkopf für Unterseiten */
-
-.seiten-kopf {
-  background: linear-gradient(180deg, var(--rose) 0%, var(--rose-light) 100%);
-  text-align: center;
-  padding: 2.5rem 1.25rem 2rem;
-  margin-bottom: 2.5rem;
-}
-
-.seiten-kopf h1 {
-  margin: 0 0 0.4rem;
-  font-size: 2rem;
-}
-
-.seiten-kopf p {
-  margin: 0;
-}
-
-/* Info-Boxen (Frühstückszeiten / Mittagstisch) */
+/* ---------- Info-Boxen ---------- */
 
 .info-boxen {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.1rem;
   justify-content: center;
   margin-bottom: 3rem;
 }
@@ -388,70 +407,235 @@ footer .footer-links a {
 .info-box {
   flex: 1 1 240px;
   max-width: 340px;
-  background: var(--rose-light);
-  border: 1px solid var(--rose);
-  border-radius: 10px;
-  padding: 1.2rem;
+  background: #fff;
+  border: 1px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 1.3rem;
   text-align: center;
+  box-shadow: var(--schatten-weich);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--schatten-stark);
 }
 
 .info-box h2 {
   margin: 0 0 0.6rem;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.09em;
   color: var(--terracotta-dunkel);
+  font-family: var(--schrift);
+  font-weight: 700;
 }
 
-.info-box p {
-  margin: 0.4rem 0;
+.info-box p { margin: 0.4rem 0; }
+
+/* ---------- Speisekarten-Teaser ---------- */
+
+.karte-teaser { text-align: center; }
+
+.karte-teaser p {
+  max-width: 34rem;
+  margin: 0 auto 1.4rem;
 }
 
-/* Speisekarte */
+/* ---------- Anfahrt ---------- */
 
-.karte-bereich {
-  padding: 0 0 2.5rem;
+.anfahrt-inhalt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: stretch;
+  justify-content: center;
 }
+
+.anfahrt-text {
+  flex: 1 1 240px;
+  max-width: 320px;
+}
+
+.anfahrt-karte {
+  flex: 1 1 340px;
+  max-width: 520px;
+}
+
+.anfahrt-karte iframe {
+  width: 100%;
+  height: 320px;
+  border: 0;
+  border-radius: var(--rund);
+  box-shadow: var(--schatten-weich);
+}
+
+.karten-link {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- Galerie ---------- */
+
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+@media (min-width: 620px) {
+  .galerie-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.galerie-bild {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--rund);
+  overflow: hidden;
+  box-shadow: var(--schatten-weich);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.galerie-bild:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: var(--schatten-stark);
+}
+
+.galerie-bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galerie-platzhalter {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+  background: var(--rose-mittel);
+  color: var(--terracotta-dunkel);
+  font-size: 0.82rem;
+  padding: 0.5rem;
+}
+
+/* Das Signet aus dem Logo als dezentes Wasserzeichen in den Platzhaltern */
+.galerie-platzhalter::before {
+  content: "";
+  width: 46%;
+  height: 46%;
+  background: url("../img/signet.png") center / contain no-repeat;
+  opacity: 0.42;
+}
+
+.galerie-hinweis {
+  text-align: center;
+  margin-top: 1.4rem;
+  font-size: 0.95rem;
+}
+
+/* ---------- Kontakt ---------- */
+
+.kontakt-inhalt {
+  text-align: center;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.kontakt-inhalt a { font-weight: 600; }
+
+.kontakt-karte {
+  background: #fff;
+  border-radius: var(--rund);
+  padding: 1.8rem 1.5rem;
+  box-shadow: var(--schatten-weich);
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  background: var(--braun);
+  color: var(--rose-light);
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+footer a { color: var(--rose-light); }
+
+footer a:hover { color: #fff; }
+
+footer .footer-links { margin-top: 0.8rem; }
+
+footer .footer-links a { margin: 0 0.5rem; }
+
+.footer-signet {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 1rem;
+  opacity: 0.9;
+}
+
+/* ---------- Unterseiten-Kopf ---------- */
+
+.seiten-kopf {
+  background: var(--rose);
+  text-align: center;
+  padding: 2.8rem 1.25rem 2.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.seiten-kopf h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+}
+
+.seiten-kopf p { margin: 0; }
+
+/* ---------- Speisekarte ---------- */
+
+.karte-bereich { padding: 0 0 2.8rem; }
 
 .karte-bereich h2 {
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   text-align: left;
-  border-bottom: 2px solid var(--rose);
-  padding-bottom: 0.4rem;
-  margin-bottom: 1.2rem;
-  color: var(--terracotta-dunkel);
+  margin-bottom: 0.2rem;
+  color: var(--braun);
+}
+
+/* Herz-Linie unter jeder Kategorie-Überschrift */
+.karte-bereich > h2 + .trenner {
+  margin: 0 0 1.2rem;
+  max-width: 100%;
 }
 
 .karte-eintrag {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px dotted var(--rose);
+  padding: 0.65rem 0;
+  border-bottom: 1px dotted var(--rose-mittel);
 }
 
-.karte-eintrag:last-child {
-  border-bottom: none;
-}
+.karte-eintrag:last-child { border-bottom: none; }
 
-.karte-text {
-  flex: 1 1 auto;
-  min-width: 0;
-}
+.karte-text { flex: 1 1 auto; min-width: 0; }
 
-.karte-name {
-  display: block;
-  font-weight: 600;
-}
+.karte-name { display: block; font-weight: 600; }
 
 .karte-name-gross {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  font-family: var(--schrift-titel);
 }
 
 .karte-beschreibung {
   display: block;
   font-size: 0.9rem;
-  color: #6b5344;
+  color: var(--braun-weich);
   margin-top: 0.15rem;
 }
 
@@ -465,19 +649,22 @@ footer .footer-links a {
   flex: 0 0 auto;
   font-weight: 700;
   white-space: nowrap;
+  font-family: var(--schrift-titel);
 }
 
 .karte-highlight {
-  background: var(--rose-light);
-  border: 1px solid var(--rose);
-  border-radius: 10px;
-  padding: 1rem 1.2rem;
-  margin: 1.2rem 0;
+  position: relative;
+  background: linear-gradient(135deg, var(--rose-light), #fff);
+  border: 1px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 1.2rem 1.3rem;
+  margin: 1.4rem 0;
+  box-shadow: var(--schatten-weich);
 }
 
 .karte-zusatz {
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
   border-top: 1px dotted var(--terracotta);
 }
 
@@ -486,62 +673,43 @@ footer .footer-links a {
   padding: 0.25rem 0;
 }
 
-.karte-zusatz .karte-name {
-  font-weight: 400;
+.karte-zusatz .karte-name { font-weight: 400; }
+
+/* Herzchen vor den Zusatz-Optionen, wie auf der gedruckten Karte */
+.karte-zusatz .karte-name::before {
+  content: "\2661\00a0";
+  color: var(--terracotta);
 }
 
 .karte-badge {
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   border: 1px solid var(--terracotta);
   border-radius: 999px;
-  padding: 0.4rem 1.2rem;
+  padding: 0.45rem 1.3rem;
   font-weight: 600;
   color: var(--terracotta-dunkel);
+  background: #fff;
 }
 
 .karte-hinweis {
   background: var(--rose-light);
-  border-radius: 10px;
-  padding: 1.2rem;
+  border-radius: var(--rund);
+  padding: 1.5rem;
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.karte-hinweis p {
-  margin: 0.4rem 0;
-}
+.karte-hinweis p { margin: 0.4rem 0; }
 
 .legende {
   font-size: 0.78rem;
-  color: #6b5344;
-  line-height: 1.5;
+  color: var(--braun-weich);
+  line-height: 1.55;
   padding-bottom: 3rem;
 }
 
-/* Speisekarten-Teaser auf der Startseite */
-
-.karte-teaser {
-  text-align: center;
-}
-
-.button {
-  display: inline-block;
-  background: var(--terracotta);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.7rem 1.6rem;
-  border-radius: 999px;
-  margin-top: 0.5rem;
-}
-
-.button:hover {
-  background: var(--terracotta-dunkel);
-  color: #fff;
-}
-
-/* Rechtsseiten (Impressum/Datenschutz) */
+/* ---------- Rechtsseiten ---------- */
 
 .rechtsseite {
   max-width: 700px;
@@ -549,9 +717,7 @@ footer .footer-links a {
   padding: 3rem 1.25rem 4rem;
 }
 
-.rechtsseite h1 {
-  margin-top: 0;
-}
+.rechtsseite h1 { margin-top: 0; }
 
 .rechtsseite .zurueck {
   display: inline-block;
@@ -561,7 +727,51 @@ footer .footer-links a {
 .rechtsseite .hinweis {
   background: var(--rose-light);
   border-left: 4px solid var(--terracotta);
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1.1rem;
   margin-bottom: 2rem;
   font-size: 0.9rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* ---------- Sanftes Einblenden beim Scrollen ---------- */
+
+/* Wichtig: Der Inhalt ist standardmäßig SICHTBAR. Nur wenn das Skript
+   nachweislich läuft, setzt es die Klasse "anim-bereit" auf <html> und
+   blendet die Abschnitte erst beim Scrollen ein. Ohne JavaScript oder bei
+   einem Fehler bleibt damit alles lesbar – nie eine leere Seite. */
+html.anim-bereit .einblenden {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+html.anim-bereit .einblenden.sichtbar {
+  opacity: 1;
+  transform: none;
+}
+
+/* Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt keine
+   Animationen – barrierefrei und angenehmer bei Reisekrankheit. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .einblenden {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .status.ist-offen .status-punkt { animation: none; }
+
+  .button,
+  .info-box,
+  .galerie-bild {
+    transition: none;
+  }
+
+  .button:hover,
+  .info-box:hover,
+  .galerie-bild:hover {
+    transform: none;
+  }
 }
