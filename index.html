@@ -7,16 +7,35 @@
   <meta name="description" content="b.ellers – das familiengeführte Café am Stadtplatz in Miesbach. Frühstück, Kaffee, Öffnungszeiten und Anfahrt auf einen Blick.">
   <link rel="icon" href="assets/img/signet.png">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+
   <header class="kopfbereich">
-    <nav class="nav">
+    <nav class="nav" aria-label="Hauptnavigation">
       <a href="#hero" class="nav-logo">
         <img src="assets/img/signet.png" alt="">
         <span>b.ellers</span>
       </a>
-      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">&#9776;</button>
+
       <ul class="nav-links">
         <li><a href="#hero">Willkommen</a></li>
         <li><a href="speisekarte.html">Speisekarte</a></li>
@@ -25,13 +44,75 @@
         <li><a href="#galerie">Galerie</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
+
+      <div class="nav-werkzeuge">
+        <div class="ansicht">
+          <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+            <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+            <span>Ansicht</span>
+          </button>
+
+          <div class="ansicht-panel" id="ansicht-panel" hidden>
+            <h2>Ansicht anpassen</h2>
+            <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+            <div class="ansicht-gruppe">
+              <span class="titel" id="titel-schrift">Schriftgröße</span>
+              <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                <button type="button" data-setzt="schrift:normal">Normal</button>
+                <button type="button" data-setzt="schrift:gross">Groß</button>
+                <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+              </div>
+            </div>
+
+            <div class="ansicht-gruppe">
+              <span class="titel" id="titel-kontrast">Kontrast</span>
+              <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                <button type="button" data-setzt="kontrast:normal">Normal</button>
+                <button type="button" data-setzt="kontrast:stark">Stark</button>
+              </div>
+            </div>
+
+            <div class="ansicht-gruppe">
+              <span class="titel" id="titel-bewegung">Bewegung</span>
+              <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                <button type="button" data-setzt="bewegung:an">An</button>
+                <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+              </div>
+            </div>
+
+            <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+          </div>
+        </div>
+
+        <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">&#9776;</button>
+      </div>
     </nav>
   </header>
 
-  <main>
+  <main id="inhalt">
 
     <section id="hero" class="hero">
-      <img src="assets/img/logo-freigestellt.png" alt="b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn" class="hero-logo">
+      <div class="hero-deko" aria-hidden="true">
+        <img src="assets/img/bohne.png" alt="" class="d1">
+        <img src="assets/img/brezn.png" alt="" class="d2">
+        <img src="assets/img/brezn.png" alt="" class="d3">
+        <img src="assets/img/bohne.png" alt="" class="d4">
+      </div>
+
+      <div class="hero-buehne">
+        <img src="assets/img/logo-freigestellt.png"
+             alt="b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn"
+             class="hero-logo" width="442" height="405">
+        <!-- Aufsteigender Dampf über der Tasse -->
+        <svg class="dampf" viewBox="0 0 96 110" aria-hidden="true">
+          <path d="M26 100 C14 78, 40 68, 28 46 C20 31, 34 20, 30 8"></path>
+          <path d="M50 104 C38 80, 64 70, 52 47 C44 32, 58 20, 54 6"></path>
+          <path d="M74 100 C62 78, 88 68, 76 46 C68 31, 82 20, 78 8"></path>
+        </svg>
+      </div>
+
+      <h1>Willkommen bei b.ellers</h1>
       <p class="claim">Das Café in Miesbach</p>
       <!-- TODO: Willkommenstext nach Wunsch anpassen -->
       <p class="hero-text">
@@ -39,16 +120,17 @@
         Verweilen – mitten am Stadtplatz. Schaut vorbei, wir freuen uns auf euch!
       </p>
 
-      <!-- Wird per JavaScript gefüllt; ohne JavaScript bleibt sie ausgeblendet. -->
+      <!-- Wird vom Skript gefüllt; ohne JavaScript bleibt der Hinweis ausgeblendet. -->
       <p class="status" data-status hidden></p>
 
       <div class="hero-aktionen">
         <a class="button" href="speisekarte.html">Zur Speisekarte</a>
+        <a class="button button-hell" href="#reservierung" data-oeffnet="reservierung">Tisch reservieren</a>
         <a class="button button-hell" href="tel:+4980259924355">Anrufen</a>
       </div>
 
-      <svg class="hero-welle" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,48 C240,8 480,0 720,12 C960,24 1200,40 1440,20 L1440,48 Z"></path>
+      <svg class="hero-welle" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,52 C240,10 480,0 720,14 C960,28 1200,44 1440,22 L1440,52 Z"></path>
       </svg>
     </section>
 
@@ -73,10 +155,11 @@
              Damit hebt das Skript automatisch den heutigen Tag hervor.
              Bei Änderungen bitte auch assets/js/main.js anpassen. -->
         <table class="oeffnungszeiten-tabelle">
+          <caption class="nur-fuer-screenreader">Öffnungszeiten von b.ellers</caption>
           <thead>
             <tr>
-              <th>Tag</th>
-              <th>Uhrzeit</th>
+              <th scope="col">Tag</th>
+              <th scope="col">Uhrzeit</th>
             </tr>
           </thead>
           <tbody>
@@ -87,7 +170,7 @@
           </tbody>
         </table>
 
-        <div class="info-boxen">
+        <div class="info-boxen staffeln">
           <div class="info-box">
             <h2>Frühstückszeiten</h2>
             <p>Dienstag – Freitag<br>8:00 – 11:30 Uhr</p>
@@ -97,6 +180,28 @@
             <h2>Mittagstisch</h2>
             <p>Dienstag – Freitag<br>11:30 – 14:00 Uhr</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reservierung">
+      <div class="container reservierung-inhalt einblenden">
+        <h2>Tisch reservieren</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <div class="reservierung-hinweis">
+          <p class="wichtig">
+            Eine Online-Reservierung gibt es bei uns nicht – meldet euch einfach
+            kurz bei uns, wir finden einen Platz für euch.
+          </p>
+          <p>Am besten telefonisch während unserer Öffnungszeiten:</p>
+          <p class="status" data-status hidden></p>
+          <div class="reservierung-wege">
+            <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+            <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+              Auf Instagram schreiben
+            </a>
+          </div>
+          <p>b.ellers · Stadtplatz 1 · 83714 Miesbach</p>
         </div>
       </div>
     </section>
@@ -138,7 +243,7 @@
              ersetzen durch:
              <div class="galerie-bild"><img src="assets/img/foto1.jpg" alt="Kurze Beschreibung"></div>
              Bitte nur eigene Fotos verwenden (siehe INHALTE-BEARBEITEN.md). -->
-        <div class="galerie-grid">
+        <div class="galerie-grid staffeln">
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
           <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
@@ -163,11 +268,12 @@
           <!-- TODO: echte E-Mail-Adresse eintragen. Dann ersetzen durch z.B.:
                <p>E-Mail: <a href="mailto:hallo@bellers.de">hallo@bellers.de</a></p> -->
           <p class="hinweis-platzhalter">E-Mail-Adresse noch eintragen</p>
-          <p>
-            <a class="button" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+          <div class="kontakt-aktionen">
+            <a class="button" href="#reservierung" data-oeffnet="reservierung">Tisch reservieren</a>
+            <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
               Folgt uns auf Instagram
             </a>
-          </p>
+          </div>
         </div>
       </div>
     </section>
@@ -184,6 +290,30 @@
     </p>
     <p>&copy; 2026 b.ellers</p>
   </footer>
+
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+  <!-- Reservierungs-Dialog. Hier kann NICHT reserviert werden – er zeigt nur,
+       wie man uns erreicht. Ohne JavaScript wird er nie geöffnet; die Buttons
+       führen dann zum Abschnitt "Tisch reservieren" weiter oben. -->
+  <div class="dialog-hintergrund" hidden>
+    <div class="reservierung-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-titel">
+      <button type="button" class="dialog-schliessen" data-schliesst aria-label="Schließen">&times;</button>
+      <h2 id="dialog-titel">Tisch reservieren</h2>
+      <p class="dialog-kernsatz">
+        Eine Online-Reservierung gibt es bei uns nicht – meldet euch einfach
+        kurz bei uns, wir finden einen Platz für euch.
+      </p>
+      <p class="status" data-status hidden></p>
+      <div class="dialog-wege">
+        <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+        <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+          Auf Instagram schreiben
+        </a>
+      </div>
+      <p class="dialog-fuss">b.ellers · Stadtplatz 1 · 83714 Miesbach</p>
+    </div>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>

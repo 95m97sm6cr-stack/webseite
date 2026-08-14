@@ -1,23 +1,31 @@
 # b.ellers – Café Website
 
 Einfache, statische Website für das familiengeführte Café **b.ellers** in Miesbach.
-Kein Framework, kein Build-Schritt, keine Datenbank – nur reines HTML/CSS (+ ein
-kleines JS für das mobile Menü). Das hält Hosting-Kosten und Wartungsaufwand
-minimal.
+Kein Framework, kein Build-Schritt, keine Datenbank – nur reines HTML, CSS und
+etwas JavaScript. Das hält Hosting-Kosten und Wartungsaufwand minimal.
 
 ## Struktur
 
 ```
-index.html            Startseite (Willkommen, Öffnungszeiten, Anfahrt, Galerie, Kontakt)
+index.html            Startseite (Willkommen, Speisekarte-Teaser, Öffnungszeiten,
+                      Tisch reservieren, Anfahrt, Galerie, Kontakt)
 speisekarte.html      Speisekarte inkl. Preise und Allergen-Legende
 impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
 404.html              Fehlerseite bei falsch eingetippter Adresse
 .htaccess             Servereinstellungen (HTTPS, Caching, Fehlerseite)
 assets/css/style.css  Gesamtes Styling
-assets/img/           Bilder (u.a. logo.jpeg)
-assets/js/main.js     Kleines Skript fürs mobile Menü
+assets/img/           Logo, freigestelltes Logo, Signet und Deko-Motive
+assets/js/main.js     Menü, Ansicht-Einstellungen, Öffnungs-Status, Reservierungs-
+                      Fenster und die Effekte
 ```
+
+Die Seite ist auf gute Lesbarkeit für ältere Besucher ausgelegt: 18 px
+Grundschrift, große Bedienflächen, geprüfte Farbkontraste (mindestens 4,5:1,
+im Modus „starker Kontrast" mindestens 7:1) und ein Bedienfeld „Ansicht", über
+das sich Schriftgröße, Kontrast und Bewegung umstellen lassen.
+
+Ohne JavaScript bleibt die Seite vollständig lesbar und bedienbar.
 
 Hinweise zum Anpassen der Inhalte (Öffnungszeiten, Adresse, Fotos, ...) stehen
 in [`INHALTE-BEARBEITEN.md`](./INHALTE-BEARBEITEN.md) – auf Deutsch und ohne

@@ -33,6 +33,25 @@ Beispiel – Öffnungszeiten in `index.html` (rund um `id="oeffnungszeiten"`):
 
 Einfach die Uhrzeiten bzw. Wochentage durch die echten Werte ersetzen.
 
+## Öffnungszeiten ändern – bitte an ZWEI Stellen
+
+Die Öffnungszeiten stehen an zwei Orten, und beide müssen zusammenpassen:
+
+1. **`index.html`** – die sichtbare Tabelle im Bereich „Öffnungszeiten".
+2. **`assets/js/main.js`** – ganz oben in der Liste `OEFFNUNGSZEITEN`. Daraus
+   berechnet die Seite den Hinweis „Jetzt geöffnet · bis 17:00 Uhr" bzw.
+   „Geschlossen · öffnet in 2 Std 15 Min" und hebt den heutigen Tag hervor.
+
+In `main.js` sieht eine Zeile so aus (die Reihenfolge ist Sonntag, Montag,
+Dienstag ... Samstag; `null` bedeutet Ruhetag):
+
+```
+{ von: "07:00", bis: "17:00" }, // Dienstag
+```
+
+Wenn nur die Tabelle geändert wird, stimmt der Hinweis oben nicht mehr –
+deshalb bitte immer beides anpassen.
+
 ## Adresse ändern
 
 Die Adresse steht an zwei Stellen in `index.html`: im Bereich „Anfahrt" und
@@ -128,6 +147,30 @@ Klammern (z. B. `[Vor- und Nachname]`) durch die echten Angaben ersetzen und
 die eckigen Klammern dabei entfernen. Das Impressum ist in Deutschland für
 gewerbliche Websites gesetzlich vorgeschrieben und sollte vor der
 Veröffentlichung vollständig ausgefüllt sein.
+
+## Der Knopf „Ansicht" oben rechts
+
+Über diesen Knopf können Besucher selbst einstellen:
+
+- **Schriftgröße** – Normal, Groß, Sehr groß
+- **Kontrast** – Normal oder Stark (kräftigere Farben, deutlichere Rahmen)
+- **Bewegung** – An oder Reduziert (schaltet Dampf, Einblendungen usw. ab)
+
+Die Einstellung wird im Browser des Besuchers gespeichert und gilt auf allen
+Seiten. Das ist vor allem für ältere Gäste gedacht. Daran muss nichts gepflegt
+werden – es funktioniert von allein.
+
+## Der Knopf „Tisch reservieren"
+
+**Wichtig zu wissen: Darüber kann niemand tatsächlich einen Tisch buchen.**
+Der Knopf öffnet nur ein Fenster mit der Telefonnummer und dem Instagram-Link
+und sagt ausdrücklich, dass es keine Online-Reservierung gibt. Es kommen also
+keine automatischen Reservierungen herein, um die man sich kümmern müsste.
+
+Wenn sich die Telefonnummer ändert, muss sie an diesen Stellen angepasst werden:
+im Bereich „Tisch reservieren" und „Kontakt" in `index.html`, im Fenster ganz
+unten in `index.html` und `speisekarte.html` (Suche nach `dialog-wege`), im
+Fußbereich aller Seiten sowie im Impressum.
 
 ## Änderungen ansehen
 

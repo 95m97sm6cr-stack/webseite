@@ -7,16 +7,34 @@
   <meta name="description" content="Die Speisekarte von b.ellers in Miesbach: Frühstück, Eierspeisen, Kaffee, Tee und Getränke.">
   <link rel="icon" href="assets/img/signet.png">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+
   <header class="kopfbereich">
-    <nav class="nav">
+    <nav class="nav" aria-label="Hauptnavigation">
       <a href="index.html" class="nav-logo">
         <img src="assets/img/signet.png" alt="">
         <span>b.ellers</span>
       </a>
-      <button class="nav-toggle" aria-label="Menü öffnen">&#9776;</button>
       <ul class="nav-links">
         <li><a href="index.html">Startseite</a></li>
         <li><a href="speisekarte.html">Speisekarte</a></li>
@@ -24,14 +42,59 @@
         <li><a href="index.html#anfahrt">Anfahrt</a></li>
         <li><a href="index.html#kontakt">Kontakt</a></li>
       </ul>
+      <div class="nav-werkzeuge">
+        <div class="ansicht">
+          <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+            <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+            <span>Ansicht</span>
+          </button>
+
+          <div class="ansicht-panel" id="ansicht-panel" hidden>
+            <h2>Ansicht anpassen</h2>
+            <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+            <div class="ansicht-gruppe">
+              <span class="titel" id="titel-schrift">Schriftgröße</span>
+              <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                <button type="button" data-setzt="schrift:normal">Normal</button>
+                <button type="button" data-setzt="schrift:gross">Groß</button>
+                <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+              </div>
+            </div>
+
+            <div class="ansicht-gruppe">
+              <span class="titel" id="titel-kontrast">Kontrast</span>
+              <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                <button type="button" data-setzt="kontrast:normal">Normal</button>
+                <button type="button" data-setzt="kontrast:stark">Stark</button>
+              </div>
+            </div>
+
+            <div class="ansicht-gruppe">
+              <span class="titel" id="titel-bewegung">Bewegung</span>
+              <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                <button type="button" data-setzt="bewegung:an">An</button>
+                <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+              </div>
+            </div>
+
+            <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+          </div>
+        </div>
+        <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">&#9776;</button>
+      </div>
     </nav>
   </header>
 
-  <main>
+  <main id="inhalt">
 
     <div class="seiten-kopf">
       <h1>Speisekarte</h1>
       <p>Alles frisch, vieles hausgemacht – schaut vorbei!</p>
+      <p class="status" data-status hidden></p>
+      <p class="seiten-kopf-aktion">
+        <a class="button" href="index.html#reservierung" data-oeffnet="reservierung">Tisch reservieren</a>
+      </p>
     </div>
 
     <div class="container">
@@ -299,11 +362,12 @@
 
       <div class="legende">
         <p><strong>Kreuzkontaminationen und Spuren können vorhanden sein.</strong></p>
-        <!-- TODO: Auf der gedruckten Karte fehlen in dieser Legende die Nummern (5), (6) und (7),
-             obwohl (7) bei den Kaffees verwendet wird. Bitte prüfen und hier ergänzen. -->
+        <!-- Hinweis: (5) und (6) kommen auf dieser Karte nirgends vor, deshalb fehlen sie hier.
+             TODO: Beim Matcha Latte steht "(u)" – dieser Buchstabe fehlt in der Legende.
+             Bitte klären, wofür (u) steht, und hier ergänzen. -->
         <p>
           (1) Konservierungsstoff, (2) mit Farbstoff, (3) mit Antioxidationsmittel, (4) mit Phosphat,
-          (8) mit Geschmacksverstärker, (9) geschwärzt, (10) gewachst, (11) mit Taurin,
+          (7) mit Koffein, (8) mit Geschmacksverstärker, (9) geschwärzt, (10) gewachst, (11) mit Taurin,
           (12) mit Süßungsmitteln, (13) mit Nitrat,
           (a) Glutenhaltiges Getreide, (b) Krebstiere und daraus gewonnene Erzeugnisse,
           (c) Eier und daraus gewonnene Erzeugnisse, (d) Fische und daraus gewonnene Erzeugnisse,
@@ -329,6 +393,31 @@
     </p>
     <p>&copy; 2026 b.ellers</p>
   </footer>
+
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+
+  <!-- Reservierungs-Dialog. Hier kann NICHT reserviert werden – er zeigt nur,
+       wie man uns erreicht. Ohne JavaScript wird er nie geöffnet; der Button
+       führt dann zum Abschnitt "Tisch reservieren" auf der Startseite. -->
+  <div class="dialog-hintergrund" hidden>
+    <div class="reservierung-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-titel">
+      <button type="button" class="dialog-schliessen" data-schliesst aria-label="Schließen">&times;</button>
+      <h2 id="dialog-titel">Tisch reservieren</h2>
+      <p class="dialog-kernsatz">
+        Eine Online-Reservierung gibt es bei uns nicht – meldet euch einfach
+        kurz bei uns, wir finden einen Platz für euch.
+      </p>
+      <p class="status" data-status hidden></p>
+      <div class="dialog-wege">
+        <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+        <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+          Auf Instagram schreiben
+        </a>
+      </div>
+      <p class="dialog-fuss">b.ellers · Stadtplatz 1 · 83714 Miesbach</p>
+    </div>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>

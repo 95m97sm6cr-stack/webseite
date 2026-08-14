@@ -1,16 +1,22 @@
-/* b.ellers – kleine Helfer für die Website.
-   Alles optional: Ohne JavaScript bleibt die Seite vollständig lesbar. */
+/* =============================================================
+   b.ellers – Skript für die Website
+
+   Grundsatz: Die Seite muss ohne JavaScript vollständig nutzbar sein.
+   Alles hier ist eine Verbesserung obendrauf, nichts davon ist Pflicht.
+   ============================================================= */
 
 (function () {
   "use strict";
 
-  /* ---------------------------------------------------------------
-     Öffnungszeiten an einer Stelle gepflegt.
-     Reihenfolge: 0 = Sonntag, 1 = Montag, ... 6 = Samstag.
-     null bedeutet Ruhetag. Zeiten in Minuten seit Mitternacht.
+  /* ===========================================================
+     Öffnungszeiten – eine einzige Quelle für Status und Countdown.
+
+     Reihenfolge: 0 = Sonntag, 1 = Montag ... 6 = Samstag.
+     null bedeutet Ruhetag.
+
      WICHTIG: Wenn sich die Öffnungszeiten ändern, hier UND in der
      Tabelle in index.html anpassen.
-     --------------------------------------------------------------- */
+     =========================================================== */
   var OEFFNUNGSZEITEN = [
     { von: "08:00", bis: "17:00" }, // Sonntag
     null,                            // Montag – Ruhetag
@@ -22,72 +28,294 @@
   ];
 
   var TAGE = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+  var SPEICHER = "bellers-ansicht";
+
+  /* ---------- kleine Helfer ---------- */
+
+  function $(auswahl, wurzel) { return (wurzel || document).querySelector(auswahl); }
+  function $$(auswahl, wurzel) {
+    return Array.prototype.slice.call((wurzel || document).querySelectorAll(auswahl));
+  }
 
   function inMinuten(hhmm) {
     var t = hhmm.split(":");
     return parseInt(t[0], 10) * 60 + parseInt(t[1], 10);
   }
 
-  function ohneNull(hhmm) {
-    // "07:00" → "7:00 Uhr" (so steht es auch in der Tabelle)
-    return hhmm.replace(/^0/, "") + " Uhr";
+  function alsUhrzeit(hhmm) { return hhmm.replace(/^0/, "") + " Uhr"; }
+
+  /* Läuft die Seite gerade mit Bewegung? Berücksichtigt sowohl den
+     Schalter im Ansicht-Bedienfeld als auch die Systemeinstellung. */
+  function bewegungErlaubt() {
+    var gewaehlt = document.documentElement.getAttribute("data-bewegung");
+    if (gewaehlt === "reduziert") return false;
+    if (gewaehlt === "an") return true;
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
-  /* Ermittelt den aktuellen Status anhand der Uhrzeit des Besuchergeräts. */
+  /* ===========================================================
+     1. Öffnungs-Status mit Countdown
+     =========================================================== */
+
   function status(jetzt) {
     var tag = jetzt.getDay();
     var minuten = jetzt.getHours() * 60 + jetzt.getMinutes();
     var heute = OEFFNUNGSZEITEN[tag];
 
     if (heute && minuten >= inMinuten(heute.von) && minuten < inMinuten(heute.bis)) {
-      return { offen: true, text: "Jetzt geöffnet · bis " + ohneNull(heute.bis) };
+      var restMin = inMinuten(heute.bis) - minuten;
+      if (restMin <= 60) {
+        return { offen: true, text: "Jetzt geöffnet · noch " + restMin + " Min" };
+      }
+      return { offen: true, text: "Jetzt geöffnet · bis " + alsUhrzeit(heute.bis) };
     }
 
-    // Öffnet es heute noch?
+    // Wie lange bis zur nächsten Öffnung?
+    var wartenMin = null, zielTag = null, zielZeit = null;
+
     if (heute && minuten < inMinuten(heute.von)) {
-      return { offen: false, text: "Gerade geschlossen · öffnet heute um " + ohneNull(heute.von) };
-    }
-
-    // Nächsten geöffneten Tag suchen
-    for (var i = 1; i <= 7; i++) {
-      var t = (tag + i) % 7;
-      var z = OEFFNUNGSZEITEN[t];
-      if (z) {
-        var name = (i === 1) ? "morgen" : TAGE[t];
-        return { offen: false, text: "Gerade geschlossen · öffnet " + name + " um " + ohneNull(z.von) };
+      wartenMin = inMinuten(heute.von) - minuten;
+      zielTag = tag;
+      zielZeit = heute.von;
+    } else {
+      for (var i = 1; i <= 7; i++) {
+        var t = (tag + i) % 7;
+        var z = OEFFNUNGSZEITEN[t];
+        if (z) {
+          wartenMin = (24 * 60 - minuten) + (i - 1) * 24 * 60 + inMinuten(z.von);
+          zielTag = t;
+          zielZeit = z.von;
+          break;
+        }
       }
     }
-    return { offen: false, text: "Gerade geschlossen" };
+
+    if (wartenMin === null) return { offen: false, text: "Gerade geschlossen" };
+
+    // Unter 10 Stunden: als Countdown, das ist greifbarer als ein Wochentag.
+    if (wartenMin < 600) {
+      var std = Math.floor(wartenMin / 60);
+      var min = wartenMin % 60;
+      var dauer = std > 0 ? (std + " Std " + min + " Min") : (min + " Min");
+      return { offen: false, text: "Geschlossen · öffnet in " + dauer };
+    }
+
+    var name = (zielTag === (tag + 1) % 7) ? "morgen" : TAGE[zielTag];
+    return { offen: false, text: "Geschlossen · öffnet " + name + " um " + alsUhrzeit(zielZeit) };
   }
 
   function statusAnzeigen() {
-    var el = document.querySelector("[data-status]");
-    if (!el) return;
+    var felder = $$("[data-status]");
+    if (!felder.length) return;
 
     var s = status(new Date());
-    el.classList.remove("ist-offen", "ist-zu");
-    el.classList.add(s.offen ? "ist-offen" : "ist-zu");
-    el.innerHTML = '<span class="status-punkt"></span><span></span>';
-    el.lastElementChild.textContent = s.text;
-    el.hidden = false;
+    felder.forEach(function (el) {
+      el.classList.remove("ist-offen", "ist-zu");
+      el.classList.add(s.offen ? "ist-offen" : "ist-zu");
+      el.innerHTML = '<span class="status-punkt" aria-hidden="true"></span><span></span>';
+      el.lastElementChild.textContent = s.text;
+      el.hidden = false;
+    });
   }
 
-  /* Hebt in der Öffnungszeiten-Tabelle die heutige Zeile hervor.
-     Jede Zeile nennt über data-tage die Wochentage, für die sie gilt. */
   function heutigenTagMarkieren() {
     var heute = new Date().getDay();
-    document.querySelectorAll("tr[data-tage]").forEach(function (zeile) {
-      var tage = zeile.getAttribute("data-tage").split(",");
-      if (tage.indexOf(String(heute)) !== -1) {
+    $$("tr[data-tage]").forEach(function (zeile) {
+      if (zeile.getAttribute("data-tage").split(",").indexOf(String(heute)) !== -1) {
         zeile.classList.add("heute");
       }
     });
   }
 
-  /* Mobiles Menü */
+  /* ===========================================================
+     2. Ansicht-Bedienfeld: Schriftgröße, Kontrast, Bewegung
+     =========================================================== */
+
+  function einstellungenLesen() {
+    try {
+      return JSON.parse(localStorage.getItem(SPEICHER)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function einstellungenSchreiben(werte) {
+    try {
+      localStorage.setItem(SPEICHER, JSON.stringify(werte));
+    } catch (e) {
+      /* Privater Modus o. Ä. – dann gilt die Einstellung eben nur für diese Seite. */
+    }
+  }
+
+  function einstellungSetzen(name, wert) {
+    var werte = einstellungenLesen();
+    werte[name] = wert;
+    einstellungenSchreiben(werte);
+    document.documentElement.setAttribute("data-" + name, wert);
+    knoepfeAktualisieren();
+  }
+
+  function knoepfeAktualisieren() {
+    var wurzel = document.documentElement;
+    $$("[data-setzt]").forEach(function (knopf) {
+      var teile = knopf.getAttribute("data-setzt").split(":");
+      var aktiv = (wurzel.getAttribute("data-" + teile[0]) || standard(teile[0])) === teile[1];
+      knopf.setAttribute("aria-pressed", aktiv ? "true" : "false");
+    });
+  }
+
+  function standard(name) {
+    /* Bei der Bewegung ist der Standard NICHT einfach "an": Wenn im
+       Betriebssystem "Bewegung reduzieren" eingestellt ist, gilt das auch
+       hier. Solange niemand aktiv etwas anderes wählt, bleibt das Attribut
+       ungesetzt, damit die Systemeinstellung im CSS greifen kann. */
+    if (name === "bewegung") {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "reduziert" : "an";
+    }
+    return "normal";
+  }
+
+  function ansichtVorbereiten() {
+    var knopf = $(".ansicht-knopf");
+    var panel = $(".ansicht-panel");
+    if (!knopf || !panel) return;
+
+    // Schrift und Kontrast dürfen fest gesetzt werden; die Bewegung bewusst
+    // nicht (siehe standard()).
+    ["schrift", "kontrast"].forEach(function (n) {
+      if (!document.documentElement.getAttribute("data-" + n)) {
+        document.documentElement.setAttribute("data-" + n, "normal");
+      }
+    });
+
+    function oeffnen() {
+      panel.hidden = false;
+      knopf.setAttribute("aria-expanded", "true");
+      var ersterKnopf = $("button", panel);
+      if (ersterKnopf) ersterKnopf.focus();
+    }
+
+    function schliessen(fokusZurueck) {
+      panel.hidden = true;
+      knopf.setAttribute("aria-expanded", "false");
+      if (fokusZurueck) knopf.focus();
+    }
+
+    knopf.addEventListener("click", function () {
+      if (panel.hidden) oeffnen(); else schliessen(true);
+    });
+
+    panel.addEventListener("click", function (e) {
+      var ziel = e.target.closest("[data-setzt]");
+      if (ziel) {
+        var teile = ziel.getAttribute("data-setzt").split(":");
+        einstellungSetzen(teile[0], teile[1]);
+        return;
+      }
+      if (e.target.closest(".zuruecksetzen")) {
+        ["schrift", "kontrast", "bewegung"].forEach(function (n) {
+          einstellungSetzen(n, standard(n));
+        });
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !panel.hidden) schliessen(true);
+    });
+
+    document.addEventListener("click", function (e) {
+      if (panel.hidden) return;
+      if (!panel.contains(e.target) && !knopf.contains(e.target)) schliessen(false);
+    });
+
+    knoepfeAktualisieren();
+  }
+
+  /* ===========================================================
+     3. Reservierungs-Dialog
+
+     Wichtig: Hier lässt sich NICHT reservieren. Der Dialog zeigt nur,
+     wie man das Café erreicht. Ohne JavaScript führt der Button
+     stattdessen zum Abschnitt "#reservierung" mit denselben Angaben.
+     =========================================================== */
+
+  var FOKUSSIERBAR = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function dialogVorbereiten() {
+    var huelle = $(".dialog-hintergrund");
+    var dialog = $(".reservierung-dialog");
+    var ausloeser = $$('[data-oeffnet="reservierung"]');
+    if (!huelle || !dialog || !ausloeser.length) return;
+
+    var zuletztFokussiert = null;
+
+    function oeffnen(e) {
+      if (e) e.preventDefault();
+      zuletztFokussiert = document.activeElement;
+      huelle.hidden = false;
+      document.documentElement.classList.add("dialog-offen");
+      // Hintergrund für Screenreader ausblenden
+      $$("body > *:not(.dialog-hintergrund)").forEach(function (el) {
+        el.setAttribute("aria-hidden", "true");
+      });
+      // Seite darf im Hintergrund nicht wegscrollen
+      document.body.style.overflow = "hidden";
+      statusAnzeigen();
+      var erstes = $(FOKUSSIERBAR, dialog);
+      if (erstes) erstes.focus();
+    }
+
+    function schliessen() {
+      huelle.hidden = true;
+      document.documentElement.classList.remove("dialog-offen");
+      $$("body > *").forEach(function (el) { el.removeAttribute("aria-hidden"); });
+      document.body.style.overflow = "";
+      if (zuletztFokussiert) zuletztFokussiert.focus();
+    }
+
+    ausloeser.forEach(function (a) { a.addEventListener("click", oeffnen); });
+
+    $$("[data-schliesst]", huelle).forEach(function (b) {
+      b.addEventListener("click", schliessen);
+    });
+
+    // Klick auf den abgedunkelten Bereich schließt
+    huelle.addEventListener("mousedown", function (e) {
+      if (e.target === huelle) schliessen();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (huelle.hidden) return;
+
+      if (e.key === "Escape") { schliessen(); return; }
+
+      // Fokusfalle: Der Tastaturfokus bleibt im Dialog.
+      if (e.key === "Tab") {
+        var elemente = $$(FOKUSSIERBAR, dialog).filter(function (el) {
+          return el.offsetParent !== null;
+        });
+        if (!elemente.length) return;
+        var erstes = elemente[0];
+        var letztes = elemente[elemente.length - 1];
+
+        if (e.shiftKey && document.activeElement === erstes) {
+          e.preventDefault();
+          letztes.focus();
+        } else if (!e.shiftKey && document.activeElement === letztes) {
+          e.preventDefault();
+          erstes.focus();
+        }
+      }
+    });
+  }
+
+  /* ===========================================================
+     4. Navigation: mobiles Menü und mitlaufende Hervorhebung
+     =========================================================== */
+
   function menueVorbereiten() {
-    var toggle = document.querySelector(".nav-toggle");
-    var links = document.querySelector(".nav-links");
+    var toggle = $(".nav-toggle");
+    var links = $(".nav-links");
     if (!toggle || !links) return;
 
     toggle.setAttribute("aria-expanded", "false");
@@ -97,7 +325,7 @@
       toggle.setAttribute("aria-expanded", offen ? "true" : "false");
     });
 
-    links.querySelectorAll("a").forEach(function (link) {
+    $$("a", links).forEach(function (link) {
       link.addEventListener("click", function () {
         links.classList.remove("offen");
         toggle.setAttribute("aria-expanded", "false");
@@ -105,24 +333,43 @@
     });
   }
 
-  /* Abschnitte sanft einblenden, sobald sie in den Sichtbereich kommen.
+  function scrollspyVorbereiten() {
+    var links = $$('.nav-links a[href^="#"]');
+    if (!links.length || !("IntersectionObserver" in window)) return;
 
-     Grundsatz: Inhalt darf niemals dauerhaft unsichtbar sein. Deshalb
-     - wird der Versteck-Zustand per CSS nur aktiv, wenn wir die Klasse
-       "anim-bereit" setzen (siehe style.css),
-     - blendet ein Sicherheits-Timer nach 2,5 s alles ein, falls der
-       Beobachter aus irgendeinem Grund nicht auslöst,
-     - und ein Fehler in dieser Funktion macht ebenfalls alles sichtbar. */
+    var abschnitte = links.map(function (a) {
+      return document.getElementById(a.getAttribute("href").slice(1));
+    }).filter(Boolean);
+    if (!abschnitte.length) return;
+
+    var beobachter = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          var passt = a.getAttribute("href") === "#" + e.target.id;
+          a.classList.toggle("aktiv", passt);
+          if (passt) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+
+    abschnitte.forEach(function (s) { beobachter.observe(s); });
+  }
+
+  /* ===========================================================
+     5. Effekte: Einblenden, Fortschritt, Parallax, Nach oben
+     =========================================================== */
+
   function einblendenVorbereiten() {
-    var elemente = document.querySelectorAll(".einblenden");
+    var elemente = $$(".einblenden, .staffeln");
     if (!elemente.length) return;
 
     function allesZeigen() {
       elemente.forEach(function (el) { el.classList.add("sichtbar"); });
     }
 
-    var wenigerBewegung = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (wenigerBewegung || !("IntersectionObserver" in window)) {
+    if (!bewegungErlaubt() || !("IntersectionObserver" in window)) {
       return; // ohne "anim-bereit" ist ohnehin alles sichtbar
     }
 
@@ -149,12 +396,80 @@
     }
   }
 
+  /* Fortschrittsbalken, Parallax und Nach-oben-Knopf teilen sich einen
+     einzigen Scroll-Handler, der über requestAnimationFrame gedrosselt wird.
+     Das hält die Seite auch auf älteren Handys flüssig. */
+  function scrollEffekte() {
+    var balken = $(".fortschritt");
+    var nachOben = $(".nach-oben");
+    var hero = $(".hero");
+    var buehne = $(".hero-buehne");
+    var deko = $(".hero-deko");
+
+    // Parallax nur auf großen Zeigegeräten – auf Handys kostet es nur Akku.
+    var parallaxAn = bewegungErlaubt() &&
+      window.matchMedia("(min-width: 900px) and (hover: hover) and (pointer: fine)").matches;
+
+    if (!balken && !nachOben && !parallaxAn) return;
+
+    var laeuft = false;
+
+    function rechnen() {
+      laeuft = false;
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (balken) {
+        var hoehe = document.documentElement.scrollHeight - window.innerHeight;
+        var anteil = hoehe > 0 ? Math.min(y / hoehe, 1) : 0;
+        balken.style.transform = "scaleX(" + anteil + ")";
+      }
+
+      if (nachOben) {
+        nachOben.classList.toggle("sichtbar", y > 600);
+      }
+
+      if (parallaxAn && hero && y < hero.offsetHeight) {
+        if (buehne) buehne.style.transform = "translate3d(0," + (y * 0.16) + "px,0)";
+        if (deko) deko.style.transform = "translate3d(0," + (y * 0.32) + "px,0)";
+      }
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!laeuft) { laeuft = true; window.requestAnimationFrame(rechnen); }
+    }, { passive: true });
+
+    rechnen();
+  }
+
+  function nachObenVorbereiten() {
+    var knopf = $(".nach-oben");
+    if (!knopf) return;
+    knopf.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: bewegungErlaubt() ? "smooth" : "auto" });
+      var ziel = $("h1") || $("main");
+      if (ziel) {
+        ziel.setAttribute("tabindex", "-1");
+        ziel.focus({ preventScroll: true });
+      }
+    });
+  }
+
+  /* ===========================================================
+     Start
+     =========================================================== */
+
   document.addEventListener("DOMContentLoaded", function () {
+    ansichtVorbereiten();
     menueVorbereiten();
+    dialogVorbereiten();
     statusAnzeigen();
     heutigenTagMarkieren();
     einblendenVorbereiten();
-    // Status aktuell halten, falls die Seite lange offen bleibt
-    setInterval(statusAnzeigen, 60000);
+    scrollspyVorbereiten();
+    scrollEffekte();
+    nachObenVorbereiten();
+
+    // Status aktuell halten, falls die Seite lange offen bleibt.
+    setInterval(statusAnzeigen, 30000);
   });
 })();
