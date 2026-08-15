@@ -462,9 +462,29 @@ html.js .ansicht { display: block; }
     display: none;
     flex-direction: column;
     align-items: stretch;
+    /* Muss zurückgesetzt werden: Die Grundregel oben stellt für die Leiste am
+       Rechner »flex-end« ein. In einer Spalte schiebt das den Inhalt nach
+       unten – ist er höher als der Kasten, ragt er oben heraus, und über die
+       obere Kante hinaus lässt sich prinzipbedingt nicht scrollen. Die Links
+       standen dadurch weit oberhalb des Bildschirms und waren unerreichbar. */
+    justify-content: flex-start;
     gap: 0;
     width: 100%;
     padding-bottom: 0.6rem;
+
+    /* Mit ausgeklapptem „Ansicht"-Feld wird das Menü höher als der Bildschirm.
+       Weil der Kopfbereich oben festklebt (position: sticky), wandert er beim
+       Scrollen nicht mit – man würde nur die Seite dahinter verschieben und
+       käme an die unteren Einträge nie heran. Deshalb scrollt das Menü in
+       sich selbst. dvh statt vh, weil auf dem Handy sonst die ein- und
+       ausfahrende Adressleiste mitgerechnet wird; vh darüber als Rückfall
+       für ältere Browser. */
+    max-height: calc(100vh - 5rem);
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
+    /* Ist das Menü zu Ende gescrollt, darf sich die Bewegung nicht auf die
+       Seite dahinter übertragen. */
+    overscroll-behavior: contain;
   }
 
   .nav-klapp.offen { display: flex; }

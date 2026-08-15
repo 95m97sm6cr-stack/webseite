@@ -168,8 +168,13 @@ Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
 ## Wichtig vor dem Veröffentlichen
 
 - Verbliebene Platzhalter suchen (`<!-- TODO: ... -->`) und ersetzen. Offen
-  sind derzeit: eine etwaige USt-ID im Impressum, der Serverstandort in der
-  Datenschutzerklärung und die Bedeutung des Allergens `(u)` beim Matcha Latte.
-- Den Auftragsverarbeitungsvertrag (AVV) mit Hostinger abschließen – bei der
-  Nutzung eines Hosters nach DSGVO vorgeschrieben.
+  sind derzeit: eine etwaige USt-ID im Impressum und die Bedeutung des
+  Allergens `(u)` beim Matcha Latte.
+- Der Abschnitt „Hosting" in der Datenschutzerklärung beschreibt GitHub Pages
+  einschließlich der Datenübermittlung in die USA. Bei einem Hosterwechsel muss
+  er entsprechend angepasst werden.
+- GitHub stellt für die Auftragsverarbeitung nach Art. 28 DSGVO eine
+  [Data Protection Agreement](https://docs.github.com/en/site-policy/privacy-policies/github-data-protection-agreement)
+  bereit, die Teil der Nutzungsbedingungen ist. Ob im konkreten Fall etwas
+  gesondert abzuschließen ist, sollte im Zweifel fachkundig geprüft werden.
 - Das Impressum ist für gewerbliche Websites in Deutschland Pflicht.
