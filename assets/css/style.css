@@ -135,6 +135,13 @@ h1, h2, h3 {
   padding: 0 1.25rem;
 }
 
+/* Lange Wörter dürfen umbrechen, statt aus ihrem Kasten zu ragen – bei
+   Schriftgröße „sehr groß" auf einem schmalen Handy passt sonst kein
+   „Datenschutzerklärung" mehr in eine Zeile. Trennstriche nur in
+   Überschriften; im Fließtext wirken sie unruhig, dort genügt der Umbruch. */
+body { overflow-wrap: break-word; }
+h1, h2, h3 { hyphens: auto; }
+
 /* Links im Fließtext sind unterstrichen – Farbe allein genügt bei
    Farbsehschwäche nicht. */
 a { color: var(--terracotta-dunkel); }
@@ -271,9 +278,13 @@ button:focus-visible,
 
 .nav-links a.aktiv { color: var(--terracotta-dunkel); }
 
+/* Umbrechen dürfen die Werkzeuge (Sprache, Ansicht, Menüknopf) auch: bei
+   großer Schrift passen sie sonst neben dem Logo nicht mehr in eine Zeile. */
 .nav-werkzeuge {
   order: 3;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   gap: 0.4rem;
   margin-left: 0.6rem;
@@ -1053,7 +1064,12 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
   padding-bottom: 3rem;
 }
 
+/* width: 100% ist hier nötig, nicht bloß Angewohnheit: durch »margin: 0 auto«
+   wird dieses Flex-Element nicht auf die Rumpfbreite gedehnt, sondern nach
+   seinem Inhalt bemessen – und dessen Untergrenze ist das längste Wort. Bei
+   Schriftgröße „sehr groß" wurde die Seite dadurch breiter als das Handy. */
 .rechtsseite {
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
   padding: 3rem 1.25rem 4rem;
