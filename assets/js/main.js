@@ -27,8 +27,44 @@
     { von: "08:00", bis: "17:00" }  // Samstag
   ];
 
-  var TAGE = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
   var SPEICHER = "bellers-ansicht";
+
+  /* Sprachabhängige Texte. Welche Fassung gilt, entscheidet das lang-Attribut
+     der Seite (<html lang="de"> bzw. <html lang="en">). */
+  var TEXTE = {
+    de: {
+      tage: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+      offenBis:   function (z) { return "Jetzt geöffnet · bis " + z; },
+      offenNoch:  function (m) { return "Jetzt geöffnet · noch " + m + " Min"; },
+      zuIn:       function (d) { return "Geschlossen · öffnet in " + d; },
+      zuAmTag:    function (t, z) { return "Geschlossen · öffnet " + t + " um " + z; },
+      zu:         "Gerade geschlossen",
+      morgen:     "morgen",
+      dauer:      function (std, min) { return std > 0 ? (std + " Std " + min + " Min") : (min + " Min"); },
+      uhrzeit:    function (hhmm) { return hhmm.replace(/^0/, "") + " Uhr"; },
+      heute:      " · heute"
+    },
+    en: {
+      tage: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      offenBis:   function (z) { return "Open now · until " + z; },
+      offenNoch:  function (m) { return "Open now · closing in " + m + " min"; },
+      zuIn:       function (d) { return "Closed · opens in " + d; },
+      zuAmTag:    function (t, z) { return "Closed · opens " + t + " at " + z; },
+      zu:         "Currently closed",
+      morgen:     "tomorrow",
+      dauer:      function (std, min) { return std > 0 ? (std + " hrs " + min + " min") : (min + " min"); },
+      // 24-Stunden-Format bleibt auch auf Englisch – in Europa üblich und eindeutig.
+      uhrzeit:    function (hhmm) { return hhmm.replace(/^0/, ""); },
+      heute:      " · today"
+    }
+  };
+
+  /* Achtung: bewusst NICHT "t" genannt – in status() gibt es eine
+     Schleifenvariable "var t", die den Namen sonst im ganzen Funktionsbereich
+     überdecken würde (var wird nach oben gezogen). */
+  function texte() {
+    return TEXTE[document.documentElement.lang === "en" ? "en" : "de"];
+  }
 
   /* ---------- kleine Helfer ---------- */
 
@@ -42,7 +78,7 @@
     return parseInt(t[0], 10) * 60 + parseInt(t[1], 10);
   }
 
-  function alsUhrzeit(hhmm) { return hhmm.replace(/^0/, "") + " Uhr"; }
+  function alsUhrzeit(hhmm) { return texte().uhrzeit(hhmm); }
 
   /* Läuft die Seite gerade mit Bewegung? Berücksichtigt sowohl den
      Schalter im Ansicht-Bedienfeld als auch die Systemeinstellung. */
@@ -62,12 +98,12 @@
     var minuten = jetzt.getHours() * 60 + jetzt.getMinutes();
     var heute = OEFFNUNGSZEITEN[tag];
 
+    var T = texte();
+
     if (heute && minuten >= inMinuten(heute.von) && minuten < inMinuten(heute.bis)) {
       var restMin = inMinuten(heute.bis) - minuten;
-      if (restMin <= 60) {
-        return { offen: true, text: "Jetzt geöffnet · noch " + restMin + " Min" };
-      }
-      return { offen: true, text: "Jetzt geöffnet · bis " + alsUhrzeit(heute.bis) };
+      if (restMin <= 60) return { offen: true, text: T.offenNoch(restMin) };
+      return { offen: true, text: T.offenBis(alsUhrzeit(heute.bis)) };
     }
 
     // Wie lange bis zur nächsten Öffnung?
@@ -90,18 +126,17 @@
       }
     }
 
-    if (wartenMin === null) return { offen: false, text: "Gerade geschlossen" };
+    if (wartenMin === null) return { offen: false, text: T.zu };
 
     // Unter 10 Stunden: als Countdown, das ist greifbarer als ein Wochentag.
     if (wartenMin < 600) {
       var std = Math.floor(wartenMin / 60);
       var min = wartenMin % 60;
-      var dauer = std > 0 ? (std + " Std " + min + " Min") : (min + " Min");
-      return { offen: false, text: "Geschlossen · öffnet in " + dauer };
+      return { offen: false, text: T.zuIn(T.dauer(std, min)) };
     }
 
-    var name = (zielTag === (tag + 1) % 7) ? "morgen" : TAGE[zielTag];
-    return { offen: false, text: "Geschlossen · öffnet " + name + " um " + alsUhrzeit(zielZeit) };
+    var name = (zielTag === (tag + 1) % 7) ? T.morgen : T.tage[zielTag];
+    return { offen: false, text: T.zuAmTag(name, alsUhrzeit(zielZeit)) };
   }
 
   function statusAnzeigen() {

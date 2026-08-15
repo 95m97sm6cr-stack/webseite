@@ -6,15 +6,52 @@ Programmierkenntnisse – nur einen normalen Texteditor (z. B. Editor unter
 Windows, TextEdit unter Mac, oder den Datei-Manager des Hosters mit
 eingebautem Editor).
 
+## ⚠️ Zuerst lesen: Es gibt die Seite zweimal
+
+Die Website gibt es auf **Deutsch und Englisch**. Beide Fassungen sind eigene
+Dateien. Das heißt: **Eine Änderung muss in beiden gemacht werden**, sonst
+stimmen die Angaben irgendwann nicht mehr überein – und falsche Öffnungszeiten
+auf der englischen Seite wären schlimmer als gar keine englische Seite.
+
+| Was sich ändert | Wo überall anpassen |
+|---|---|
+| **Öffnungszeiten** | `index.html`, `index-en.html` **und** `assets/js/main.js` |
+| **Preise, Gerichte** | `speisekarte.html` **und** `menu-en.html` |
+| **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
+| **E-Mail-Adresse** | `index.html`, `index-en.html`, `impressum.html`, `datenschutz.html` |
+| **Fotos in der Galerie** | `index.html` **und** `index-en.html` |
+
+Welche Datei zu welcher gehört:
+
+| Deutsch | Englisch |
+|---|---|
+| `index.html` | `index-en.html` |
+| `speisekarte.html` | `menu-en.html` |
+| `impressum.html`, `datenschutz.html` | *(bleiben deutsch)* |
+
+Impressum und Datenschutz gibt es bewusst nur auf Deutsch – das ist bei
+deutschen Websites üblich, und im Zweifelsfall gilt ohnehin die deutsche
+Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
+
 ## Wo steht was?
 
-- **`index.html`** – die Startseite. Hier stehen der Willkommenstext, die
-  Öffnungszeiten, die Adresse, die Kontaktdaten und der Text im Footer.
-- **`speisekarte.html`** – die Speisekarte mit allen Speisen, Getränken und
-  Preisen sowie der Allergen-Legende.
+- **`index.html`** – die deutsche Startseite. Hier stehen der Willkommenstext,
+  die Öffnungszeiten, die Adresse, die Kontaktdaten und der Text im Footer.
+- **`index-en.html`** – dieselbe Seite auf Englisch.
+- **`speisekarte.html`** – die deutsche Speisekarte mit allen Speisen,
+  Getränken und Preisen sowie der Allergen-Legende.
+- **`menu-en.html`** – dieselbe Karte auf Englisch. Die Gerichtnamen bleiben
+  dort bewusst deutsch (*Gönnerbrunch*, *Lieblingsbowl*, *Avocado Royal* …) –
+  das sind die Eigennamen eurer Karte. Übersetzt sind nur die Beschreibungen.
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
-- **`assets/img/`** – der Ordner mit allen Bildern, z. B. `logo.jpeg`.
+- **`assets/img/`** – der Ordner mit allen Bildern:
+  - `logo.jpeg` – das Original-Logo mit rosa Hintergrund (wird auf der Website
+    nicht direkt verwendet, ist aber als Vorlage aufgehoben)
+  - `logo-freigestellt.png` – dasselbe Logo mit transparentem Hintergrund,
+    so erscheint es auf der Startseite
+  - `signet.png` – nur die Tasse, für Navigation, Fußbereich und Browser-Tab
+  - `bohne.png`, `brezn.png` – die schwebenden Motive im Kopfbereich
 
 ## Text ändern
 
@@ -28,17 +65,20 @@ eingebautem Editor).
 Beispiel – Öffnungszeiten in `index.html` (rund um `id="oeffnungszeiten"`):
 
 ```
-<tr><td>Montag – Freitag</td><td>08:00 – 18:00 Uhr</td></tr>
+<tr data-tage="2,3,4,5"><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
 ```
 
-Einfach die Uhrzeiten bzw. Wochentage durch die echten Werte ersetzen.
+Einfach die Uhrzeiten bzw. Wochentage ersetzen. Das `data-tage` bitte stehen
+lassen – daran erkennt die Seite, welcher Tag heute hervorgehoben wird
+(0 = Sonntag, 1 = Montag … 6 = Samstag).
 
-## Öffnungszeiten ändern – bitte an ZWEI Stellen
+## Öffnungszeiten ändern – bitte an DREI Stellen
 
-Die Öffnungszeiten stehen an zwei Orten, und beide müssen zusammenpassen:
+Die Öffnungszeiten stehen an drei Orten, und alle drei müssen zusammenpassen:
 
 1. **`index.html`** – die sichtbare Tabelle im Bereich „Öffnungszeiten".
-2. **`assets/js/main.js`** – ganz oben in der Liste `OEFFNUNGSZEITEN`. Daraus
+2. **`index-en.html`** – dieselbe Tabelle auf Englisch.
+3. **`assets/js/main.js`** – ganz oben in der Liste `OEFFNUNGSZEITEN`. Daraus
    berechnet die Seite den Hinweis „Jetzt geöffnet · bis 17:00 Uhr" bzw.
    „Geschlossen · öffnet in 2 Std 15 Min" und hebt den heutigen Tag hervor.
 
@@ -49,8 +89,9 @@ Dienstag ... Samstag; `null` bedeutet Ruhetag):
 { von: "07:00", bis: "17:00" }, // Dienstag
 ```
 
-Wenn nur die Tabelle geändert wird, stimmt der Hinweis oben nicht mehr –
-deshalb bitte immer beides anpassen.
+Wenn nur eine Tabelle geändert wird, stimmt der Hinweis oben nicht mehr oder
+die englische Seite zeigt falsche Zeiten – deshalb bitte immer alle drei
+Stellen anpassen.
 
 ## Adresse ändern
 
@@ -100,7 +141,8 @@ Miesbach. Sobald die echte Adresse feststeht:
 
 ## Speisekarte ändern (Preise, Gerichte)
 
-Die Speisekarte steht in der Datei `speisekarte.html`. Jeder Eintrag sieht so
+Die Speisekarte steht in `speisekarte.html` (deutsch) und `menu-en.html`
+(englisch). **Preise immer in beiden Dateien ändern.** Jeder Eintrag sieht so
 aus:
 
 ```
@@ -122,17 +164,22 @@ aus:
 - **Gericht hinzufügen:** einen bestehenden Block kopieren, einfügen und die
   Texte anpassen.
 
-Auch die Frühstückszeiten und der Mittagstisch stehen ganz oben in
-`speisekarte.html` – und zusätzlich auf der Startseite im Bereich
-„Öffnungszeiten". Wenn sich diese Zeiten ändern, bitte an **beiden** Stellen
-anpassen.
+Auch die Frühstückszeiten und der Mittagstisch stehen ganz oben in den
+Speisekarten – und zusätzlich auf beiden Startseiten im Bereich
+„Öffnungszeiten". Wenn sich diese Zeiten ändern, bitte überall anpassen.
 
 ### Wichtig: Allergen-Legende
 
 Ganz unten auf der Speisekarte steht die Legende mit den Nummern und
-Buchstaben. Auf der gedruckten Karte fehlen dort aktuell die Nummern (5), (6)
-und (7) – obwohl (7) bei allen Kaffees verwendet wird. Das sollte geprüft und
-ergänzt werden (in `speisekarte.html` bei `class="legende"`).
+Buchstaben. Zwei Anmerkungen dazu:
+
+- **(7) = „mit Koffein"** ist eingetragen, obwohl es auf der gedruckten Karte
+  in der Legende fehlt.
+- **(u)** steht beim *Matcha Latte*, kommt in der Legende aber nicht vor (die
+  geht nur von a bis n). Das ist noch zu klären und dann in
+  `speisekarte.html` **und** `menu-en.html` zu ergänzen.
+- (5) und (6) fehlen ebenfalls in der gedruckten Legende, werden auf der Karte
+  aber nirgends verwendet – das ist also folgenlos.
 
 ## Telefonnummer / E-Mail ändern
 
@@ -147,6 +194,13 @@ Klammern (z. B. `[Vor- und Nachname]`) durch die echten Angaben ersetzen und
 die eckigen Klammern dabei entfernen. Das Impressum ist in Deutschland für
 gewerbliche Websites gesetzlich vorgeschrieben und sollte vor der
 Veröffentlichung vollständig ausgefüllt sein.
+
+## Der Sprachumschalter „DE | EN"
+
+Oben rechts steht ein Umschalter zwischen der deutschen und der englischen
+Fassung. Das sind einfach zwei Links – daran muss nichts gepflegt werden.
+Wichtig ist nur, dass Änderungen in beiden Fassungen gemacht werden
+(siehe die Tabelle ganz oben).
 
 ## Der Knopf „Ansicht" oben rechts
 

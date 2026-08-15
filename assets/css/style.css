@@ -17,9 +17,12 @@
 /* ---------- 1. Farben und Grundwerte ---------- */
 
 :root {
-  /* Rosé = exakt der Hintergrund des Logos, damit das freigestellte
-     Logo nahtlos auf der Fläche sitzt. */
-  --rose: #fdc3b8;
+  /* Rosé = exakt der Hintergrund im freigestellten Logo (nach der
+     Farbreduktion beim Speichern gemessen). Die Buchstaben-Innenräume des
+     Logos sind mit genau diesem Ton gefüllt – dadurch sind sie auf der
+     Hero-Fläche unsichtbar, und der weiße Dampf hinter dem Logo kann nicht
+     mehr durch die Buchstaben scheinen. */
+  --rose: #fac3b7;
   --rose-mittel: #fbd8d0;
   --rose-light: #fdece7;
   --creme: #fbf5f1;
@@ -113,7 +116,12 @@ body {
 
 body > main { flex: 1 0 auto; }
 
-img { max-width: 100%; display: block; }
+/* height: auto ist hier entscheidend. Ohne diese Zeile wirkt ein height="..."
+   im HTML als feste Höhe weiter, während die Breite aus dem CSS kommt – das
+   Bild wird dann seitlich gestaucht. Mit height: auto dienen die width/height-
+   Attribute nur noch als Seitenverhältnis-Hinweis: Sie reservieren den Platz
+   beim Laden, geben aber keine Größe vor. */
+img { max-width: 100%; height: auto; display: block; }
 
 h1, h2, h3 {
   font-family: var(--schrift-titel);
@@ -191,7 +199,7 @@ button:focus-visible,
 }
 
 .kopfbereich {
-  background: rgba(253, 195, 184, 0.94);
+  background: rgba(250, 195, 183, 0.94);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -271,6 +279,45 @@ button:focus-visible,
   align-items: center;
   gap: 0.4rem;
   margin-left: 0.6rem;
+}
+
+/* ---------- Sprachumschalter ----------
+   Zwei schlichte Links – funktioniert damit auch ohne JavaScript, und die
+   gewählte Sprache steht schlicht in der Adresse. */
+
+.sprache {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.sprache a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  color: var(--braun);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.sprache a:hover { background: #fff; }
+
+.sprache a[aria-current="true"] {
+  background: var(--terracotta);
+  color: #fff;
+}
+
+.sprache .trennstrich {
+  width: 1px;
+  align-self: stretch;
+  background: var(--linie);
+  flex: none;
 }
 
 /* ---------- Ansicht-Bedienfeld ---------- */
@@ -689,6 +736,10 @@ main > section:nth-of-type(even) { background: var(--rose-light); }
   font-weight: 600;
   color: var(--terracotta-dunkel);
   font-size: 0.85em;
+}
+
+html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
+  content: " · today";
 }
 
 .hinweis-platzhalter {
@@ -1220,3 +1271,12 @@ html[data-bewegung="reduziert"] * {
 .seiten-kopf-aktion { margin: 1.3rem 0 0; }
 
 .seiten-kopf .status { margin-top: 1.2rem; }
+
+/* Hinweis im Fuß der englischen Seiten, dass die Rechtstexte deutsch sind */
+.rechtshinweis {
+  font-size: 0.88rem;
+  opacity: 0.85;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}

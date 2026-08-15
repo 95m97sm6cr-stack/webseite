@@ -7,9 +7,11 @@ etwas JavaScript. Das hält Hosting-Kosten und Wartungsaufwand minimal.
 ## Struktur
 
 ```
-index.html            Startseite (Willkommen, Speisekarte-Teaser, Öffnungszeiten,
-                      Tisch reservieren, Anfahrt, Galerie, Kontakt)
-speisekarte.html      Speisekarte inkl. Preise und Allergen-Legende
+index.html            Startseite deutsch (Willkommen, Speisekarte-Teaser,
+                      Öffnungszeiten, Tisch reservieren, Anfahrt, Galerie, Kontakt)
+index-en.html         dieselbe Startseite auf Englisch
+speisekarte.html      Speisekarte deutsch, inkl. Preise und Allergen-Legende
+menu-en.html          dieselbe Karte auf Englisch
 impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
 404.html              Fehlerseite bei falsch eingetippter Adresse
@@ -26,6 +28,12 @@ im Modus „starker Kontrast" mindestens 7:1) und ein Bedienfeld „Ansicht", ü
 das sich Schriftgröße, Kontrast und Bewegung umstellen lassen.
 
 Ohne JavaScript bleibt die Seite vollständig lesbar und bedienbar.
+
+Die Seite gibt es auf Deutsch und Englisch, umschaltbar über `DE | EN` oben
+rechts. Beides sind eigene Dateien – **Inhaltsänderungen müssen deshalb in
+beiden Fassungen gemacht werden**, siehe die Tabelle in
+[`INHALTE-BEARBEITEN.md`](./INHALTE-BEARBEITEN.md). Impressum und Datenschutz
+bleiben bewusst deutsch.
 
 Hinweise zum Anpassen der Inhalte (Öffnungszeiten, Adresse, Fotos, ...) stehen
 in [`INHALTE-BEARBEITEN.md`](./INHALTE-BEARBEITEN.md) – auf Deutsch und ohne
@@ -58,7 +66,9 @@ keine Datenbank und keine Installation nötig. Hochladen genügt.
 
    ```
    index.html
+   index-en.html
    speisekarte.html
+   menu-en.html
    impressum.html
    datenschutz.html
    404.html
@@ -102,8 +112,10 @@ Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
 
 ## Wichtig vor dem Veröffentlichen
 
-- Alle Platzhalter in `index.html`, `impressum.html` und `datenschutz.html`
-  durch echte Angaben ersetzen (siehe `<!-- TODO: ... -->`-Kommentare bzw.
-  `INHALTE-BEARBEITEN.md`).
-- Das Impressum ist für gewerbliche Websites in Deutschland Pflicht – bitte
-  unbedingt vor dem Livegang vollständig ausfüllen.
+- Verbliebene Platzhalter suchen (`<!-- TODO: ... -->`) und ersetzen. Offen
+  sind derzeit: Fotos für die Galerie, eine etwaige USt-ID im Impressum, der
+  Serverstandort in der Datenschutzerklärung und die Bedeutung des Allergens
+  `(u)` beim Matcha Latte.
+- Den Auftragsverarbeitungsvertrag (AVV) mit Hostinger abschließen – bei der
+  Nutzung eines Hosters nach DSGVO vorgeschrieben.
+- Das Impressum ist für gewerbliche Websites in Deutschland Pflicht.
