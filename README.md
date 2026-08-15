@@ -167,9 +167,13 @@ Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
 
 ## Wichtig vor dem Veröffentlichen
 
-- Verbliebene Platzhalter suchen (`<!-- TODO: ... -->`) und ersetzen. Offen
-  sind derzeit: eine etwaige USt-ID im Impressum und die Bedeutung des
-  Allergens `(u)` beim Matcha Latte.
+- Verbliebene Platzhalter suchen (`<!-- TODO: ... -->`) und ersetzen. Offen ist
+  derzeit nur noch die Bedeutung des Allergens `(u)` beim Matcha Latte.
+- Das Impressum führt bewusst **keine** Umsatzsteuer-ID: Pflicht ist nur eine
+  echte USt-IdNr. (Format `DE` + 9 Ziffern) und auch die nur, wenn eine erteilt
+  wurde. Die Steuernummer vom Finanzamt ist etwas anderes und gehört nicht ins
+  Impressum. Kommt später eine USt-IdNr. dazu, steht die passende Vorlage als
+  Kommentar in `impressum.html`.
 - Der Abschnitt „Hosting" in der Datenschutzerklärung beschreibt GitHub Pages
   einschließlich der Datenübermittlung in die USA. Bei einem Hosterwechsel muss
   er entsprechend angepasst werden.
