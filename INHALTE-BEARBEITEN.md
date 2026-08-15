@@ -141,7 +141,7 @@ stehen alle zehn, auf den beiden Startseiten sechs davon als Auswahl.
 Beide heißen gleich. Wird nur eines getauscht, passen kleines und großes Bild
 nicht mehr zusammen.
 
-Ein Eintrag in der Galerie sieht so aus:
+Ein Eintrag auf einer **Galerieseite** sieht so aus:
 
 ```
 <figure class="galerie-bild">
@@ -155,24 +155,31 @@ Ein Eintrag in der Galerie sieht so aus:
 </figure>
 ```
 
-Darin stecken **zwei verschiedene Texte**, und beide werden gebraucht:
+Auf den **Startseiten** steht derselbe Block, nur **ohne die Zeile mit
+`<figcaption>`**: Dort soll die Galerie ruhig wirken, die Beschriftung
+erscheint erst, wenn man ein Foto anklickt. Die Zeile `data-bu` muss aber auch
+dort stehen bleiben – daraus holt sich die Großansicht ihren Text.
 
-- **`<figcaption>`** – die Beschriftung, die unter dem Foto sichtbar steht.
-  Kurz halten, drei bis fünf Wörter. Sie muss bei `data-bu` noch einmal genau
-  gleich eingetragen werden, denn von dort holt sie sich die Großansicht.
+Darin stecken **drei Texte**, und alle drei werden gebraucht:
+
+- **`data-bu`** – die Beschriftung in der Großansicht. Kurz halten, drei bis
+  fünf Wörter. Diese Zeile gibt es auf allen vier Seiten.
+- **`<figcaption>`** – dieselbe Beschriftung, sichtbar unter dem Foto. Nur auf
+  den Galerieseiten. Sie muss **wörtlich gleich** wie `data-bu` sein, sonst
+  steht unter dem Foto etwas anderes als in der Großansicht.
 - **`alt`** – die längere Beschreibung. Sie ist auf der Seite nicht zu sehen;
   sie wird Menschen vorgelesen, die einen Screenreader benutzen, und erscheint,
   falls ein Bild einmal nicht lädt. Ein Satz genügt, der sagt, was zu sehen
-  ist. Auf den englischen Seiten bitte beides auf Englisch.
+  ist. Auf den englischen Seiten bitte alles auf Englisch.
 
 **Ein Foto austauschen:** Je eine neue Datei mit demselben Namen in **beide**
 Ordner legen. Wenn das neue Bild ein anderes Seitenverhältnis hat, müssen
 `width` und `height` angepasst werden – sonst wird beim Laden zu viel oder zu
-wenig Platz freigehalten. Und die beiden Texte natürlich auch.
+wenig Platz freigehalten. Und die Texte natürlich auch.
 
 **Ein Foto hinzufügen:** Einen vorhandenen `<figure>`-Block kopieren, einfügen
-und Dateinamen, die beiden Texte sowie `width`/`height` anpassen. Das im
-Bereich „Galerie" von `galerie.html` **und** `gallery-en.html` machen; auf den
+und Dateinamen, die Texte sowie `width`/`height` anpassen. Das im Bereich
+„Galerie" von `galerie.html` **und** `gallery-en.html` machen; auf den
 Startseiten steht nur eine Auswahl.
 
 **Zur Dateigröße:** Das kleine Bild vor dem Hochladen auf etwa 620 Pixel
