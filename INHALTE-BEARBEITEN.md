@@ -17,9 +17,11 @@ auf der englischen Seite wären schlimmer als gar keine englische Seite.
 |---|---|
 | **Öffnungszeiten** | `index.html`, `index-en.html` **und** `assets/js/main.js` |
 | **Preise, Gerichte** | `speisekarte.html` **und** `menu-en.html` |
-| **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
-| **E-Mail-Adresse** | `index.html`, `index-en.html`, `impressum.html`, `datenschutz.html` |
+| **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `jobs.html`, `jobs-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
+| **E-Mail-Adresse** | `index.html`, `index-en.html`, `jobs.html`, `jobs-en.html`, `impressum.html`, `datenschutz.html` |
 | **Fotos in der Galerie** | `index.html`, `index-en.html`, `galerie.html` **und** `gallery-en.html` |
+| **Stellenanzeige** | `jobs.html` **und** `jobs-en.html` |
+| **Einträge im Menü oben** | in **allen** Seiten – der Block `<nav class="nav">` ist überall gleich |
 
 Welche Datei zu welcher gehört:
 
@@ -28,6 +30,7 @@ Welche Datei zu welcher gehört:
 | `index.html` | `index-en.html` |
 | `speisekarte.html` | `menu-en.html` |
 | `galerie.html` | `gallery-en.html` |
+| `jobs.html` | `jobs-en.html` |
 | `impressum.html`, `datenschutz.html` | *(bleiben deutsch)* |
 
 Impressum und Datenschutz gibt es bewusst nur auf Deutsch – das ist bei
@@ -47,6 +50,8 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 - **`galerie.html`** – die Galerieseite mit allen Fotos, **`gallery-en.html`**
   dieselbe auf Englisch. Auf den Startseiten steht nur eine Auswahl mit einem
   Knopf „Alle Bilder ansehen".
+- **`jobs.html`** – die Stellenanzeige, **`jobs-en.html`** dieselbe auf
+  Englisch. Wenn keine Stelle mehr frei ist, siehe unten „Stellenanzeige".
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
 - **`assets/img/galerie/`** – die Fotos der Galerie (`foto-01.jpg` bis
@@ -230,6 +235,28 @@ Im Bereich „Kontakt" (`id="kontakt"`) in `index.html` die Platzhalter-Nummer
 bzw. -Adresse ersetzen. Wichtig: auch die Zahlen direkt hinter `tel:` bzw.
 `mailto:` mit anpassen, sonst funktioniert der Klick-zum-Anrufen-Link nicht.
 
+## Stellenanzeige (Seite „Jobs")
+
+Die Anzeige steht in `jobs.html` und auf Englisch in `jobs-en.html`. Der
+Aufbau ist in beiden gleich:
+
+- die vier Kästchen oben (Umfang, Alter, Start, Wo) – jeweils ein
+  `<div class="info-box">`,
+- drei Listen: „Das bringst du mit", „Deine Aufgaben", „Wir bieten". Ein
+  Punkt ist eine Zeile `<li>…</li>` in der `<ul class="job-liste">`. Zum
+  Streichen die ganze Zeile löschen, zum Ergänzen eine kopieren,
+- der Kasten „Interesse geweckt?" mit der Bewerbungsadresse.
+
+**Datum ändern:** „ab 1. Oktober 2026" steht im dritten Kästchen, auf der
+englischen Seite als „from 1 October 2026".
+
+**Wenn keine Stelle mehr frei ist:** Am einfachsten ist es, den Eintrag
+`<li><a href="jobs.html">Jobs</a></li>` aus dem Menü **aller** Seiten zu
+entfernen (auf den englischen Seiten `jobs-en.html`). Die Seite selbst bleibt
+dann liegen und lässt sich später wieder eintragen. Wer sie ganz abschalten
+will, ersetzt den Inhalt durch einen kurzen Satz wie „Zurzeit suchen wir
+niemanden – schaut gern später wieder vorbei."
+
 ## Impressum & Datenschutz ausfüllen
 
 In `impressum.html` und `datenschutz.html` alle Textstellen in eckigen
@@ -238,12 +265,24 @@ die eckigen Klammern dabei entfernen. Das Impressum ist in Deutschland für
 gewerbliche Websites gesetzlich vorgeschrieben und sollte vor der
 Veröffentlichung vollständig ausgefüllt sein.
 
+## Das Menü oben
+
+Auf einem breiten Bildschirm steht die Navigation als Leiste oben. Auf dem
+Handy und auf schmalen Fenstern klappt sie hinter dem Knopf mit den drei
+Strichen (☰) zusammen – zusammen mit dem Sprachumschalter und „Ansicht",
+sodass oben nur noch Logo und Knopf stehen.
+
+Der Block `<nav class="nav">` ist in **allen** Seiten gleich. Wer einen
+Menüpunkt hinzufügt oder entfernt, muss das deshalb in jeder Datei tun –
+sonst hat eine Seite ein anderes Menü als der Rest.
+
 ## Der Sprachumschalter „DE | EN"
 
-Oben rechts steht ein Umschalter zwischen der deutschen und der englischen
-Fassung. Das sind einfach zwei Links – daran muss nichts gepflegt werden.
-Wichtig ist nur, dass Änderungen in beiden Fassungen gemacht werden
-(siehe die Tabelle ganz oben).
+Ein Umschalter zwischen der deutschen und der englischen Fassung – auf
+breiten Bildschirmen oben rechts, auf dem Handy im aufgeklappten Menü. Das
+sind einfach zwei Links, daran muss nichts gepflegt werden. Wichtig ist nur,
+dass Änderungen in beiden Fassungen gemacht werden (siehe die Tabelle ganz
+oben).
 
 ## Der Knopf „Ansicht" oben rechts
 

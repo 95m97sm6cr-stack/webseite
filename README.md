@@ -13,6 +13,7 @@ index-en.html         dieselbe Startseite auf Englisch
 speisekarte.html      Speisekarte deutsch, inkl. Preise und Allergen-Legende
 menu-en.html          dieselbe Karte auf Englisch
 galerie.html          Galerie mit allen Fotos, gallery-en.html auf Englisch
+jobs.html             Stellenanzeige, jobs-en.html auf Englisch
 impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
 404.html              Fehlerseite bei falsch eingetippter Adresse
@@ -24,6 +25,10 @@ assets/img/galerie/gross/  dieselben Fotos für die Großansicht (1800 px)
 assets/js/main.js     Menü, Ansicht-Einstellungen, Öffnungs-Status, Reservierungs-
                       Fenster, Großansicht der Fotos und die Effekte
 ```
+
+Die Navigation ist auf allen Seiten gleich aufgebaut. Ab 1160 px Fensterbreite
+steht sie als Leiste oben, darunter klappt sie – zusammen mit Sprachwahl und
+„Ansicht" – hinter dem Menüknopf zusammen. Ohne JavaScript steht sie offen.
 
 Die Seite ist auf gute Lesbarkeit für ältere Besucher ausgelegt: 18 px
 Grundschrift, große Bedienflächen, geprüfte Farbkontraste (mindestens 4,5:1,
@@ -74,6 +79,8 @@ keine Datenbank und keine Installation nötig. Hochladen genügt.
    menu-en.html
    galerie.html
    gallery-en.html
+   jobs.html
+   jobs-en.html
    impressum.html
    datenschutz.html
    404.html

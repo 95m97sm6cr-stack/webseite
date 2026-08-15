@@ -218,7 +218,7 @@ button:focus-visible,
   align-items: center;
   gap: 0.5rem;
   padding: 0.45rem 1.25rem;
-  max-width: 1120px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -238,12 +238,25 @@ button:focus-visible,
 
 .nav-logo img { height: 40px; width: 40px; object-fit: contain; }
 
-.nav-links {
-  order: 2;
+/* Links, Sprachumschalter und „Ansicht" stecken gemeinsam in .nav-klapp –
+   auf schmalen Geräten verschwindet damit alles zusammen hinter dem
+   Menüknopf, und oben bleibt nur Logo und Knopf stehen. */
+.nav-klapp {
+  /* Reihenfolge in der Leiste: Logo (1), Menüknopf (2), Rest (3). Ohne die
+     Angabe rutschte der Knopf vor das Logo – er steht im Quelltext davor,
+     damit die Tastatur ihn gleich nach dem Logo erreicht. */
+  order: 3;
   flex: 1 1 auto;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  gap: 1.3rem;
+  gap: 1.1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.05rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -278,16 +291,14 @@ button:focus-visible,
 
 .nav-links a.aktiv { color: var(--terracotta-dunkel); }
 
-/* Umbrechen dürfen die Werkzeuge (Sprache, Ansicht, Menüknopf) auch: bei
-   großer Schrift passen sie sonst neben dem Logo nicht mehr in eine Zeile. */
+/* Umbrechen dürfen die Werkzeuge (Sprache, Ansicht) auch: bei großer Schrift
+   passen sie sonst neben den Links nicht mehr in eine Zeile. */
 .nav-werkzeuge {
-  order: 3;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   gap: 0.4rem;
-  margin-left: 0.6rem;
 }
 
 /* ---------- Sprachumschalter ----------
@@ -358,7 +369,7 @@ html.js .ansicht { display: block; }
 .ansicht-knopf .gross-a { font-size: 1.2em; font-weight: 700; line-height: 1; }
 .ansicht-knopf .klein-a { font-size: 0.85em; font-weight: 700; line-height: 1; }
 
-.nav-toggle { display: none; font-size: 1.4rem; padding: 0.4rem 0.8rem; }
+.nav-toggle { order: 2; display: none; font-size: 1.4rem; padding: 0.4rem 0.8rem; }
 
 .ansicht-panel {
   position: absolute;
@@ -441,20 +452,33 @@ html.js .ansicht { display: block; }
   cursor: pointer;
 }
 
-@media (max-width: 860px) {
-  .nav-toggle { display: flex; }
+/* Ab hier passt die Leiste nicht mehr in eine Zeile: alles klappt hinter dem
+   Menüknopf zusammen, oben bleiben nur Logo und Knopf. */
+@media (max-width: 1160px) {
+  .nav-toggle { display: flex; margin-left: auto; }
 
-  .nav-links {
+  .nav-klapp {
     order: 4;
     display: none;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: stretch;
     gap: 0;
     width: 100%;
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.6rem;
   }
 
-  .nav-links.offen { display: flex; }
+  .nav-klapp.offen { display: flex; }
+
+  /* Ohne JavaScript kann nichts aufklappen. Dann steht das Menü offen da und
+     der Knopf verschwindet – sonst käme man an die Navigation nicht heran. */
+  html:not(.js) .nav-toggle { display: none; }
+  html:not(.js) .nav-klapp { display: flex; }
+
+  .nav-links {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+  }
 
   .nav-links li { border-top: 1px solid rgba(60, 42, 30, 0.15); }
 
@@ -462,7 +486,24 @@ html.js .ansicht { display: block; }
 
   .nav-links a::after { display: none; }
 
-  .nav-werkzeuge { margin-left: auto; }
+  .nav-werkzeuge {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(60, 42, 30, 0.15);
+  }
+
+  /* Im aufgeklappten Menü schwebt das Ansicht-Feld nicht, sondern reiht sich
+     ein – als schwebendes Feld ragte es sonst über den Bildschirmrand. */
+  .ansicht { position: static; }
+
+  .ansicht-panel {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 0.6rem;
+    box-shadow: none;
+  }
 }
 
 /* ---------- 5. Hero ---------- */
@@ -1135,6 +1176,63 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
   color: var(--braun-weich);
   line-height: 1.6;
   padding-bottom: 3rem;
+}
+
+/* ---------- Jobs ---------- */
+
+.jobs-seite .container { max-width: 780px; padding-bottom: 1rem; }
+
+.jobs-seite .info-boxen { margin-bottom: 3.2rem; }
+
+/* Vier Kästchen nebeneinander wären zu schmal – zwei Reihen à zwei lesen sich
+   besser, auf dem Handy stehen sie ohnehin untereinander. */
+.jobs-seite .info-box { flex: 1 1 280px; }
+
+.job-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.job-liste li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.9rem;
+  border-bottom: 1px solid var(--rose-mittel);
+}
+
+.job-liste li:last-child { border-bottom: none; }
+
+.job-liste li::before {
+  content: "\2661";                /* dasselbe Herz wie auf der Speisekarte */
+  position: absolute;
+  left: 0.2rem;
+  color: var(--terracotta);
+}
+
+.bewerbung {
+  background: linear-gradient(135deg, var(--rose-light), var(--weiss));
+  border: 1px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 2rem 1.6rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  box-shadow: var(--schatten-weich);
+}
+
+.bewerbung h2 { margin: 0 0 0.6rem; font-size: 1.55rem; }
+
+.bewerbung p { max-width: 34rem; margin: 0 auto; }
+
+.bewerbung-aktion { margin: 1.4rem auto 0; }
+
+/* Die Adresse ist lang – auf einem schmalen Handy muss sie umbrechen dürfen,
+   sonst sprengt der Knopf den Bildschirm. */
+.bewerbung-aktion .button { max-width: 100%; }
+
+.bewerbung-fuss {
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  color: var(--braun-weich);
 }
 
 /* width: 100% ist hier nötig, nicht bloß Angewohnheit: durch »margin: 0 auto«

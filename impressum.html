@@ -33,43 +33,48 @@
         <img src="assets/img/signet.png" alt="">
         <span>b.ellers</span>
       </a>
-      <div class="nav-werkzeuge">
-        <div class="ansicht">
-          <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
-            <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
-            <span>Ansicht</span>
-          </button>
 
-          <div class="ansicht-panel" id="ansicht-panel" hidden>
-            <h2>Ansicht anpassen</h2>
-            <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
 
-            <div class="ansicht-gruppe">
-              <span class="titel" id="titel-schrift">Schriftgröße</span>
-              <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
-                <button type="button" data-setzt="schrift:normal">Normal</button>
-                <button type="button" data-setzt="schrift:gross">Groß</button>
-                <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+      <div class="nav-klapp" id="nav-klapp">
+        <div class="nav-werkzeuge">
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>Ansicht</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Ansicht anpassen</h2>
+              <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Schriftgröße</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Groß</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+                </div>
               </div>
-            </div>
 
-            <div class="ansicht-gruppe">
-              <span class="titel" id="titel-kontrast">Kontrast</span>
-              <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
-                <button type="button" data-setzt="kontrast:normal">Normal</button>
-                <button type="button" data-setzt="kontrast:stark">Stark</button>
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Kontrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Stark</button>
+                </div>
               </div>
-            </div>
 
-            <div class="ansicht-gruppe">
-              <span class="titel" id="titel-bewegung">Bewegung</span>
-              <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
-                <button type="button" data-setzt="bewegung:an">An</button>
-                <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Bewegung</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">An</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+                </div>
               </div>
-            </div>
 
-            <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+              <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+            </div>
           </div>
         </div>
       </div>

@@ -414,19 +414,22 @@
 
   function menueVorbereiten() {
     var toggle = $(".nav-toggle");
-    var links = $(".nav-links");
-    if (!toggle || !links) return;
+    var klapp = $(".nav-klapp");
+    if (!toggle || !klapp) return;
 
     toggle.setAttribute("aria-expanded", "false");
 
     toggle.addEventListener("click", function () {
-      var offen = links.classList.toggle("offen");
+      var offen = klapp.classList.toggle("offen");
       toggle.setAttribute("aria-expanded", offen ? "true" : "false");
     });
 
-    $$("a", links).forEach(function (link) {
+    // Nach einem Klick auf einen Link ist das Menü erledigt. Der
+    // Sprachumschalter lädt ohnehin eine neue Seite; die Knöpfe im
+    // Ansicht-Feld sollen das Menü dagegen offen lassen.
+    $$(".nav-links a", klapp).forEach(function (link) {
       link.addEventListener("click", function () {
-        links.classList.remove("offen");
+        klapp.classList.remove("offen");
         toggle.setAttribute("aria-expanded", "false");
       });
     });
