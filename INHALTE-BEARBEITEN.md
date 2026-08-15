@@ -19,7 +19,7 @@ auf der englischen Seite wären schlimmer als gar keine englische Seite.
 | **Preise, Gerichte** | `speisekarte.html` **und** `menu-en.html` |
 | **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
 | **E-Mail-Adresse** | `index.html`, `index-en.html`, `impressum.html`, `datenschutz.html` |
-| **Fotos in der Galerie** | `index.html` **und** `index-en.html` |
+| **Fotos in der Galerie** | `index.html`, `index-en.html`, `galerie.html` **und** `gallery-en.html` |
 
 Welche Datei zu welcher gehört:
 
@@ -27,6 +27,7 @@ Welche Datei zu welcher gehört:
 |---|---|
 | `index.html` | `index-en.html` |
 | `speisekarte.html` | `menu-en.html` |
+| `galerie.html` | `gallery-en.html` |
 | `impressum.html`, `datenschutz.html` | *(bleiben deutsch)* |
 
 Impressum und Datenschutz gibt es bewusst nur auf Deutsch – das ist bei
@@ -43,9 +44,13 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 - **`menu-en.html`** – dieselbe Karte auf Englisch. Die Gerichtnamen bleiben
   dort bewusst deutsch (*Gönnerbrunch*, *Lieblingsbowl*, *Avocado Royal* …) –
   das sind die Eigennamen eurer Karte. Übersetzt sind nur die Beschreibungen.
+- **`galerie.html`** – die Galerieseite mit allen Fotos, **`gallery-en.html`**
+  dieselbe auf Englisch. Auf den Startseiten steht nur eine Auswahl mit einem
+  Knopf „Alle Bilder ansehen".
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
-- **`assets/img/`** – der Ordner mit allen Bildern:
+- **`assets/img/galerie/`** – die Fotos der Galerie (`foto-01.jpg`, `foto-02.jpg` …)
+- **`assets/img/`** – der Ordner mit den übrigen Bildern:
   - `logo.jpeg` – das Original-Logo mit rosa Hintergrund (wird auf der Website
     nicht direkt verwendet, ist aber als Vorlage aufgehoben)
   - `logo-freigestellt.png` – dasselbe Logo mit transparentem Hintergrund,
@@ -121,23 +126,34 @@ Miesbach. Sobald die echte Adresse feststeht:
 > die Rechte liegen nämlich bei der Person, die das Foto gemacht hat.
 
 
-1. Das neue Foto in den Ordner `assets/img/` kopieren (z. B. `foto1.jpg`).
-   Tipp: Fotos vorher nicht zu groß speichern (unter 500 KB reicht für die
-   Website völlig aus), damit die Seite schnell lädt.
-2. In `index.html` im Bereich „Galerie" (`id="galerie"`) eine der
-   Platzhalter-Boxen suchen:
+Die Fotos liegen in `assets/img/galerie/` und heißen `foto-01.jpg`,
+`foto-02.jpg` und so weiter. Ein Eintrag in der Galerie sieht so aus:
 
-   ```
-   <div class="galerie-bild"><div class="galerie-platzhalter">Foto folgt</div></div>
-   ```
+```
+<figure class="galerie-bild">
+  <img src="assets/img/galerie/foto-03.jpg" alt="Reich gedeckter Frühstückstisch"
+       width="620" height="1101" loading="lazy" decoding="async">
+</figure>
+```
 
-3. Diese Zeile ersetzen durch:
+**Ein Foto austauschen:** Einfach eine neue Datei mit demselben Namen in den
+Ordner legen. Wenn das neue Bild ein anderes Seitenverhältnis hat, müssen
+`width` und `height` angepasst werden – sonst wird beim Laden zu viel oder zu
+wenig Platz freigehalten.
 
-   ```
-   <div class="galerie-bild"><img src="assets/img/foto1.jpg" alt="Kurze Bildbeschreibung"></div>
-   ```
+**Ein Foto hinzufügen:** Einen vorhandenen `<figure>`-Block kopieren, einfügen
+und Dateinamen, Beschreibung sowie `width`/`height` anpassen. Das im Bereich
+„Galerie" von `galerie.html` **und** `gallery-en.html` machen; auf den
+Startseiten steht nur eine Auswahl.
 
-   (Dateinamen jeweils an das eigene Foto anpassen.)
+**Die Beschreibung bei `alt`** ist wichtig: Sie wird Menschen vorgelesen, die
+einen Screenreader nutzen, und erscheint, falls ein Bild nicht lädt. Ein
+kurzer Satz genügt, was zu sehen ist. Auf den englischen Seiten bitte auf
+Englisch.
+
+**Zur Dateigröße:** Fotos vor dem Hochladen auf etwa 620 Pixel Breite
+verkleinern und als JPEG mit mittlerer Qualität speichern (rund 100 KB pro
+Bild). Sonst wird die Seite auf dem Handy langsam.
 
 ## Speisekarte ändern (Preise, Gerichte)
 

@@ -12,12 +12,14 @@ index.html            Startseite deutsch (Willkommen, Speisekarte-Teaser,
 index-en.html         dieselbe Startseite auf Englisch
 speisekarte.html      Speisekarte deutsch, inkl. Preise und Allergen-Legende
 menu-en.html          dieselbe Karte auf Englisch
+galerie.html          Galerie mit allen Fotos, gallery-en.html auf Englisch
 impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
 404.html              Fehlerseite bei falsch eingetippter Adresse
 .htaccess             Servereinstellungen (HTTPS, Caching, Fehlerseite)
 assets/css/style.css  Gesamtes Styling
 assets/img/           Logo, freigestelltes Logo, Signet und Deko-Motive
+assets/img/galerie/   die Fotos der Galerie
 assets/js/main.js     Menü, Ansicht-Einstellungen, Öffnungs-Status, Reservierungs-
                       Fenster und die Effekte
 ```
@@ -69,6 +71,8 @@ keine Datenbank und keine Installation nötig. Hochladen genügt.
    index-en.html
    speisekarte.html
    menu-en.html
+   galerie.html
+   gallery-en.html
    impressum.html
    datenschutz.html
    404.html
@@ -113,9 +117,8 @@ Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
 ## Wichtig vor dem Veröffentlichen
 
 - Verbliebene Platzhalter suchen (`<!-- TODO: ... -->`) und ersetzen. Offen
-  sind derzeit: Fotos für die Galerie, eine etwaige USt-ID im Impressum, der
-  Serverstandort in der Datenschutzerklärung und die Bedeutung des Allergens
-  `(u)` beim Matcha Latte.
+  sind derzeit: eine etwaige USt-ID im Impressum, der Serverstandort in der
+  Datenschutzerklärung und die Bedeutung des Allergens `(u)` beim Matcha Latte.
 - Den Auftragsverarbeitungsvertrag (AVV) mit Hostinger abschließen – bei der
   Nutzung eines Hosters nach DSGVO vorgeschrieben.
 - Das Impressum ist für gewerbliche Websites in Deutschland Pflicht.
