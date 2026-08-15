@@ -315,21 +315,33 @@ sieht man sofort, ob alles passt, bevor die Seite hochgeladen wird.
 
 ## Änderungen ins Internet stellen
 
-Die Website liegt bei Hostinger. Damit eine Änderung auch für Besucher
-sichtbar wird, muss die geänderte Datei dort hochgeladen werden:
+Die Website liegt bei GitHub Pages – kostenlos, aber die Dateien liegen dafür
+nicht in einem Dateimanager wie bei einem klassischen Hoster, sondern in einem
+**Repository** (einer Art Online-Ordner mit Änderungsverlauf) auf github.com.
+Das Hochladen einer geänderten Datei geht trotzdem ganz ohne Kommandozeile,
+direkt im Browser:
 
-1. Bei [hpanel.hostinger.com](https://hpanel.hostinger.com) einloggen.
-2. **Dateien → Dateimanager** öffnen und in den Ordner `public_html` gehen.
-3. Die geänderte Datei hochladen – z. B. `index.html`. Die Nachfrage, ob die
-   vorhandene Datei überschrieben werden soll, mit Ja beantworten.
-4. Die Website im Browser öffnen und die Ansicht mit **Strg + F5**
-   (am Mac: **Cmd + Shift + R**) neu laden.
+1. Auf [github.com](https://github.com) einloggen und das Repository
+   `95m97sm6cr-stack/webseite` öffnen.
+2. Oben sicherstellen, dass der Branch **`claude/cafe-bellers-website-s2m00o`**
+   ausgewählt ist (Umschalter links über der Dateiliste) – dort liegt die
+   veröffentlichte Seite, nicht auf `main`.
+3. **Eine Textdatei ändern** (z. B. `index.html`): die Datei anklicken, oben
+   rechts auf das **Stift-Symbol** („Edit this file") klicken, den Text
+   ändern, unten auf **„Commit changes…"** und dann noch einmal auf
+   **„Commit changes"** klicken.
+4. **Ein Foto austauschen oder hinzufügen:** in den Ordner navigieren (z. B.
+   `assets/img/galerie/`), oben rechts auf **„Add file" → „Upload files"**,
+   die neue Datei per Drag-and-Drop hineinziehen, unten auf
+   **„Commit changes…"** klicken.
+5. Nach etwa einer Minute ist die Änderung live. Die Website im Browser mit
+   **Strg + F5** (am Mac: **Cmd + Shift + R**) neu laden, sonst zeigt der
+   Browser eventuell noch die alte, zwischengespeicherte Version.
 
-> **Warum Strg + F5?** Browser merken sich Seiten kurzzeitig, um sie schneller
-> anzuzeigen. Nach einer Änderung sieht man deshalb oft noch die alte Version.
-> Mit Strg + F5 wird die Seite wirklich neu geladen. Wenn also nach dem
-> Hochladen scheinbar „nichts passiert" ist, liegt es fast immer daran – nicht
-> an einem Fehler.
+> **Wenn das zu umständlich ist:** Am einfachsten bleibt es, Änderungswünsche
+> einfach hier in diesem Gespräch zu nennen – dann werden sie eingebaut,
+> geprüft und veröffentlicht, ohne dass selbst etwas auf github.com bedient
+> werden muss.
 
 Wichtig: Immer nur die Dateien austauschen, die man wirklich geändert hat.
 Der Ordner `assets` muss dabei so bleiben, wie er ist (dort liegen Bilder und

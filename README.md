@@ -58,10 +58,54 @@ python3 -m http.server 8000
 
 und dann `http://localhost:8000/` im Browser aufrufen.
 
-## Veröffentlichen bei Hostinger
+## Veröffentlichen bei GitHub Pages (kostenlos)
 
-Die Seite besteht aus reinen statischen Dateien – es ist kein Build-Schritt,
-keine Datenbank und keine Installation nötig. Hochladen genügt.
+Die Seite läuft komplett kostenlos über GitHub Pages – keine Hosting-Gebühr,
+nur bei Bedarf später eine eigene Domain (siehe unten). Zwei Klicks in den
+GitHub-Einstellungen genügen, es ist kein Hochladen nötig.
+
+### Einmalig einrichten
+
+1. **Repo öffentlich machen** (nötig für kostenloses Pages): auf GitHub im
+   Repo → **Settings** → ganz unten im Abschnitt **„Danger Zone"** →
+   **„Change repository visibility"** → **Public** wählen und bestätigen.
+2. **Pages einschalten:** **Settings** → **Pages** (linkes Menü) →
+   unter „Build and deployment" → **Source: „Deploy from a branch"** →
+   als Branch `claude/cafe-bellers-website-s2m00o` und als Ordner **`/ (root)`**
+   auswählen → **Save**.
+
+   (Der ganze Website-Inhalt liegt auf diesem Branch, nicht auf `main` –
+   deshalb dort auswählen, nicht `main`.)
+
+3. Kurz warten (meist unter einer Minute), dann ist die Seite erreichbar
+   unter **`https://95m97sm6cr-stack.github.io/webseite/`**. HTTPS ist dabei
+   automatisch aktiv, ganz ohne Zertifikat oder `.htaccess`.
+
+### Danach: Inhalte ändern
+
+Jede Änderung, die auf den Branch `claude/cafe-bellers-website-s2m00o`
+gepusht wird, erscheint automatisch nach kurzer Zeit auf der Live-Seite –
+ganz ohne erneutes Hochladen.
+
+### Später: eigene Domain ergänzen
+
+Wenn eine eigene Domain gekauft ist:
+
+1. Beim Domain-Anbieter einen DNS-Eintrag setzen, der auf GitHub Pages zeigt
+   (Anleitung dazu bei GitHub: „Managing a custom domain for your GitHub
+   Pages site").
+2. In **Settings → Pages** unter „Custom domain" die Domain eintragen und
+   **„Enforce HTTPS"** aktivieren, sobald verfügbar.
+3. **Wichtig:** Sobald die Seite nicht mehr unter `.../webseite/` sondern
+   direkt unter der eigenen Domain läuft, muss in `404.html` der Pfad-Anfang
+   `/webseite/` wieder zu `/` werden (steht auch als Kommentar direkt in der
+   Datei). Alle anderen Seiten verwenden relative Pfade und sind davon nicht
+   betroffen.
+
+## Alternative: Hostinger (bezahlt, ~3 €/Monat)
+
+Die Seite läuft unverändert auch bei jedem klassischen Webhoster. Falls
+später doch ein Wechsel weg von GitHub Pages ansteht:
 
 ### Dateien hochladen
 
@@ -117,10 +161,9 @@ Statt des Dateimanagers geht auch FTP, z. B. mit
 [FileZilla](https://filezilla-project.org/). Die Zugangsdaten (Server,
 Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
 
-> Falls das Hosting später einmal wegfallen sollte: Die Seite läuft
-> unverändert auch auf jedem anderen Webspace oder kostenlos über GitHub
-> Pages bzw. Netlify – es sind nur statische Dateien, nichts ist an
-> Hostinger gebunden.
+> Bei einem Umzug zu Hostinger: In `404.html` den Pfad-Anfang `/webseite/`
+> wieder zu `/` ändern (siehe Kommentar in der Datei) – Hostinger liefert die
+> Seite ja direkt am Wurzelverzeichnis aus, nicht unter einem Unterordner.
 
 ## Wichtig vor dem Veröffentlichen
 
