@@ -797,58 +797,21 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
   -webkit-column-break-inside: avoid;
   /* <figure> hat im Browser standardmäßig 40 px Rand links und rechts –
      der muss weg, sonst füllen die Fotos ihre Spalte nicht aus. */
-  margin: 0 0 1.4rem;
+  margin: 0 0 1rem;
 }
 
-/* Der Link ums Foto: Er trägt die Rundung und den Schatten, damit die
-   Beschriftung darunter frei bleibt. */
+/* Das ganze Foto ist die Fläche zum Anklicken – kein Knopf darauf. Der
+   Lupen-Zeiger sagt am Rechner, dass sich etwas vergrößern lässt. */
 .galerie-lupe {
   display: block;
-  position: relative;
   border-radius: var(--rund);
   overflow: hidden;
   box-shadow: var(--schatten-weich);
+  cursor: zoom-in;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .galerie-bild img { width: 100%; display: block; }
-
-/* Hinweis, dass sich das Foto vergrößern lässt. Er liegt immer im Bild und
-   wird beim Überfahren oder bei Tastaturfokus deutlicher – auf Geräten ohne
-   Maus (weiter unten) ist er dauerhaft sichtbar, sonst wüsste dort niemand
-   davon. */
-.lupe-zeichen {
-  position: absolute;
-  right: 0.6rem;
-  bottom: 0.6rem;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--terracotta-dunkel);
-  font-size: 0.85rem;
-  font-weight: 700;
-  box-shadow: var(--schatten-weich);
-  opacity: 0;
-  transform: translateY(0.3rem);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.galerie-lupe:hover .lupe-zeichen,
-.galerie-lupe:focus-visible .lupe-zeichen {
-  opacity: 1;
-  transform: none;
-}
-
-@media (hover: none) {
-  .lupe-zeichen { opacity: 1; transform: none; }
-}
-
-.galerie-bild figcaption {
-  padding: 0.55rem 0.2rem 0;
-  color: var(--braun-weich);
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
 
 .galerie-hinweis { text-align: center; margin-top: 1.4rem; }
 

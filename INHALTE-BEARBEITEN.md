@@ -141,7 +141,7 @@ stehen alle zehn, auf den beiden Startseiten sechs davon als Auswahl.
 Beide heißen gleich. Wird nur eines getauscht, passen kleines und großes Bild
 nicht mehr zusammen.
 
-Ein Eintrag auf einer **Galerieseite** sieht so aus:
+Ein Eintrag sieht auf allen vier Seiten gleich aus:
 
 ```
 <figure class="galerie-bild">
@@ -149,28 +149,21 @@ Ein Eintrag auf einer **Galerieseite** sieht so aus:
      data-bu="Frühstück in großer Runde">
     <img src="assets/img/galerie/foto-03.jpg" alt="Reich gedeckter Frühstückstisch"
          width="620" height="1101" loading="lazy" decoding="async">
-    <span class="lupe-zeichen" aria-hidden="true">größer ansehen</span>
   </a>
-  <figcaption>Frühstück in großer Runde</figcaption>
 </figure>
 ```
 
-Auf den **Startseiten** steht derselbe Block, nur **ohne die Zeile mit
-`<figcaption>`**: Dort soll die Galerie ruhig wirken, die Beschriftung
-erscheint erst, wenn man ein Foto anklickt. Die Zeile `data-bu` muss aber auch
-dort stehen bleiben – daraus holt sich die Großansicht ihren Text.
+Unter den Fotos steht bewusst **kein** Text. Das ganze Foto ist die Fläche zum
+Anklicken, und erst in der Großansicht erscheint die Beschriftung.
 
-Darin stecken **drei Texte**, und alle drei werden gebraucht:
+Darin stecken **zwei Texte**, und beide werden gebraucht:
 
-- **`data-bu`** – die Beschriftung in der Großansicht. Kurz halten, drei bis
-  fünf Wörter. Diese Zeile gibt es auf allen vier Seiten.
-- **`<figcaption>`** – dieselbe Beschriftung, sichtbar unter dem Foto. Nur auf
-  den Galerieseiten. Sie muss **wörtlich gleich** wie `data-bu` sein, sonst
-  steht unter dem Foto etwas anderes als in der Großansicht.
-- **`alt`** – die längere Beschreibung. Sie ist auf der Seite nicht zu sehen;
-  sie wird Menschen vorgelesen, die einen Screenreader benutzen, und erscheint,
-  falls ein Bild einmal nicht lädt. Ein Satz genügt, der sagt, was zu sehen
-  ist. Auf den englischen Seiten bitte alles auf Englisch.
+- **`data-bu`** – die Beschriftung, die in der Großansicht unter dem Foto
+  steht. Kurz halten, drei bis fünf Wörter.
+- **`alt`** – die längere Beschreibung. Sie ist auf der Seite nirgends zu
+  sehen; sie wird Menschen vorgelesen, die einen Screenreader benutzen, und
+  erscheint, falls ein Bild einmal nicht lädt. Ein Satz genügt, der sagt, was
+  zu sehen ist. Auf den englischen Seiten bitte beides auf Englisch.
 
 **Ein Foto austauschen:** Je eine neue Datei mit demselben Namen in **beide**
 Ordner legen. Wenn das neue Bild ein anderes Seitenverhältnis hat, müssen
