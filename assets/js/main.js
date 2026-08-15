@@ -276,12 +276,11 @@
 
   var FOKUSSIERBAR = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-  function dialogVorbereiten() {
-    var huelle = $(".dialog-hintergrund");
-    var dialog = $(".reservierung-dialog");
-    var ausloeser = $$('[data-oeffnet="reservierung"]');
-    if (!huelle || !dialog || !ausloeser.length) return;
-
+  /* Gemeinsame Mechanik beider Dialoge (Reservierung und Großansicht):
+     Hintergrund abschirmen, Fokus einsperren, Escape schließt, und der Fokus
+     landet danach wieder dort, wo er hergekommen ist. Bewusst von Hand statt
+     mit <dialog>, damit auch ältere Geräte mitkommen. */
+  function modalMachen(huelle, dialog, beimOeffnen) {
     var zuletztFokussiert = null;
 
     function oeffnen(e) {
@@ -290,12 +289,12 @@
       huelle.hidden = false;
       document.documentElement.classList.add("dialog-offen");
       // Hintergrund für Screenreader ausblenden
-      $$("body > *:not(.dialog-hintergrund)").forEach(function (el) {
-        el.setAttribute("aria-hidden", "true");
+      $$("body > *").forEach(function (el) {
+        if (el !== huelle) el.setAttribute("aria-hidden", "true");
       });
       // Seite darf im Hintergrund nicht wegscrollen
       document.body.style.overflow = "hidden";
-      statusAnzeigen();
+      if (beimOeffnen) beimOeffnen(e);
       var erstes = $(FOKUSSIERBAR, dialog);
       if (erstes) erstes.focus();
     }
@@ -307,12 +306,6 @@
       document.body.style.overflow = "";
       if (zuletztFokussiert) zuletztFokussiert.focus();
     }
-
-    ausloeser.forEach(function (a) { a.addEventListener("click", oeffnen); });
-
-    $$("[data-schliesst]", huelle).forEach(function (b) {
-      b.addEventListener("click", schliessen);
-    });
 
     // Klick auf den abgedunkelten Bereich schließt
     huelle.addEventListener("mousedown", function (e) {
@@ -341,6 +334,77 @@
           erstes.focus();
         }
       }
+    });
+
+    return { oeffnen: oeffnen, schliessen: schliessen, huelle: huelle };
+  }
+
+  function dialogVorbereiten() {
+    var huelle = $(".dialog-hintergrund");
+    var dialog = $(".reservierung-dialog");
+    var ausloeser = $$('[data-oeffnet="reservierung"]');
+    if (!huelle || !dialog || !ausloeser.length) return;
+
+    // Der Öffnungsstatus im Dialog soll beim Öffnen frisch sein.
+    var modal = modalMachen(huelle, dialog, statusAnzeigen);
+
+    ausloeser.forEach(function (a) { a.addEventListener("click", modal.oeffnen); });
+
+    $$("[data-schliesst]", huelle).forEach(function (b) {
+      b.addEventListener("click", modal.schliessen);
+    });
+  }
+
+  /* ===========================================================
+     3b. Galerie: Fotos groß ansehen
+     =========================================================== */
+
+  function grossansichtVorbereiten() {
+    var huelle = $(".bild-hintergrund");
+    var dialog = $(".bild-dialog");
+    var bild = $(".bild-buehne img");
+    var beschriftung = $(".bild-buehne figcaption");
+    var links = $$(".galerie-lupe");
+    if (!huelle || !dialog || !bild || !links.length) return;
+
+    var nummer = 0;
+
+    function zeigen(i) {
+      // Modulo mit Korrektur, damit man von Foto 1 rückwärts zum letzten kommt
+      nummer = ((i % links.length) + links.length) % links.length;
+      var link = links[nummer];
+      var klein = $("img", link);
+      bild.src = link.getAttribute("href");
+      bild.alt = klein ? klein.alt : "";
+      beschriftung.textContent = link.getAttribute("data-bu") || "";
+    }
+
+    var modal = modalMachen(huelle, dialog);
+
+    links.forEach(function (link, i) {
+      link.addEventListener("click", function (e) {
+        // Nur der normale Klick wird abgefangen. Wer das Bild bewusst in einem
+        // neuen Tab öffnen will, soll das weiterhin können.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        zeigen(i);
+        modal.oeffnen(e);
+      });
+    });
+
+    $$("[data-bild-schliesst]", huelle).forEach(function (b) {
+      b.addEventListener("click", modal.schliessen);
+    });
+
+    $$("[data-bild-blaettert]", huelle).forEach(function (b) {
+      b.addEventListener("click", function () {
+        zeigen(nummer + Number(b.getAttribute("data-bild-blaettert")));
+      });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (huelle.hidden) return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); zeigen(nummer - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); zeigen(nummer + 1); }
     });
   }
 
@@ -497,6 +561,7 @@
     ansichtVorbereiten();
     menueVorbereiten();
     dialogVorbereiten();
+    grossansichtVorbereiten();
     statusAnzeigen();
     heutigenTagMarkieren();
     einblendenVorbereiten();

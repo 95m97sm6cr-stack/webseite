@@ -518,6 +518,10 @@ html.js .ansicht { display: block; }
    Solange der Dialog offen ist, schalten wir ihn deshalb ab. */
 html.dialog-offen .kopfbereich { backdrop-filter: none; }
 
+/* Solange ein Dialog offen ist, hat der Zurück-nach-oben-Knopf nichts zu
+   suchen – er schimmert sonst durch den abgedunkelten Hintergrund. */
+html.dialog-offen .nach-oben { opacity: 0; visibility: hidden; }
+
 .hero h1 {
   font-size: clamp(1.9rem, 5vw, 2.7rem);
   margin: 0 0 0.35rem;
@@ -793,7 +797,14 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
   -webkit-column-break-inside: avoid;
   /* <figure> hat im Browser standardmäßig 40 px Rand links und rechts –
      der muss weg, sonst füllen die Fotos ihre Spalte nicht aus. */
-  margin: 0 0 1rem;
+  margin: 0 0 1.4rem;
+}
+
+/* Der Link ums Foto: Er trägt die Rundung und den Schatten, damit die
+   Beschriftung darunter frei bleibt. */
+.galerie-lupe {
+  display: block;
+  position: relative;
   border-radius: var(--rund);
   overflow: hidden;
   box-shadow: var(--schatten-weich);
@@ -802,32 +813,131 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
 
 .galerie-bild img { width: 100%; display: block; }
 
-/* Platzhalter-Kacheln (solange kein Foto da ist) bleiben quadratisch */
-.galerie-bild:has(.galerie-platzhalter) { aspect-ratio: 1 / 1; }
-
-.galerie-platzhalter {
-  width: 100%; height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  text-align: center;
-  background: var(--rose-mittel);
+/* Hinweis, dass sich das Foto vergrößern lässt. Er liegt immer im Bild und
+   wird beim Überfahren oder bei Tastaturfokus deutlicher – auf Geräten ohne
+   Maus (weiter unten) ist er dauerhaft sichtbar, sonst wüsste dort niemand
+   davon. */
+.lupe-zeichen {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
   color: var(--terracotta-dunkel);
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: var(--schatten-weich);
+  opacity: 0;
+  transform: translateY(0.3rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.galerie-platzhalter::before {
-  content: "";
-  width: 44%; height: 44%;
-  background: url("../img/signet.png") center / contain no-repeat;
-  opacity: 0.45;
+.galerie-lupe:hover .lupe-zeichen,
+.galerie-lupe:focus-visible .lupe-zeichen {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .lupe-zeichen { opacity: 1; transform: none; }
+}
+
+.galerie-bild figcaption {
+  padding: 0.55rem 0.2rem 0;
+  color: var(--braun-weich);
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
 
 .galerie-hinweis { text-align: center; margin-top: 1.4rem; }
+
+/* ---------- Großansicht eines Fotos ---------- */
+
+.bild-hintergrund {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 14, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 95;
+}
+
+.bild-hintergrund[hidden] { display: none; }
+
+.bild-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bild-buehne {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  max-height: 100%;
+}
+
+/* Das Foto passt sich der Höhe an, damit auch Hochformate ganz zu sehen
+   sind – ohne die 4 rem, die Beschriftung und Knöpfe brauchen. */
+.bild-buehne img {
+  max-height: calc(100vh - 9rem);
+  max-width: 100%;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: var(--schatten-stark);
+}
+
+.bild-buehne figcaption {
+  color: #fff;
+  text-align: center;
+  font-size: 1.05rem;
+  max-width: 40rem;
+}
+
+.bild-knopf {
+  position: absolute;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(30, 20, 14, 0.75);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bild-knopf:hover { background: var(--terracotta-dunkel); }
+
+.bild-zu      { top: 0; right: 0; }
+.bild-zurueck { left: 0;  top: 50%; transform: translateY(-50%); }
+.bild-vor     { right: 0; top: 50%; transform: translateY(-50%); }
+
+/* Auf schmalen Geräten stehen die Blätterknöpfe unten nebeneinander –
+   an den Seiten würden sie sonst auf dem Foto liegen. */
+@media (max-width: 640px) {
+  .bild-zurueck, .bild-vor {
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+  .bild-zurueck { left: 20%; }
+  .bild-vor     { right: 20%; }
+  .bild-buehne img { max-height: calc(100vh - 12rem); }
+}
 
 .kontakt-inhalt { text-align: center; max-width: 34rem; margin: 0 auto; }
 
@@ -1180,8 +1290,9 @@ html.anim-bereit .staffeln.sichtbar > *:nth-child(4) { transition-delay: 0.32s; 
     box-shadow: var(--schatten-stark);
   }
 
-  html[data-bewegung="an"] .galerie-bild:hover,
-  html:not([data-bewegung]) .galerie-bild:hover {
+  /* Nur das Foto neigt sich, die Beschriftung darunter bleibt gerade stehen. */
+  html[data-bewegung="an"] .galerie-lupe:hover,
+  html:not([data-bewegung]) .galerie-lupe:hover {
     transform: translateY(-5px) rotate(-1.2deg);
     box-shadow: var(--schatten-stark);
   }
@@ -1223,7 +1334,7 @@ html[data-bewegung="reduziert"] .fortschritt { display: none; }
 
 html[data-bewegung="reduziert"] .button:hover,
 html[data-bewegung="reduziert"] .info-box:hover,
-html[data-bewegung="reduziert"] .galerie-bild:hover { transform: none; }
+html[data-bewegung="reduziert"] .galerie-lupe:hover { transform: none; }
 
 html[data-bewegung="reduziert"] * {
   animation-duration: 0.01ms !important;

@@ -129,34 +129,58 @@ Miesbach. Sobald die echte Adresse feststeht:
 
 Die Fotos liegen in `assets/img/galerie/` und heißen `foto-01.jpg`,
 `foto-02.jpg` und so weiter – derzeit sind es zehn. Auf den Galerieseiten
-stehen alle zehn, auf den beiden Startseiten sechs davon als Auswahl. Ein
-Eintrag in der Galerie sieht so aus:
+stehen alle zehn, auf den beiden Startseiten sechs davon als Auswahl.
+
+**Jedes Foto gibt es zweimal:**
+
+| Ordner | wofür | Größe |
+|---|---|---|
+| `assets/img/galerie/` | das kleine Bild in der Galerie | 620 Pixel breit, rund 100 KB |
+| `assets/img/galerie/gross/` | die Großansicht beim Anklicken | lange Kante 1800 Pixel, rund 300 KB |
+
+Beide heißen gleich. Wird nur eines getauscht, passen kleines und großes Bild
+nicht mehr zusammen.
+
+Ein Eintrag in der Galerie sieht so aus:
 
 ```
 <figure class="galerie-bild">
-  <img src="assets/img/galerie/foto-03.jpg" alt="Reich gedeckter Frühstückstisch"
-       width="620" height="1101" loading="lazy" decoding="async">
+  <a class="galerie-lupe" href="assets/img/galerie/gross/foto-03.jpg"
+     data-bu="Frühstück in großer Runde">
+    <img src="assets/img/galerie/foto-03.jpg" alt="Reich gedeckter Frühstückstisch"
+         width="620" height="1101" loading="lazy" decoding="async">
+    <span class="lupe-zeichen" aria-hidden="true">größer ansehen</span>
+  </a>
+  <figcaption>Frühstück in großer Runde</figcaption>
 </figure>
 ```
 
-**Ein Foto austauschen:** Einfach eine neue Datei mit demselben Namen in den
+Darin stecken **zwei verschiedene Texte**, und beide werden gebraucht:
+
+- **`<figcaption>`** – die Beschriftung, die unter dem Foto sichtbar steht.
+  Kurz halten, drei bis fünf Wörter. Sie muss bei `data-bu` noch einmal genau
+  gleich eingetragen werden, denn von dort holt sie sich die Großansicht.
+- **`alt`** – die längere Beschreibung. Sie ist auf der Seite nicht zu sehen;
+  sie wird Menschen vorgelesen, die einen Screenreader benutzen, und erscheint,
+  falls ein Bild einmal nicht lädt. Ein Satz genügt, der sagt, was zu sehen
+  ist. Auf den englischen Seiten bitte beides auf Englisch.
+
+**Ein Foto austauschen:** Je eine neue Datei mit demselben Namen in **beide**
 Ordner legen. Wenn das neue Bild ein anderes Seitenverhältnis hat, müssen
 `width` und `height` angepasst werden – sonst wird beim Laden zu viel oder zu
-wenig Platz freigehalten.
+wenig Platz freigehalten. Und die beiden Texte natürlich auch.
 
 **Ein Foto hinzufügen:** Einen vorhandenen `<figure>`-Block kopieren, einfügen
-und Dateinamen, Beschreibung sowie `width`/`height` anpassen. Das im Bereich
-„Galerie" von `galerie.html` **und** `gallery-en.html` machen; auf den
+und Dateinamen, die beiden Texte sowie `width`/`height` anpassen. Das im
+Bereich „Galerie" von `galerie.html` **und** `gallery-en.html` machen; auf den
 Startseiten steht nur eine Auswahl.
 
-**Die Beschreibung bei `alt`** ist wichtig: Sie wird Menschen vorgelesen, die
-einen Screenreader nutzen, und erscheint, falls ein Bild nicht lädt. Ein
-kurzer Satz genügt, was zu sehen ist. Auf den englischen Seiten bitte auf
-Englisch.
+**Zur Dateigröße:** Das kleine Bild vor dem Hochladen auf etwa 620 Pixel
+Breite verkleinern, das große auf 1800 Pixel an der langen Kante, beide als
+JPEG mit mittlerer Qualität. Sonst wird die Seite auf dem Handy langsam.
 
-**Zur Dateigröße:** Fotos vor dem Hochladen auf etwa 620 Pixel Breite
-verkleinern und als JPEG mit mittlerer Qualität speichern (rund 100 KB pro
-Bild). Sonst wird die Seite auf dem Handy langsam.
+**Tipp:** Beim Handyfoto beim Verkleinern die Bildinformationen („EXIF")
+entfernen lassen. Darin steht sonst oft, wo das Foto aufgenommen wurde.
 
 ## Speisekarte ändern (Preise, Gerichte)
 

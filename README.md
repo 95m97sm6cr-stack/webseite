@@ -19,9 +19,10 @@ datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
 .htaccess             Servereinstellungen (HTTPS, Caching, Fehlerseite)
 assets/css/style.css  Gesamtes Styling
 assets/img/           Logo, freigestelltes Logo, Signet und Deko-Motive
-assets/img/galerie/   die Fotos der Galerie
+assets/img/galerie/   die Fotos der Galerie (620 px breit)
+assets/img/galerie/gross/  dieselben Fotos für die Großansicht (1800 px)
 assets/js/main.js     Menü, Ansicht-Einstellungen, Öffnungs-Status, Reservierungs-
-                      Fenster und die Effekte
+                      Fenster, Großansicht der Fotos und die Effekte
 ```
 
 Die Seite ist auf gute Lesbarkeit für ältere Besucher ausgelegt: 18 px
@@ -77,7 +78,7 @@ keine Datenbank und keine Installation nötig. Hochladen genügt.
    datenschutz.html
    404.html
    .htaccess
-   assets/          (kompletter Ordner mit css/, img/, js/)
+   assets/          (kompletter Ordner mit css/, img/ inkl. galerie/gross/, js/)
    ```
 
    **Wichtig:** Die Ordnerstruktur muss erhalten bleiben – `style.css` muss
