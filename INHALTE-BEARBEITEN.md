@@ -257,6 +257,18 @@ dann liegen und lässt sich später wieder eintragen. Wer sie ganz abschalten
 will, ersetzt den Inhalt durch einen kurzen Satz wie „Zurzeit suchen wir
 niemanden – schaut gern später wieder vorbei."
 
+## Wenn sich Adresse, Telefon oder Öffnungszeiten ändern
+
+Diese Angaben stehen zusätzlich noch einmal **maschinenlesbar** im Kopfbereich
+von `index.html` und `index-en.html` – in einem Block, der mit
+`<script type="application/ld+json">` beginnt. Daraus baut Google die Infobox
+neben dem Suchergebnis. Ändert sich etwas, muss es dort mitgeändert werden,
+sonst zeigt Google veraltete Angaben an.
+
+Erzeugt wird der Block vom Skript `werkzeuge-seo.py`; wer mag, ändert die
+Angaben dort und lässt es einmal laufen. Von Hand geht es aber genauso: Die
+Werte stehen im Klartext da (`telephone`, `opens`, `closes` …).
+
 ## Impressum & Datenschutz ausfüllen
 
 In `impressum.html` und `datenschutz.html` alle Textstellen in eckigen

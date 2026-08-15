@@ -24,6 +24,9 @@ assets/img/galerie/   die Fotos der Galerie (620 px breit)
 assets/img/galerie/gross/  dieselben Fotos für die Großansicht (1800 px)
 assets/js/main.js     Menü, Ansicht-Einstellungen, Öffnungs-Status, Reservierungs-
                       Fenster, Großansicht der Fotos und die Effekte
+robots.txt            Regeln für Suchmaschinen
+sitemap.xml           Liste aller Seiten für Suchmaschinen
+werkzeuge-seo.py      erzeugt beides und die Suchmaschinen-Angaben in den Seiten
 ```
 
 Die Navigation ist auf allen Seiten gleich aufgebaut. Ab 1160 px Fensterbreite
@@ -101,6 +104,47 @@ Wenn eine eigene Domain gekauft ist:
    `/webseite/` wieder zu `/` werden (steht auch als Kommentar direkt in der
    Datei). Alle anderen Seiten verwenden relative Pfade und sind davon nicht
    betroffen.
+4. In `werkzeuge-seo.py` ganz oben `BASIS` auf die neue Adresse setzen und das
+   Skript einmal laufen lassen (`python3 werkzeuge-seo.py`). Es schreibt die
+   Adresse in alle Seiten, in `sitemap.xml` und in `robots.txt`. Das Skript
+   kann beliebig oft laufen, es ersetzt jedes Mal seinen eigenen Block.
+5. Danach in der Google Search Console die neue Adresse anmelden und die
+   Sitemap dort erneut einreichen.
+
+## Damit die Seite gefunden wird
+
+Eine neue Website kennt Google zunächst nicht – sie muss erst entdeckt werden.
+Was dafür vorbereitet ist und was noch von Hand zu tun bleibt:
+
+**Ist eingebaut:** Titel und Kurzbeschreibung je Seite, `sitemap.xml`,
+`robots.txt`, ein Vorschaubild fürs Teilen in Messengern
+(`assets/img/vorschau.jpg`, 1200 × 630 px) sowie strukturierte Daten
+(schema.org `CafeOrCoffeeShop`) mit Adresse, Telefon, E-Mail, Instagram und
+Öffnungszeiten auf beiden Startseiten. Letztere sind die Angaben, aus denen
+Google die Infobox neben dem Suchergebnis baut.
+
+**Bleibt von Hand zu tun:**
+
+1. **Google Unternehmensprofil** anlegen bzw. übernehmen – das ist der
+   Eintrag mit der Karte, der bei „Café Miesbach" ganz oben erscheint. Für ein
+   lokales Café wirkt das deutlich stärker als alles an der Website selbst.
+   Dort auch die Website-Adresse eintragen; damit findet Google die Seite.
+2. **Google Search Console** einrichten, die Seite bestätigen und die
+   `sitemap.xml` einreichen. Damit lässt sich auch nachsehen, ob und wann
+   Google die Seiten aufgenommen hat.
+3. **Von Instagram verlinken** – ein Link im Profil ist ein echter Verweis auf
+   die Seite und hilft beim Gefundenwerden.
+
+**Zur `robots.txt`:** Suchmaschinen lesen sie nur direkt an der Wurzel einer
+Domain. Solange die Seite unter `.../webseite/` liegt, wird sie deshalb
+ignoriert – sie liegt für den Domain-Umzug bereit. Bis dahin die Sitemap
+direkt in der Search Console einreichen.
+
+**Zur Kartenposition:** Der eingebettete Kartenausschnitt im Bereich „Anfahrt"
+zeigt noch eine ungefähre Position in Miesbach, nicht die exakte Adresse
+(siehe „Karte aktualisieren" in `INHALTE-BEARBEITEN.md`). Aus demselben Grund
+enthalten die strukturierten Daten bewusst **keine** Koordinaten – eine
+ungenaue Angabe wäre dort schlechter als gar keine.
 
 ## Alternative: Hostinger (bezahlt, ~3 €/Monat)
 
