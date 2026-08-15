@@ -7,7 +7,7 @@
      2. Ansicht-Einstellungen (Schriftgröße, Kontrast, Bewegung)
      3. Grundlagen und Bedienbarkeit
      4. Kopfbereich, Navigation, Ansicht-Bedienfeld
-     5. Hero mit Dampf und Deko
+     5. Hero mit Deko
      6. Bausteine (Buttons, Karten, Tabellen ...)
      7. Reservierung (Abschnitt und Dialog)
      8. Speisekarte, Rechtsseiten, Footer
@@ -20,8 +20,7 @@
   /* Rosé = exakt der Hintergrund im freigestellten Logo (nach der
      Farbreduktion beim Speichern gemessen). Die Buchstaben-Innenräume des
      Logos sind mit genau diesem Ton gefüllt – dadurch sind sie auf der
-     Hero-Fläche unsichtbar, und der weiße Dampf hinter dem Logo kann nicht
-     mehr durch die Buchstaben scheinen. */
+     Hero-Fläche unsichtbar – dort darf nichts durchscheinen. */
   --rose: #fac3b7;
   --rose-mittel: #fbd8d0;
   --rose-light: #fdece7;
@@ -85,8 +84,7 @@ html[data-kontrast="stark"] .reservierung-dialog {
 }
 
 html[data-kontrast="stark"] .koernung,
-html[data-kontrast="stark"] .hero-deko,
-html[data-kontrast="stark"] .dampf {
+html[data-kontrast="stark"] .hero-deko {
   display: none;
 }
 
@@ -496,55 +494,12 @@ html.js .ansicht { display: block; }
   position: relative;
   display: inline-block;
   margin-bottom: 1.2rem;
-  /* Luft nach oben, damit der Dampf über dem Schriftzug austreten kann. */
-  padding-top: 3.4rem;
-  isolation: isolate;
 }
 
-/* Das Logo liegt über dem Dampf. Weil das Bild freigestellt ist, steigt der
-   Dampf sichtbar durch die Lücken zwischen den Buchstaben auf und verschwindet
-   hinter der Tasse – so, wie es echter Dampf täte. */
 .hero-logo {
-  position: relative;
-  z-index: 2;
   max-width: 340px;
   width: min(78vw, 340px);
   margin: 0 auto;
-}
-
-/* Aufsteigender Dampf über der Tasse */
-/* Sitzt über der Tassenmitte (im Logo bei etwa 36 % der Breite) und reicht
-   von der Tassenöffnung bis in den freien Raum über dem Schriftzug. */
-.dampf {
-  position: absolute;
-  left: 36%;
-  top: 0;
-  z-index: 1;
-  width: 32%;
-  height: 52%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  overflow: visible;
-}
-
-.dampf path {
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 9;
-  stroke-linecap: round;
-  opacity: 0;
-  transform-origin: 50% 100%;
-  animation: dampfen 5.5s ease-in-out infinite;
-}
-
-.dampf path:nth-child(2) { animation-delay: 1.6s; }
-.dampf path:nth-child(3) { animation-delay: 3.2s; }
-
-@keyframes dampfen {
-  0%   { opacity: 0;   transform: translateY(14px) scale(0.8); }
-  20%  { opacity: 0.8; }
-  55%  { opacity: 0.6; }
-  100% { opacity: 0;   transform: translateY(-46px) scale(1.3); }
 }
 
 /* Der Kopfbereich hat einen Weichzeichner. Liegt der abgedunkelte
@@ -1221,7 +1176,6 @@ html.anim-bereit .staffeln.sichtbar > *:nth-child(4) { transition-delay: 0.32s; 
     transition: none !important;
   }
 
-  html:not([data-bewegung="an"]) .dampf path,
   html:not([data-bewegung="an"]) .hero-deko img,
   html:not([data-bewegung="an"]) .status-punkt { animation: none !important; }
 
@@ -1237,7 +1191,6 @@ html[data-bewegung="reduziert"] .staffeln > * {
   transition: none !important;
 }
 
-html[data-bewegung="reduziert"] .dampf path,
 html[data-bewegung="reduziert"] .hero-deko img,
 html[data-bewegung="reduziert"] .status-punkt { animation: none !important; }
 
@@ -1256,7 +1209,7 @@ html[data-bewegung="reduziert"] * {
 
 @media print {
   .kopfbereich, .fortschritt, .koernung, .nach-oben, .hero-deko,
-  .dampf, .hero-welle, .sprunglink, .ansicht, .dialog-hintergrund { display: none !important; }
+  .hero-welle, .sprunglink, .ansicht, .dialog-hintergrund { display: none !important; }
 
   body { background: #fff; color: #000; }
 
