@@ -1661,14 +1661,25 @@ html[data-kontrast="stark"] .anlass::after { display: none; }
 
 .bewerbung p { max-width: 34rem; margin: 0 auto; }
 
-.bewerbung-aktion { margin: 1.4rem auto 0; }
+/* Diese drei Regeln brauchen den zusätzlichen ».bewerbung«-Vorsatz. Ohne ihn
+   sind sie nur eine Klasse breit und damit weniger spezifisch als
+   ».bewerbung p« darüber – dessen »margin: 0 auto« gewann und setzte jeden
+   senkrechten Abstand im Kasten auf null. Der Anruf-Knopf klebte dadurch
+   ohne eine einzige Lücke am Knopf »E-Mail schreiben«. */
+.bewerbung .bewerbung-aktion { margin: 1.4rem auto 0; }
+
+/* Deutlich mehr Luft als die 0.7rem *innerhalb* der Zeile darunter, damit der
+   große Knopf und die beiden kleinen als zwei Stufen lesbar bleiben und nicht
+   als eine gedrängte Masse. */
+.bewerbung .events-wege { margin: 1.3rem auto 0; }
+
+.bewerbung .bewerbung-fuss { margin-top: 1.2rem; }
 
 /* Die Adresse ist lang – auf einem schmalen Handy muss sie umbrechen dürfen,
    sonst sprengt der Knopf den Bildschirm. */
 .bewerbung-aktion .button { max-width: 100%; }
 
 .bewerbung-fuss {
-  margin-top: 1.2rem;
   font-size: 0.95rem;
   color: var(--braun-weich);
 }
