@@ -21,6 +21,8 @@ auf der englischen Seite wären schlimmer als gar keine englische Seite.
 | **E-Mail-Adresse** | `index.html`, `index-en.html`, `jobs.html`, `jobs-en.html`, `impressum.html`, `datenschutz.html` |
 | **Fotos in der Galerie** | `index.html`, `index-en.html`, `galerie.html` **und** `gallery-en.html` |
 | **Stellenanzeige** | `jobs.html` **und** `jobs-en.html` |
+| **Feiern / Events** | `events.html` **und** `events-en.html` |
+| **Terminhinweis oben** | `index.html` **und** `index-en.html` |
 | **Einträge im Menü oben** | in **allen** Seiten – der Block `<nav class="nav">` ist überall gleich |
 
 Welche Datei zu welcher gehört:
@@ -30,6 +32,7 @@ Welche Datei zu welcher gehört:
 | `index.html` | `index-en.html` |
 | `speisekarte.html` | `menu-en.html` |
 | `galerie.html` | `gallery-en.html` |
+| `events.html` | `events-en.html` |
 | `jobs.html` | `jobs-en.html` |
 | `impressum.html`, `datenschutz.html` | *(bleiben deutsch)* |
 
@@ -50,6 +53,8 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 - **`galerie.html`** – die Galerieseite mit allen Fotos, **`gallery-en.html`**
   dieselbe auf Englisch. Auf den Startseiten steht nur eine Auswahl mit einem
   Knopf „Alle Bilder ansehen".
+- **`events.html`** – die Seite „Events" mit den Anlässen zum Feiern und dem
+  jeweils nächsten Termin, **`events-en.html`** dieselbe auf Englisch.
 - **`jobs.html`** – die Stellenanzeige, **`jobs-en.html`** dieselbe auf
   Englisch. Wenn keine Stelle mehr frei ist, siehe unten „Stellenanzeige".
 - **`impressum.html`** – das Impressum (Pflichtangaben).
@@ -268,6 +273,33 @@ sonst zeigt Google veraltete Angaben an.
 Erzeugt wird der Block vom Skript `werkzeuge-seo.py`; wer mag, ändert die
 Angaben dort und lässt es einmal laufen. Von Hand geht es aber genauso: Die
 Werte stehen im Klartext da (`telephone`, `opens`, `closes` …).
+
+## Terminhinweis oben auf der Startseite
+
+Ganz oben auf beiden Startseiten liegt ein dunkler Balken, der auf den
+nächsten Termin hinweist (aktuell das Speed Dating am 2. Oktober 2026). Er
+führt auf die Events-Seite direkt zum Termin.
+
+- **Termin ändern:** In `index.html` und `index-en.html` den Block
+  `<a class="aktion-banner" …>` suchen und Datum, Uhrzeit und Zielgruppe
+  anpassen. Denselben Text auch im Abschnitt `id="speed-dating"` in
+  `events.html` bzw. `events-en.html` ändern.
+- **Kein Termin mehr:** Den ganzen `<a class="aktion-banner">`-Block aus
+  beiden Startseiten löschen – vom öffnenden `<a` bis zum `</a>`. Der Rest
+  der Seite bleibt davon unberührt.
+- **Neuer Termin später:** Den Block wieder einfügen und den Abschnitt auf
+  der Events-Seite entsprechend austauschen.
+
+## Feiern und Events
+
+Die Seite `events.html` (englisch `events-en.html`) hat drei Teile:
+
+1. den **hervorgehobenen Termin** (dunkler Kasten, `id="speed-dating"`),
+2. die **Anlässe** – je ein `<div class="anlass">` mit Überschrift und einem
+   Satz. Zum Streichen den ganzen Block löschen, zum Ergänzen einen kopieren,
+3. den Kasten **„Anfrage stellen"** mit Telefon, E-Mail und Instagram.
+
+Gebucht werden kann hier bewusst nichts – die Seite sammelt nur Anfragen.
 
 ## Impressum & Datenschutz ausfüllen
 

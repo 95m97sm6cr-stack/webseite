@@ -108,6 +108,7 @@
           <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
           <li><a href="#anfahrt">Anfahrt</a></li>
           <li><a href="#galerie">Galerie</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="jobs.html">Jobs</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
@@ -162,6 +163,20 @@
     </nav>
   </header>
 
+  <!-- Hinweis auf den nächsten Termin. Fällt dieser Termin weg, kann der
+       ganze <a class="aktion-banner">-Block gelöscht werden – siehe
+       INHALTE-BEARBEITEN.md, Abschnitt "Terminhinweis oben". -->
+  <a class="aktion-banner" href="events.html#speed-dating">
+    <span class="aktion-text">
+      <span class="aktion-marke">Save the date</span>
+      <span class="aktion-titel">Speed&nbsp;Dating</span>
+      <span class="aktion-daten">
+        <strong>Freitag, 2.&nbsp;Oktober 2026</strong> · 18:30–20:30&nbsp;Uhr · für Singles von 40–55
+      </span>
+    </span>
+    <span class="aktion-mehr">Mehr erfahren <span class="pfeil" aria-hidden="true">&rarr;</span></span>
+  </a>
+
   <main id="inhalt">
 
     <section id="hero" class="hero">
@@ -182,8 +197,9 @@
       <p class="claim">Das Café in Miesbach</p>
       <!-- TODO: Willkommenstext nach Wunsch anpassen -->
       <p class="hero-text">
-        Guter Kaffee, hausgemachtes Frühstück und ein gemütlicher Platz zum
-        Verweilen – mitten am Stadtplatz. Schaut vorbei, wir freuen uns auf euch!
+        Guter Kaffee, ein reich gedeckter Frühstückstisch und ein gemütlicher
+        Platz zum Verweilen – mitten am Stadtplatz. Schaut vorbei, wir freuen
+        uns auf euch!
       </p>
 
       <!-- Wird vom Skript gefüllt; ohne JavaScript bleibt der Hinweis ausgeblendet. -->
@@ -232,21 +248,9 @@
             <tr data-tage="1"><td>Montag</td><td>Ruhetag</td></tr>
             <tr data-tage="2,3,4,5"><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
             <tr data-tage="6"><td>Samstag</td><td>8:00 – 17:00 Uhr</td></tr>
-            <tr data-tage="0"><td>Sonntag</td><td>8:00 – 17:00 Uhr</td></tr>
+            <tr data-tage="0"><td>Sonntag / Feiertag</td><td>8:00 – 17:00 Uhr</td></tr>
           </tbody>
         </table>
-
-        <div class="info-boxen staffeln">
-          <div class="info-box">
-            <h2>Frühstückszeiten</h2>
-            <p>Dienstag – Freitag<br>8:00 – 11:30 Uhr</p>
-            <p>Samstag / Sonntag / Feiertag<br>8:00 – 13:00 Uhr</p>
-          </div>
-          <div class="info-box">
-            <h2>Mittagstisch</h2>
-            <p>Dienstag – Freitag<br>11:30 – 14:00 Uhr</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -256,8 +260,7 @@
         <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
         <div class="reservierung-hinweis">
           <p class="wichtig">
-            Eine Online-Reservierung gibt es bei uns nicht – meldet euch einfach
-            kurz bei uns, wir finden einen Platz für euch.
+            Meldet euch einfach kurz bei uns – wir finden einen Platz für euch.
           </p>
           <p>Am besten telefonisch während unserer Öffnungszeiten:</p>
           <p class="status" data-status hidden></p>
@@ -396,8 +399,7 @@
       <button type="button" class="dialog-schliessen" data-schliesst aria-label="Schließen">&times;</button>
       <h2 id="dialog-titel">Tisch reservieren</h2>
       <p class="dialog-kernsatz">
-        Eine Online-Reservierung gibt es bei uns nicht – meldet euch einfach
-        kurz bei uns, wir finden einen Platz für euch.
+        Meldet euch einfach kurz bei uns – wir finden einen Platz für euch.
       </p>
       <p class="status" data-status hidden></p>
       <div class="dialog-wege">

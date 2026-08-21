@@ -13,6 +13,7 @@ index-en.html         dieselbe Startseite auf Englisch
 speisekarte.html      Speisekarte deutsch, inkl. Preise und Allergen-Legende
 menu-en.html          dieselbe Karte auf Englisch
 galerie.html          Galerie mit allen Fotos, gallery-en.html auf Englisch
+events.html           Feiern & Events inkl. nächstem Termin, events-en.html englisch
 jobs.html             Stellenanzeige, jobs-en.html auf Englisch
 impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
 datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
@@ -29,7 +30,7 @@ sitemap.xml           Liste aller Seiten für Suchmaschinen
 werkzeuge-seo.py      erzeugt beides und die Suchmaschinen-Angaben in den Seiten
 ```
 
-Die Navigation ist auf allen Seiten gleich aufgebaut. Ab 1160 px Fensterbreite
+Die Navigation ist auf allen Seiten gleich aufgebaut. Ab 1230 px Fensterbreite
 steht sie als Leiste oben, darunter klappt sie – zusammen mit Sprachwahl und
 „Ansicht" – hinter dem Menüknopf zusammen. Ohne JavaScript steht sie offen.
 
@@ -167,6 +168,8 @@ später doch ein Wechsel weg von GitHub Pages ansteht:
    menu-en.html
    galerie.html
    gallery-en.html
+   events.html
+   events-en.html
    jobs.html
    jobs-en.html
    impressum.html

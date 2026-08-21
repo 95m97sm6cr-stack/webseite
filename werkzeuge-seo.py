@@ -35,13 +35,21 @@ SEITEN = {
     "gallery-en.html": ("en", "Gallery – b.ellers in Miesbach",
                         "Pictures from the café: the rooms, breakfast, cake and coffee.",
                         "galerie.html"),
+    "events.html": ("de", "Feiern & Events – b.ellers in Miesbach",
+                    "Geburtstage, Hochzeiten, JGA, Firmung, Kommunion, Muttertag "
+                    "oder Vatertag bei uns feiern – auf Anfrage und nach Absprache.",
+                    "events-en.html"),
+    "events-en.html": ("en", "Celebrations & events – b.ellers in Miesbach",
+                       "Birthdays, weddings, hen and stag parties, confirmations, "
+                       "communions and more – on request and by arrangement.",
+                       "events.html"),
     "jobs.html": ("de", "Jobs – b.ellers in Miesbach",
                   "Wir suchen Servicekraft, Küchenkraft und Barista (m/w/d) – "
-                  "Minijob oder Teilzeit, ab 1. Oktober 2026 oder nach Absprache.",
+                  "Minijob oder Teilzeit, Start nach Absprache.",
                   "jobs-en.html"),
     "jobs-en.html": ("en", "Jobs – b.ellers in Miesbach",
                      "We are looking for service staff, kitchen staff and a barista – "
-                     "mini-job or part-time, from 1 October 2026 or by arrangement.",
+                     "mini-job or part-time, starting by arrangement.",
                      "jobs.html"),
     "impressum.html": ("de", "Impressum – b.ellers",
                        "Pflichtangaben nach § 5 TMG für das Café b.ellers in Miesbach.",
@@ -57,11 +65,13 @@ WANDEL = {
     "index.html": "weekly", "index-en.html": "weekly",
     "speisekarte.html": "monthly", "menu-en.html": "monthly",
     "galerie.html": "monthly", "gallery-en.html": "monthly",
+    "events.html": "weekly", "events-en.html": "weekly",
     "jobs.html": "monthly", "jobs-en.html": "monthly",
     "impressum.html": "yearly", "datenschutz.html": "yearly",
 }
 
-WICHTIGKEIT = {"index.html": "1.0", "index-en.html": "0.9"}
+WICHTIGKEIT = {"index.html": "1.0", "index-en.html": "0.9",
+               "events.html": "0.8"}
 
 
 def kopfangaben(datei):

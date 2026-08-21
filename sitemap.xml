@@ -44,6 +44,20 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://95m97sm6cr-stack.github.io/webseite/events.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://95m97sm6cr-stack.github.io/webseite/events.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://95m97sm6cr-stack.github.io/webseite/events-en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://95m97sm6cr-stack.github.io/webseite/events-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://95m97sm6cr-stack.github.io/webseite/events.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://95m97sm6cr-stack.github.io/webseite/events-en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://95m97sm6cr-stack.github.io/webseite/jobs.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://95m97sm6cr-stack.github.io/webseite/jobs.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://95m97sm6cr-stack.github.io/webseite/jobs-en.html"/>
