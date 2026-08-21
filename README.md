@@ -25,6 +25,7 @@ assets/img/galerie/   die Fotos der Galerie (620 px breit)
 assets/img/galerie/gross/  dieselben Fotos für die Großansicht (1800 px)
 assets/js/main.js     Menü, Ansicht-Einstellungen, Öffnungs-Status, Reservierungs-
                       Fenster, Großansicht der Fotos und die Effekte
+CNAME                 die eigene Domain für GitHub Pages (bellers-cafe.de)
 robots.txt            Regeln für Suchmaschinen
 sitemap.xml           Liste aller Seiten für Suchmaschinen
 werkzeuge-seo.py      erzeugt beides und die Suchmaschinen-Angaben in den Seiten

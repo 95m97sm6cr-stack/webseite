@@ -9,13 +9,13 @@
        Der Browser zeigt bei einer falschen Adresse weiter die falsche Adresse
        an, auch wenn der Server diese Datei hier ausliefert – ein relativer
        Pfad würde also von der falschen (evtl. tief verschachtelten) Adresse
-       aus gesucht, nicht von hier. Der Pfad-Anfang "/webseite/" gilt für
-       GitHub Pages als Projekt-Adresse (username.github.io/webseite/). Zieht
-       die Seite auf eine eigene Domain oder auf eine GitHub-„User-Page" um,
-       muss "/webseite/" in dieser Datei wieder zu "/" werden (siehe
-       INHALTE-BEARBEITEN.md, Abschnitt „Umzug auf eine eigene Domain"). -->
-  <link rel="icon" href="/webseite/assets/img/signet.png">
-  <link rel="stylesheet" href="/webseite/assets/css/style.css">
+       aus gesucht, nicht von hier. Der Pfad-Anfang "/" gilt, weil die Seite
+       unter bellers-cafe.de direkt an der Wurzel liegt. Käme sie je wieder in
+       einen Unterordner (etwa als GitHub-Projektseite unter
+       username.github.io/webseite/), müsste "/" hier entsprechend zu
+       "/webseite/" werden. -->
+  <link rel="icon" href="/assets/img/signet.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
   <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
        Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
   <script>
@@ -40,8 +40,8 @@
 
   <header class="kopfbereich">
     <nav class="nav" aria-label="Hauptnavigation">
-      <a href="/webseite/index.html" class="nav-logo">
-        <img src="/webseite/assets/img/signet.png" alt="">
+      <a href="/index.html" class="nav-logo">
+        <img src="/assets/img/signet.png" alt="">
         <span>b.ellers</span>
       </a>
 
@@ -49,14 +49,14 @@
 
       <div class="nav-klapp" id="nav-klapp">
         <ul class="nav-links">
-          <li><a href="/webseite/index.html">Willkommen</a></li>
-          <li><a href="/webseite/speisekarte.html">Speisekarte</a></li>
-          <li><a href="/webseite/index.html#oeffnungszeiten">Öffnungszeiten</a></li>
-          <li><a href="/webseite/index.html#anfahrt">Anfahrt</a></li>
-          <li><a href="/webseite/galerie.html">Galerie</a></li>
-          <li><a href="/webseite/events.html">Events</a></li>
-          <li><a href="/webseite/jobs.html">Jobs</a></li>
-          <li><a href="/webseite/index.html#kontakt">Kontakt</a></li>
+          <li><a href="/index.html">Willkommen</a></li>
+          <li><a href="/speisekarte.html">Speisekarte</a></li>
+          <li><a href="/index.html#oeffnungszeiten">Öffnungszeiten</a></li>
+          <li><a href="/index.html#anfahrt">Anfahrt</a></li>
+          <li><a href="/galerie.html">Galerie</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/jobs.html">Jobs</a></li>
+          <li><a href="/index.html#kontakt">Kontakt</a></li>
         </ul>
 
         <div class="nav-werkzeuge">
@@ -110,7 +110,7 @@
       Adresse geschlichen, oder die Seite wurde verschoben.
     </p>
     <p>
-      <a class="button" href="/webseite/index.html">Zurück zur Startseite</a>
+      <a class="button" href="/index.html">Zurück zur Startseite</a>
     </p>
     <p>
       Wenn ihr uns direkt erreichen möchtet:
@@ -119,18 +119,18 @@
   </main>
 
   <footer>
-    <img src="/webseite/assets/img/signet.png" alt="" class="footer-signet">
+    <img src="/assets/img/signet.png" alt="" class="footer-signet">
     <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
     <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
     <p class="footer-links">
-      <a href="/webseite/impressum.html">Impressum</a> ·
-      <a href="/webseite/datenschutz.html">Datenschutz</a>
+      <a href="/impressum.html">Impressum</a> ·
+      <a href="/datenschutz.html">Datenschutz</a>
     </p>
     <p>&copy; 2026 b.ellers</p>
   </footer>
 
   <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
 
-  <script src="/webseite/assets/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>
