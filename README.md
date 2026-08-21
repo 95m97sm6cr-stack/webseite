@@ -64,9 +64,9 @@ und dann `http://localhost:8000/` im Browser aufrufen.
 
 ## Veröffentlichen bei GitHub Pages (kostenlos)
 
-Die Seite läuft komplett kostenlos über GitHub Pages – keine Hosting-Gebühr,
-nur bei Bedarf später eine eigene Domain (siehe unten). Zwei Klicks in den
-GitHub-Einstellungen genügen, es ist kein Hochladen nötig.
+Die Seite läuft komplett kostenlos über GitHub Pages – keine Hosting-Gebühr.
+Bezahlt wird nur die eigene Domain beim Anbieter (hier IONOS, siehe unten).
+Zwei Klicks in den GitHub-Einstellungen genügen, es ist kein Hochladen nötig.
 
 ### Einmalig einrichten
 
@@ -81,9 +81,10 @@ GitHub-Einstellungen genügen, es ist kein Hochladen nötig.
    (Der ganze Website-Inhalt liegt auf diesem Branch, nicht auf `main` –
    deshalb dort auswählen, nicht `main`.)
 
-3. Kurz warten (meist unter einer Minute), dann ist die Seite erreichbar
-   unter **`https://95m97sm6cr-stack.github.io/webseite/`**. HTTPS ist dabei
-   automatisch aktiv, ganz ohne Zertifikat oder `.htaccess`.
+3. Kurz warten (meist unter einer Minute), dann ist die Seite erreichbar –
+   zunächst unter `https://95m97sm6cr-stack.github.io/webseite/`, nach dem
+   Domain-Umzug (siehe unten) unter **`https://bellers-cafe.de`**. HTTPS ist
+   dabei automatisch aktiv, ganz ohne Zertifikat oder `.htaccess`.
 
 ### Danach: Inhalte ändern
 
@@ -91,26 +92,68 @@ Jede Änderung, die auf den Branch `claude/cafe-bellers-website-s2m00o`
 gepusht wird, erscheint automatisch nach kurzer Zeit auf der Live-Seite –
 ganz ohne erneutes Hochladen.
 
-### Später: eigene Domain ergänzen
+### Eigene Domain: bellers-cafe.de bei IONOS
 
-Wenn eine eigene Domain gekauft ist:
+Die Domain liegt bei IONOS, die Seite bleibt bei GitHub Pages. Das ist kein
+Widerspruch: Eine Domain ist nur ein Wegweiser, gehostet wird woanders. Bei
+IONOS wird also **nichts gebaut**, es werden nur DNS-Einträge gesetzt.
 
-1. Beim Domain-Anbieter einen DNS-Eintrag setzen, der auf GitHub Pages zeigt
-   (Anleitung dazu bei GitHub: „Managing a custom domain for your GitHub
-   Pages site").
-2. In **Settings → Pages** unter „Custom domain" die Domain eintragen und
-   **„Enforce HTTPS"** aktivieren, sobald verfügbar.
-3. **Wichtig:** Sobald die Seite nicht mehr unter `.../webseite/` sondern
-   direkt unter der eigenen Domain läuft, muss in `404.html` der Pfad-Anfang
-   `/webseite/` wieder zu `/` werden (steht auch als Kommentar direkt in der
-   Datei). Alle anderen Seiten verwenden relative Pfade und sind davon nicht
-   betroffen.
-4. In `werkzeuge-seo.py` ganz oben `BASIS` auf die neue Adresse setzen und das
-   Skript einmal laufen lassen (`python3 werkzeuge-seo.py`). Es schreibt die
-   Adresse in alle Seiten, in `sitemap.xml` und in `robots.txt`. Das Skript
-   kann beliebig oft laufen, es ersetzt jedes Mal seinen eigenen Block.
-5. Danach in der Google Search Console die neue Adresse anmelden und die
-   Sitemap dort erneut einreichen.
+> **Wichtig:** Unter `info@bellers-cafe.de` läuft die E-Mail. Deshalb bei IONOS
+> **nur** A-, AAAA- und CNAME-Einträge anfassen. Die **Nameserver nicht
+> umstellen** und die **MX-Einträge nicht anrühren** – sonst kommen keine
+> Mails mehr an.
+
+**Reihenfolge beachten:** erst DNS, dann die Domain bei GitHub eintragen.
+Sobald die Domain bei GitHub gesetzt ist, leitet die alte github.io-Adresse
+dorthin um – ist das DNS dann noch nicht aktiv, ist die Seite so lange nicht
+erreichbar.
+
+1. **Bei IONOS** (Domains & SSL → `bellers-cafe.de` → DNS) auf den Hostnamen
+   `@` vier **A**-Einträge anlegen:
+
+   ```
+   185.199.108.153
+   185.199.109.153
+   185.199.110.153
+   185.199.111.153
+   ```
+
+   und vier **AAAA**-Einträge, ebenfalls auf `@`:
+
+   ```
+   2606:50c0:8000::153
+   2606:50c0:8001::153
+   2606:50c0:8002::153
+   2606:50c0:8003::153
+   ```
+
+   Dazu ein **CNAME** für den Hostnamen `www` mit dem Ziel
+   `95m97sm6cr-stack.github.io`. Ein vorhandener Parking- oder
+   Weiterleitungseintrag auf `@` wird dabei ersetzt.
+
+2. **Warten**, bis die Änderung greift (laut IONOS bis zu 24 Stunden, meist
+   deutlich weniger). Prüfen lässt sich das mit `host bellers-cafe.de` – dort
+   müssen die vier Adressen von oben auftauchen.
+
+3. **Im Repo** liegt die Datei `CNAME` mit dem Inhalt `bellers-cafe.de`. Sie
+   ist es, die GitHub Pages die Domain mitteilt.
+
+4. **Bei GitHub**: Settings → Pages → „Custom domain" auf `bellers-cafe.de`
+   setzen und speichern. GitHub stellt daraufhin ein Zertifikat aus (einige
+   Minuten bis zu einer Stunde); danach **„Enforce HTTPS"** anhaken.
+
+5. Danach in der Google Search Console die neue Adresse anmelden, die Sitemap
+   erneut einreichen und die Website-Adresse im Google-Unternehmensprofil
+   sowie im Instagram-Profil aktualisieren.
+
+**Wenn die Adresse noch einmal wechselt:** In `werkzeuge-seo.py` ganz oben
+`BASIS` auf die neue Adresse setzen und das Skript einmal laufen lassen
+(`python3 werkzeuge-seo.py`). Es schreibt die Adresse in alle Seiten, in
+`sitemap.xml` und in `robots.txt`. Das Skript kann beliebig oft laufen, es
+ersetzt jedes Mal seinen eigenen Block. Zusätzlich verwendet `404.html` als
+einzige Seite absolute Pfade – liegt die Seite in einem Unterordner statt an
+der Wurzel, muss dort der Pfad-Anfang angepasst werden (steht als Kommentar in
+der Datei). Alle anderen Seiten verwenden relative Pfade.
 
 ## Damit die Seite gefunden wird
 
@@ -137,9 +180,9 @@ Google die Infobox neben dem Suchergebnis baut.
    die Seite und hilft beim Gefundenwerden.
 
 **Zur `robots.txt`:** Suchmaschinen lesen sie nur direkt an der Wurzel einer
-Domain. Solange die Seite unter `.../webseite/` liegt, wird sie deshalb
-ignoriert – sie liegt für den Domain-Umzug bereit. Bis dahin die Sitemap
-direkt in der Search Console einreichen.
+Domain. Unter `bellers-cafe.de` liegt sie dort und wird ausgewertet. Solange
+die Seite noch unter `.../webseite/` erreichbar ist, wird sie ignoriert – in
+dieser Zeit die Sitemap direkt in der Search Console einreichen.
 
 **Zur Kartenposition:** Der eingebettete Kartenausschnitt im Bereich „Anfahrt"
 zeigt noch eine ungefähre Position in Miesbach, nicht die exakte Adresse
@@ -147,70 +190,14 @@ zeigt noch eine ungefähre Position in Miesbach, nicht die exakte Adresse
 enthalten die strukturierten Daten bewusst **keine** Koordinaten – eine
 ungenaue Angabe wäre dort schlechter als gar keine.
 
-## Alternative: Hostinger (bezahlt, ~3 €/Monat)
+## Umzug zu einem anderen Hoster
 
-Die Seite läuft unverändert auch bei jedem klassischen Webhoster. Falls
-später doch ein Wechsel weg von GitHub Pages ansteht:
-
-### Dateien hochladen
-
-1. Bei [hpanel.hostinger.com](https://hpanel.hostinger.com) einloggen.
-2. **Dateien → Dateimanager** öffnen und in den Ordner `public_html`
-   wechseln. Das ist das Wurzelverzeichnis der Website.
-3. Falls dort noch eine Platzhalterseite von Hostinger liegt (z. B. eine
-   `default.php` oder `index.html`), diese Dateien löschen.
-4. Folgende Dateien und Ordner hochladen:
-
-   ```
-   index.html
-   index-en.html
-   speisekarte.html
-   menu-en.html
-   galerie.html
-   gallery-en.html
-   events.html
-   events-en.html
-   jobs.html
-   jobs-en.html
-   impressum.html
-   datenschutz.html
-   404.html
-   .htaccess
-   assets/          (kompletter Ordner mit css/, img/ inkl. galerie/gross/, js/)
-   ```
-
-   **Wichtig:** Die Ordnerstruktur muss erhalten bleiben – `style.css` muss
-   also unter `public_html/assets/css/style.css` landen, nicht lose im
-   Hauptverzeichnis. Am einfachsten lädt man den Ordner `assets` als Ganzes
-   hoch bzw. entpackt ein hochgeladenes ZIP direkt im Dateimanager.
-
-   **Zur `.htaccess`:** Der Dateiname beginnt mit einem Punkt, deshalb ist sie
-   in manchen Datei-Managern zunächst unsichtbar. Im Hostinger-Dateimanager
-   unter den Einstellungen „versteckte Dateien anzeigen" aktivieren.
-
-5. Website im Browser aufrufen – fertig.
-
-### HTTPS aktivieren
-
-Unter **Websites → (Domain wählen) → SSL** ein kostenloses SSL-Zertifikat
-ausstellen lassen und anschließend „Force HTTPS" einschalten. Damit ist die
-Seite über `https://` erreichbar. (Die mitgelieferte `.htaccess` leitet
-zusätzlich selbst von `http://` auf `https://` um.)
-
-### Domain
-
-Bei den meisten Hostinger-Paketen ist im ersten Jahr eine Domain enthalten.
-Diese unter **Domains** registrieren bzw. eine vorhandene Domain verbinden.
-
-### Alternative: FTP
-
-Statt des Dateimanagers geht auch FTP, z. B. mit
-[FileZilla](https://filezilla-project.org/). Die Zugangsdaten (Server,
-Benutzername, Passwort) stehen in hPanel unter **Dateien → FTP-Konten**.
-
-> Bei einem Umzug zu Hostinger: In `404.html` den Pfad-Anfang `/webseite/`
-> wieder zu `/` ändern (siehe Kommentar in der Datei) – Hostinger liefert die
-> Seite ja direkt am Wurzelverzeichnis aus, nicht unter einem Unterordner.
+Die Seite ist reines HTML, CSS und JavaScript ohne Build-Schritt und läuft
+deshalb unverändert bei jedem Webhoster – auch beim Webspace-Paket von IONOS.
+Nötig wäre dann nur: alle Dateien in das Wurzelverzeichnis hochladen (per FTP
+oder Dateimanager), `BASIS` in `werkzeuge-seo.py` anpassen und den Abschnitt
+„Hosting" in der Datenschutzerklärung auf den neuen Anbieter umschreiben.
+Solange GitHub Pages genügt, kostet es nichts und es gibt keinen Grund dazu.
 
 ## Wichtig vor dem Veröffentlichen
 

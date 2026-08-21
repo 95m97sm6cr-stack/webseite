@@ -1,8 +1,6 @@
-# ACHTUNG: Suchmaschinen lesen robots.txt ausschliesslich direkt an der
-# Wurzel einer Domain. Solange die Seite als GitHub-Projektseite unter
-# .../webseite/ liegt, wird diese Datei deshalb NICHT ausgewertet - sie
-# liegt hier fuer den Umzug auf eine eigene Domain bereit. Bis dahin die
-# sitemap.xml direkt in der Google Search Console eintragen.
+# Suchmaschinen lesen robots.txt ausschliesslich direkt an der Wurzel
+# einer Domain. Die Seite liegt unter der eigenen Domain in der Wurzel,
+# diese Datei wird also ausgewertet.
 
 # Alle Suchmaschinen duerfen die ganze Seite lesen.
 User-agent: *
@@ -12,4 +10,4 @@ Allow: /
 # ein noindex im Kopfbereich, das unabhaengig davon wirkt.
 Disallow: /404.html
 
-Sitemap: https://95m97sm6cr-stack.github.io/webseite/sitemap.xml
+Sitemap: https://bellers-cafe.de/sitemap.xml

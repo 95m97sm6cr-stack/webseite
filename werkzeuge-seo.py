@@ -6,7 +6,7 @@ Die Basisadresse steht nur hier. Zieht die Seite auf eine eigene Domain um,
 """
 import re
 
-BASIS = "https://95m97sm6cr-stack.github.io/webseite/"
+BASIS = "https://bellers-cafe.de/"
 
 VORSCHAU = BASIS + "assets/img/vorschau.jpg"
 
@@ -80,7 +80,7 @@ def kopfangaben(datei):
     z = []
     a = z.append
     a('  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom')
-    a('       Skript seo_einbauen.py – die Basisadresse steht dort an einer')
+    a('       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer')
     a('       einzigen Stelle und muss bei einem Domain-Umzug nur dort')
     a('       geändert werden. -->')
     a(f'  <link rel="canonical" href="{adresse}">')
@@ -182,11 +182,9 @@ for datei in SEITEN:
 # ---------- robots.txt ----------
 
 open("robots.txt", "w", encoding="utf-8").write(
-    "# ACHTUNG: Suchmaschinen lesen robots.txt ausschliesslich direkt an der\n"
-    "# Wurzel einer Domain. Solange die Seite als GitHub-Projektseite unter\n"
-    "# .../webseite/ liegt, wird diese Datei deshalb NICHT ausgewertet - sie\n"
-    "# liegt hier fuer den Umzug auf eine eigene Domain bereit. Bis dahin die\n"
-    "# sitemap.xml direkt in der Google Search Console eintragen.\n"
+    "# Suchmaschinen lesen robots.txt ausschliesslich direkt an der Wurzel\n"
+    "# einer Domain. Die Seite liegt unter der eigenen Domain in der Wurzel,\n"
+    "# diese Datei wird also ausgewertet.\n"
     "\n"
     "# Alle Suchmaschinen duerfen die ganze Seite lesen.\n"
     "User-agent: *\n"
