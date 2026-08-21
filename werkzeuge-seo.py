@@ -36,11 +36,11 @@ SEITEN = {
                         "Pictures from the café: the rooms, breakfast, cake and coffee.",
                         "galerie.html"),
     "events.html": ("de", "Feiern & Events – b.ellers in Miesbach",
-                    "Geburtstage, Hochzeiten, JGA, Firmung, Kommunion, Muttertag "
+                    "Geburtstage, JGA, Firmung, Kommunion, Muttertag "
                     "oder Vatertag bei uns feiern – auf Anfrage und nach Absprache.",
                     "events-en.html"),
     "events-en.html": ("en", "Celebrations & events – b.ellers in Miesbach",
-                       "Birthdays, weddings, hen and stag parties, confirmations, "
+                       "Birthdays, hen and stag parties, confirmations, "
                        "communions and more – on request and by arrangement.",
                        "events.html"),
     "jobs.html": ("de", "Jobs – b.ellers in Miesbach",
