@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – b.ellers, the café in Miesbach</title>
+  <meta name="description" content="Pictures from café b.ellers in Miesbach: the rooms, breakfast and coffee.">
+  <link rel="icon" href="assets/img/signet.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom
+       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer
+       einzigen Stelle und muss bei einem Domain-Umzug nur dort
+       geändert werden. -->
+  <link rel="canonical" href="https://bellers-cafe.de/gallery-en.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="b.ellers">
+  <meta property="og:title" content="Gallery – b.ellers in Miesbach">
+  <meta property="og:description" content="Pictures from the café: the rooms, breakfast, cake and coffee.">
+  <meta property="og:url" content="https://bellers-cafe.de/gallery-en.html">
+  <meta property="og:image" content="https://bellers-cafe.de/assets/img/vorschau.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo von b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="de" href="galerie.html">
+  <link rel="alternate" hreflang="en" href="gallery-en.html">
+  <!-- Applies the saved view settings BEFORE the page is painted,
+       otherwise the default view would flash up briefly. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <a class="sprunglink" href="#inhalt">Skip to content</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+
+  <header class="kopfbereich">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index-en.html" class="nav-logo">
+        <img src="assets/img/signet.png" alt="">
+        <span>b.ellers</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
+
+      <div class="nav-klapp" id="nav-klapp">
+        <ul class="nav-links">
+          <li><a href="index-en.html">Welcome</a></li>
+          <li><a href="menu-en.html">Menu</a></li>
+          <li><a href="index-en.html#oeffnungszeiten">Opening hours</a></li>
+          <li><a href="index-en.html#anfahrt">Getting here</a></li>
+          <li><a href="gallery-en.html">Gallery</a></li>
+          <li><a href="events-en.html">Events</a></li>
+          <li><a href="jobs-en.html">Jobs</a></li>
+          <li><a href="index-en.html#kontakt">Contact</a></li>
+        </ul>
+
+        <div class="nav-werkzeuge">
+          <div class="sprache">
+            <a href="galerie.html" lang="de" hreflang="de">DE</a>
+            <span class="trennstrich" aria-hidden="true"></span>
+            <a href="gallery-en.html" aria-current="true">EN</a>
+          </div>
+
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>View</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Adjust the view</h2>
+              <p>The setting is kept for all pages.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Text size</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Large</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Very large</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Contrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Strong</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Motion</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">On</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduced</button>
+                </div>
+              </div>
+
+              <button type="button" class="zuruecksetzen">Back to standard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inhalt" class="galerie-seite">
+
+    <div class="seiten-kopf">
+      <h1>Gallery</h1>
+      <p>A few impressions from the café. Tap a photo to see it larger.</p>
+    </div>
+
+    <div class="container einblenden">
+      <div class="galerie-grid">
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-01.jpg" data-bu="Our café on the Stadtplatz">
+            <img src="assets/img/galerie/foto-01.jpg" alt="Street view of café b.ellers with its awning, fairy lights and benches outside"
+                 width="620" height="413" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-02.jpg" data-bu="Breakfast platter">
+            <img src="assets/img/galerie/foto-02.jpg" alt="A long wooden table laid with salmon, cheese, cold cuts, avocado and fresh rolls"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-03.jpg" data-bu="Breakfast for a big table">
+            <img src="assets/img/galerie/foto-03.jpg" alt="A generously laid breakfast table with cold cuts, cheese, a bread basket and muesli bowls"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-04.jpg" data-bu="Laid for any occasion">
+            <img src="assets/img/galerie/foto-04.jpg" alt="Breakfast table in the evening under a chandelier, with a tiered stand and bread basket"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-05.jpg" data-bu="Cappuccino for two">
+            <img src="assets/img/galerie/foto-05.jpg" alt="Two cappuccinos in ceramic cups with cookies on wooden boards, a coffee pot and flowers behind"
+                 width="620" height="1102" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-06.jpg" data-bu="A seat by the window">
+            <img src="assets/img/galerie/foto-06.jpg" alt="Window seat with a croissant and a cappuccino on the wooden counter, the pink wall behind with a picture of the market square in Miesbach"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-07.jpg" data-bu="Matcha latte">
+            <img src="assets/img/galerie/foto-07.jpg" alt="Matcha latte with a heart in the milk foam, a matcha croissant on a wooden board behind"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-08.jpg" data-bu="Tiramisu from the tray">
+            <img src="assets/img/galerie/foto-08.jpg" alt="A tray of tiramisu dusted with cocoa and topped with berries, orange slices and physalis"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-09.jpg" data-bu="Schnitzel with potato salad">
+            <img src="assets/img/galerie/foto-09.jpg" alt="Breaded schnitzel with potato salad, cranberry sauce and a slice of lemon"
+                 width="620" height="827" loading="lazy" decoding="async">
+          </a>
+        </figure>
+        <figure class="galerie-bild">
+          <a class="galerie-lupe" href="assets/img/galerie/gross/foto-10.jpg" data-bu="Cappuccino with a heart">
+            <img src="assets/img/galerie/foto-10.jpg" alt="Cappuccino with a heart in a pink cup, next to a crocheted rose and a candle lantern"
+                 width="620" height="1101" loading="lazy" decoding="async">
+          </a>
+        </figure>
+      </div>
+
+      <p class="galerie-hinweis">
+        There are more on
+        <a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">Instagram</a>.
+      </p>
+
+      <p class="galerie-aktion">
+        <a class="button button-hell" href="index-en.html">← Back to the home page</a>
+      </p>
+    </div>
+
+  </main>
+
+  <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Phone <a href="tel:+4980259924355">+49 8025 9924355</a></p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe on Instagram</a></p>
+    <p class="footer-links">
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Privacy</a>
+    </p>
+    <p class="rechtshinweis">Legal notice and privacy policy are in German, as required for German websites.</p>
+    <p>&copy; 2026 b.ellers</p>
+  </footer>
+
+  <button class="nach-oben" aria-label="Back to top">&#8593;</button>
+  <!-- Großansicht der Galerie. Ohne JavaScript bleibt sie ungenutzt – die
+       Fotos verweisen dann direkt auf die große Bilddatei. -->
+  <div class="bild-hintergrund" hidden>
+    <div class="bild-dialog" role="dialog" aria-modal="true" aria-label="View photo large">
+      <button class="bild-knopf bild-zu" data-bild-schliesst type="button">
+        <span aria-hidden="true">&#10005;</span>
+        <span class="nur-fuer-screenreader">Close</span>
+      </button>
+      <button class="bild-knopf bild-zurueck" data-bild-blaettert="-1" type="button">
+        <span aria-hidden="true">&#8592;</span>
+        <span class="nur-fuer-screenreader">Previous photo</span>
+      </button>
+      <button class="bild-knopf bild-vor" data-bild-blaettert="1" type="button">
+        <span aria-hidden="true">&#8594;</span>
+        <span class="nur-fuer-screenreader">Next photo</span>
+      </button>
+      <figure class="bild-buehne">
+        <img alt="">
+        <figcaption></figcaption>
+      </figure>
+    </div>
+  </div>
+
+
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

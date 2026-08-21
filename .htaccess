@@ -1,0 +1,43 @@
+# Konfiguration für den Webserver (Hostinger nutzt LiteSpeed/Apache).
+# Diese Datei muss zusammen mit index.html im Wurzelverzeichnis (public_html) liegen.
+# Achtung: Der Dateiname beginnt mit einem Punkt – in manchen Datei-Managern
+# muss man "versteckte Dateien anzeigen" einschalten, um sie zu sehen.
+
+# --- Fehlerseite ---
+# Ruft jemand eine Adresse auf, die es nicht gibt, erscheint unsere eigene
+# 404-Seite statt der technischen Standardmeldung des Servers.
+ErrorDocument 404 /404.html
+
+# --- Weiterleitung auf HTTPS ---
+# Sorgt dafür, dass die Seite immer verschlüsselt (https://) ausgeliefert wird.
+# In hPanel gibt es dafür zusätzlich den Schalter "Force HTTPS" – doppelt schadet nicht.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- Browser-Caching ---
+# Bilder, CSS und JavaScript ändern sich selten. Der Browser darf sie deshalb
+# zwischenspeichern, dadurch lädt die Seite bei einem erneuten Besuch schneller.
+# HTML wird bewusst nur kurz gespeichert, damit Textänderungen zügig ankommen.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css            "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/jpeg          "access plus 1 month"
+  ExpiresByType image/png           "access plus 1 month"
+  ExpiresByType image/svg+xml       "access plus 1 month"
+  ExpiresByType image/x-icon        "access plus 1 month"
+  ExpiresByType text/html           "access plus 10 minutes"
+</IfModule>
+
+# --- Komprimierung ---
+# Verkleinert HTML/CSS/JS bei der Übertragung, spart Ladezeit.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript image/svg+xml
+</IfModule>
+
+# --- Verzeichnisinhalte nicht auflisten ---
+# Verhindert, dass jemand über z. B. /assets/img/ eine Dateiliste zu sehen bekommt.
+Options -Indexes

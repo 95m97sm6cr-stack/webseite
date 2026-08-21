@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>b.ellers – Das Café in Miesbach</title>
+  <meta name="description" content="b.ellers – das familiengeführte Café am Stadtplatz in Miesbach. Frühstück, Kaffee, Öffnungszeiten und Anfahrt auf einen Blick.">
+  <link rel="icon" href="assets/img/signet.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom
+       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer
+       einzigen Stelle und muss bei einem Domain-Umzug nur dort
+       geändert werden. -->
+  <link rel="canonical" href="https://bellers-cafe.de/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="b.ellers">
+  <meta property="og:title" content="b.ellers – Das Café in Miesbach">
+  <meta property="og:description" content="Das familiengeführte Café am Stadtplatz in Miesbach. Frühstück, Kaffee und Kuchen, Öffnungszeiten und Anfahrt auf einen Blick.">
+  <meta property="og:url" content="https://bellers-cafe.de/">
+  <meta property="og:image" content="https://bellers-cafe.de/assets/img/vorschau.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo von b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "b.ellers",
+    "description": "Familiengeführtes Café am Stadtplatz in Miesbach mit Frühstück, Mittagstisch, Kaffeespezialitäten und hausgemachtem Kuchen.",
+    "url": "https://bellers-cafe.de/",
+    "image": "https://bellers-cafe.de/assets/img/vorschau.jpg",
+    "logo": "https://bellers-cafe.de/assets/img/logo-freigestellt.png",
+    "telephone": "+49 8025 9924355",
+    "email": "info@bellers-cafe.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Stadtplatz 1",
+      "postalCode": "83714",
+      "addressLocality": "Miesbach",
+      "addressRegion": "Bayern",
+      "addressCountry": "DE"
+    },
+    "servesCuisine": ["Frühstück", "Kaffee", "Kuchen"],
+    "currenciesAccepted": "EUR",
+    "sameAs": ["https://www.instagram.com/b.ellers_cafe/"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "07:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Monday",
+        "opens": "00:00",
+        "closes": "00:00"
+      }
+    ]
+  }
+  </script>
+  <link rel="alternate" hreflang="de" href="index.html">
+  <link rel="alternate" hreflang="en" href="index-en.html">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+
+  <header class="kopfbereich">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/img/signet.png" alt="">
+        <span>b.ellers</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
+
+      <div class="nav-klapp" id="nav-klapp">
+        <ul class="nav-links">
+          <li><a href="#hero">Willkommen</a></li>
+          <li><a href="speisekarte.html">Speisekarte</a></li>
+          <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
+          <li><a href="#anfahrt">Anfahrt</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+
+        <div class="nav-werkzeuge">
+          <div class="sprache">
+            <a href="index.html" aria-current="true">DE</a>
+            <span class="trennstrich" aria-hidden="true"></span>
+            <a href="index-en.html" lang="en" hreflang="en">EN</a>
+          </div>
+
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>Ansicht</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Ansicht anpassen</h2>
+              <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Schriftgröße</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Groß</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Kontrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Stark</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Bewegung</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">An</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+                </div>
+              </div>
+
+              <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hinweis auf den nächsten Termin. Fällt dieser Termin weg, kann der
+       ganze <a class="aktion-banner">-Block gelöscht werden – siehe
+       INHALTE-BEARBEITEN.md, Abschnitt "Terminhinweis oben". -->
+  <a class="aktion-banner" href="events.html#speed-dating">
+    <span class="aktion-text">
+      <span class="aktion-marke">Save the date</span>
+      <span class="aktion-titel">Speed Dating</span>
+      <span class="aktion-daten">
+        <span><strong>Freitag, 2. Oktober 2026</strong></span>
+        <span>18:30 – 20:30 Uhr</span>
+        <span>für Singles von 40 bis 55</span>
+      </span>
+    </span>
+    <span class="aktion-mehr">Mehr erfahren <span class="pfeil" aria-hidden="true">&rarr;</span></span>
+  </a>
+
+  <main id="inhalt">
+
+    <section id="hero" class="hero">
+      <div class="hero-deko" aria-hidden="true">
+        <img src="assets/img/bohne.png" alt="" class="d1">
+        <img src="assets/img/brezn.png" alt="" class="d2">
+        <img src="assets/img/brezn.png" alt="" class="d3">
+        <img src="assets/img/bohne.png" alt="" class="d4">
+      </div>
+
+      <div class="hero-buehne">
+        <img src="assets/img/logo-freigestellt.png"
+             alt="b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn"
+             class="hero-logo" width="700" height="660">
+      </div>
+
+      <h1>Willkommen bei b.ellers</h1>
+      <p class="claim">Das Café in Miesbach</p>
+      <!-- TODO: Willkommenstext nach Wunsch anpassen -->
+      <p class="hero-text">
+        Guter Kaffee, ein reich gedeckter Frühstückstisch und ein gemütlicher
+        Platz zum Verweilen – mitten am Stadtplatz. Schaut vorbei, wir freuen
+        uns auf euch!
+      </p>
+
+      <!-- Wird vom Skript gefüllt; ohne JavaScript bleibt der Hinweis ausgeblendet. -->
+      <p class="status" data-status hidden></p>
+
+      <div class="hero-aktionen">
+        <a class="button" href="speisekarte.html">Zur Speisekarte</a>
+        <a class="button button-hell" href="#reservierung" data-oeffnet="reservierung">Tisch reservieren</a>
+        <a class="button button-hell" href="tel:+4980259924355">Anrufen</a>
+      </div>
+
+      <svg class="hero-welle" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,52 C240,10 480,0 720,14 C960,28 1200,44 1440,22 L1440,52 Z"></path>
+      </svg>
+    </section>
+
+    <section id="speisekarte-teaser">
+      <div class="container karte-teaser einblenden">
+        <h2>Unsere Speisekarte</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <p>
+          Frühstück von der Lieblingsbowl bis zum Gönnerbrunch, Eierspeisen,
+          Kaffeespezialitäten und frische Säfte – vieles davon hausgemacht.
+        </p>
+        <a class="button" href="speisekarte.html">Speisekarte ansehen</a>
+      </div>
+    </section>
+
+    <section id="oeffnungszeiten">
+      <div class="container einblenden">
+        <h2>Öffnungszeiten</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <!-- data-tage: 0 = Sonntag, 1 = Montag ... 6 = Samstag.
+             Damit hebt das Skript automatisch den heutigen Tag hervor.
+             Bei Änderungen bitte auch assets/js/main.js anpassen. -->
+        <table class="oeffnungszeiten-tabelle">
+          <caption class="nur-fuer-screenreader">Öffnungszeiten von b.ellers</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tag</th>
+              <th scope="col">Uhrzeit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-tage="1"><td>Montag</td><td>Ruhetag</td></tr>
+            <tr data-tage="2,3,4,5"><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
+            <tr data-tage="6"><td>Samstag</td><td>8:00 – 17:00 Uhr</td></tr>
+            <tr data-tage="0"><td>Sonntag / Feiertag</td><td>8:00 – 17:00 Uhr</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="reservierung">
+      <div class="container reservierung-inhalt einblenden">
+        <h2>Tisch reservieren</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <div class="reservierung-hinweis">
+          <p class="wichtig">
+            Meldet euch einfach kurz bei uns – wir finden einen Platz für euch.
+          </p>
+          <p>Am besten telefonisch während unserer Öffnungszeiten:</p>
+          <p class="status" data-status hidden></p>
+          <div class="reservierung-wege">
+            <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+            <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+              Auf Instagram schreiben
+            </a>
+          </div>
+          <p>b.ellers · Stadtplatz 1 · 83714 Miesbach</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="anfahrt">
+      <div class="container einblenden">
+        <h2>Anfahrt</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <div class="anfahrt-inhalt">
+          <div class="anfahrt-text">
+            <p><strong>b.ellers</strong><br>
+            Stadtplatz 1<br>
+            83714 Miesbach</p>
+            <p>Mitten am Miesbacher Stadtplatz.</p>
+          </div>
+          <div class="anfahrt-karte">
+            <!-- Kartenausschnitt: Stadtplatz Miesbach. Falls der Marker verschoben werden soll,
+                 auf https://www.openstreetmap.org die Adresse suchen, "Exportieren" klicken und
+                 den dort angezeigten iframe-Code hier ersetzen. -->
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=11.8287%2C47.7866%2C11.8387%2C47.7916&amp;layer=mapnik&amp;marker=47.7891%2C11.8337"
+              title="Karte: b.ellers, Stadtplatz 1, 83714 Miesbach"
+              loading="lazy">
+            </iframe>
+            <p class="karten-link">
+              <a href="https://www.openstreetmap.org/?mlat=47.7891&amp;mlon=11.8337#map=18/47.7891/11.8337"
+                 target="_blank" rel="noopener">Größere Karte öffnen</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galerie">
+      <div class="container einblenden">
+        <h2>Galerie</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <div class="galerie-grid staffeln">
+          <figure class="galerie-bild">
+            <a class="galerie-lupe" href="assets/img/galerie/gross/foto-01.jpg" data-bu="Unser Café am Stadtplatz">
+              <img src="assets/img/galerie/foto-01.jpg" alt="Außenansicht des Cafés b.ellers mit Markise, Lichterkette und Sitzbänken davor"
+                   width="620" height="413" loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <figure class="galerie-bild">
+            <a class="galerie-lupe" href="assets/img/galerie/gross/foto-06.jpg" data-bu="Platz am Fenster">
+              <img src="assets/img/galerie/foto-06.jpg" alt="Fensterplatz mit Croissant und Cappuccino auf der Holztheke, dahinter die rosa Wand mit einem Bild vom Miesbacher Marktplatz"
+                   width="620" height="1101" loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <figure class="galerie-bild">
+            <a class="galerie-lupe" href="assets/img/galerie/gross/foto-03.jpg" data-bu="Frühstück in großer Runde">
+              <img src="assets/img/galerie/foto-03.jpg" alt="Reich gedeckter Frühstückstisch mit Wurst- und Käseplatte, Brotkorb und Müslischalen"
+                   width="620" height="1101" loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <figure class="galerie-bild">
+            <a class="galerie-lupe" href="assets/img/galerie/gross/foto-09.jpg" data-bu="Schnitzel mit Kartoffelsalat">
+              <img src="assets/img/galerie/foto-09.jpg" alt="Paniertes Schnitzel mit Kartoffelsalat, Preiselbeeren und einer Zitronenscheibe"
+                   width="620" height="827" loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <figure class="galerie-bild">
+            <a class="galerie-lupe" href="assets/img/galerie/gross/foto-08.jpg" data-bu="Tiramisu vom Blech">
+              <img src="assets/img/galerie/foto-08.jpg" alt="Blech mit Tiramisu, bestäubt mit Kakao und garniert mit Beeren, Orangenspalten und Physalis"
+                   width="620" height="1101" loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <figure class="galerie-bild">
+            <a class="galerie-lupe" href="assets/img/galerie/gross/foto-10.jpg" data-bu="Cappuccino mit Herz">
+              <img src="assets/img/galerie/foto-10.jpg" alt="Cappuccino mit Herz im rosa Becher, daneben eine gehäkelte Rose und ein Windlicht"
+                   width="620" height="1101" loading="lazy" decoding="async">
+            </a>
+          </figure>
+        </div>
+        <p class="galerie-aktion">
+          <a class="button" href="galerie.html">Alle Bilder ansehen</a>
+        </p>
+        <p class="galerie-hinweis">
+          Noch mehr gibt es auf
+          <a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">Instagram</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container kontakt-inhalt einblenden">
+        <h2>Kontakt</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+        <div class="kontakt-karte">
+          <p><strong>b.ellers</strong><br>
+          Stadtplatz 1<br>
+          83714 Miesbach</p>
+          <p>Telefon: <a href="tel:+4980259924355">08025 9924355</a></p>
+          <p>E-Mail: <a href="mailto:info@bellers-cafe.de">info@bellers-cafe.de</a></p>
+          <div class="kontakt-aktionen">
+            <a class="button" href="#reservierung" data-oeffnet="reservierung">Tisch reservieren</a>
+            <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+              Folgt uns auf Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
+    <p class="footer-links">
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+    <p>&copy; 2026 b.ellers</p>
+  </footer>
+
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+  <!-- Reservierungs-Dialog. Hier kann NICHT reserviert werden – er zeigt nur,
+       wie man uns erreicht. Ohne JavaScript wird er nie geöffnet; die Buttons
+       führen dann zum Abschnitt "Tisch reservieren" weiter oben. -->
+  <div class="dialog-hintergrund" hidden>
+    <div class="reservierung-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-titel">
+      <button type="button" class="dialog-schliessen" data-schliesst aria-label="Schließen">&times;</button>
+      <h2 id="dialog-titel">Tisch reservieren</h2>
+      <p class="dialog-kernsatz">
+        Meldet euch einfach kurz bei uns – wir finden einen Platz für euch.
+      </p>
+      <p class="status" data-status hidden></p>
+      <div class="dialog-wege">
+        <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+        <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+          Auf Instagram schreiben
+        </a>
+      </div>
+      <p class="dialog-fuss">b.ellers · Stadtplatz 1 · 83714 Miesbach</p>
+    </div>
+  </div>
+  <!-- Großansicht der Galerie. Ohne JavaScript bleibt sie ungenutzt – die
+       Fotos verweisen dann direkt auf die große Bilddatei. -->
+  <div class="bild-hintergrund" hidden>
+    <div class="bild-dialog" role="dialog" aria-modal="true" aria-label="Foto groß ansehen">
+      <button class="bild-knopf bild-zu" data-bild-schliesst type="button">
+        <span aria-hidden="true">&#10005;</span>
+        <span class="nur-fuer-screenreader">Schließen</span>
+      </button>
+      <button class="bild-knopf bild-zurueck" data-bild-blaettert="-1" type="button">
+        <span aria-hidden="true">&#8592;</span>
+        <span class="nur-fuer-screenreader">Vorheriges Foto</span>
+      </button>
+      <button class="bild-knopf bild-vor" data-bild-blaettert="1" type="button">
+        <span aria-hidden="true">&#8594;</span>
+        <span class="nur-fuer-screenreader">Nächstes Foto</span>
+      </button>
+      <figure class="bild-buehne">
+        <img alt="">
+        <figcaption></figcaption>
+      </figure>
+    </div>
+  </div>
+
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

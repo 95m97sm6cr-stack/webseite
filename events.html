@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feiern &amp; Events – b.ellers, das Café in Miesbach</title>
+  <meta name="description" content="Geburtstage, JGA, Firmung, Kommunion, Muttertag oder Vatertag im Café b.ellers in Miesbach feiern – auf Anfrage und ganz nach Absprache.">
+  <link rel="icon" href="assets/img/signet.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom
+       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer
+       einzigen Stelle und muss bei einem Domain-Umzug nur dort
+       geändert werden. -->
+  <link rel="canonical" href="https://bellers-cafe.de/events.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="b.ellers">
+  <meta property="og:title" content="Feiern & Events – b.ellers in Miesbach">
+  <meta property="og:description" content="Geburtstage, JGA, Firmung, Kommunion, Muttertag oder Vatertag bei uns feiern – auf Anfrage und nach Absprache.">
+  <meta property="og:url" content="https://bellers-cafe.de/events.html">
+  <meta property="og:image" content="https://bellers-cafe.de/assets/img/vorschau.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo von b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="de" href="events.html">
+  <link rel="alternate" hreflang="en" href="events-en.html">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+
+  <header class="kopfbereich">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/signet.png" alt="">
+        <span>b.ellers</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
+
+      <div class="nav-klapp" id="nav-klapp">
+        <ul class="nav-links">
+          <li><a href="index.html">Willkommen</a></li>
+          <li><a href="speisekarte.html">Speisekarte</a></li>
+          <li><a href="index.html#oeffnungszeiten">Öffnungszeiten</a></li>
+          <li><a href="index.html#anfahrt">Anfahrt</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+
+        <div class="nav-werkzeuge">
+          <div class="sprache">
+            <a href="events.html" aria-current="true">DE</a>
+            <span class="trennstrich" aria-hidden="true"></span>
+            <a href="events-en.html" lang="en" hreflang="en">EN</a>
+          </div>
+
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>Ansicht</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Ansicht anpassen</h2>
+              <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Schriftgröße</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Groß</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Kontrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Stark</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Bewegung</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">An</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+                </div>
+              </div>
+
+              <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inhalt" class="events-seite">
+
+    <div class="seiten-kopf">
+      <h1>Feiern bei b.ellers</h1>
+      <p>Vom kleinen Geburtstagskaffee bis zur großen Feier – fragt einfach an.</p>
+    </div>
+
+    <div class="container">
+
+      <section class="events-einstieg einblenden">
+        <p>
+          Ihr habt etwas zu feiern? Bei uns gibt es keine festen Pakete und
+          keine Formulare – erzählt uns einfach, was ihr vorhabt, und wir
+          überlegen gemeinsam, wie es am schönsten wird. Ob Kaffee und Kuchen
+          für zehn Leute oder das ganze Café für euch allein: Sprecht uns an,
+          wir finden eine Lösung.
+        </p>
+      </section>
+
+      <section class="termin einblenden" id="speed-dating">
+        <p class="aktion-marke">Save the date</p>
+        <span class="aktion-titel">Speed Dating</span>
+        <h2 class="nur-fuer-screenreader">Speed Dating am 2. Oktober 2026</h2>
+        <p class="termin-claim">… geht in die 2. Runde!</p>
+
+        <div class="termin-daten">
+          <div><span class="titel">Wann</span><span>Freitag, 2. Oktober 2026<br>18:30 – 20:30 Uhr</span></div>
+          <div><span class="titel">Wo</span><span>b.ellers – das Café in Miesbach<br>Stadtplatz 1</span></div>
+          <div><span class="titel">Für wen</span><span>Singles von 40 bis 55 Jahren</span></div>
+          <div><span class="titel">Eintritt</span><span>inklusive einem Getränk und einem Snack</span></div>
+        </div>
+
+        <p class="termin-satz">Neue Menschen. Echte Gespräche.<br>Vielleicht ein neues Kapitel?</p>
+
+        <ul class="termin-vorteile">
+          <li><strong>Gute Getränke</strong><span>Entspannter Genuss in angenehmer Atmosphäre</span></li>
+          <li><strong>Echte Gespräche</strong><span>Kein Swipen – einfach kennenlernen</span></li>
+          <li><strong>Neue Begegnungen</strong><span>Die Chance auf einen besonderen Moment</span></li>
+        </ul>
+
+        <p class="termin-hinweis">Die Plätze sind begrenzt – meldet euch am besten früh an.</p>
+
+        <p class="termin-wege">
+          <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+        </p>
+        <p class="termin-wege">
+          <a class="button button-hell" href="mailto:info@bellers-cafe.de?subject=Anmeldung%20Speed%20Dating%2002.10.2026">Per E-Mail anmelden</a>
+          <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">Auf Instagram schreiben</a>
+        </p>
+      </section>
+
+      <section class="karte-bereich einblenden">
+        <h2>Anlässe, die wir gerne mit euch feiern</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <div class="anlass-gitter">
+          <div class="anlass">
+            <h3>Geburtstage</h3>
+            <p>Vom runden Geburtstag bis zur Kindergeburtstagsrunde – mit Kuchen, Torte oder Frühstück.</p>
+          </div>
+          <div class="anlass">
+            <h3>Junggesellen&shy;abschiede</h3>
+            <p>Ein entspannter Start in den Tag oder eine gemütliche Runde zwischendurch – ganz ohne Hektik.</p>
+          </div>
+          <div class="anlass">
+            <h3>Firmung &amp; Kommunion</h3>
+            <p>Der festliche Rahmen für die Familie nach der Kirche, mit Frühstück oder Mittagstisch.</p>
+          </div>
+          <div class="anlass">
+            <h3>Muttertag &amp; Vatertag</h3>
+            <p>Einen Tisch für die ganze Familie reservieren oder etwas Besonderes vorbereiten lassen.</p>
+          </div>
+          <div class="anlass">
+            <h3>Und alles andere</h3>
+            <p>Taufe, Jubiläum, Firmenfeier, Vereinstreffen, Trauerkaffee – fragt einfach, wir richten uns nach euch.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="karte-bereich einblenden">
+        <h2>So läuft es ab</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <ol class="ablauf">
+          <li>
+            <strong>Anfragen</strong>
+            <span>Ruft an, schreibt uns eine E-Mail oder eine Nachricht auf Instagram – mit Anlass, Datum und ungefährer Personenzahl.</span>
+          </li>
+          <li>
+            <strong>Absprechen</strong>
+            <span>Wir besprechen in Ruhe, was es geben soll, wie viel Platz ihr braucht und was das Ganze kostet.</span>
+          </li>
+          <li>
+            <strong>Feiern</strong>
+            <span>Ihr kommt, alles steht bereit – und wir kümmern uns um den Rest.</span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="bewerbung einblenden">
+        <h2>Anfrage stellen</h2>
+        <p>
+          Eine Online-Buchung gibt es hier nicht – am schnellsten geht es
+          persönlich. Sagt uns Anlass, Wunschtermin und ungefähre Personenzahl,
+          dann melden wir uns zurück.
+        </p>
+        <p class="bewerbung-aktion">
+          <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+        </p>
+        <p class="events-wege">
+          <a class="button button-hell" href="mailto:info@bellers-cafe.de?subject=Anfrage%20Feier">E-Mail schreiben</a>
+          <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">Auf Instagram schreiben</a>
+        </p>
+        <p class="bewerbung-fuss">
+          Am besten telefonisch während unserer
+          <a href="index.html#oeffnungszeiten">Öffnungszeiten</a>.
+        </p>
+      </section>
+
+      <p class="galerie-aktion">
+        <a class="button button-hell" href="index.html">&larr; Zurück zur Startseite</a>
+      </p>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
+    <p class="footer-links">
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+    <p>&copy; 2026 b.ellers</p>
+  </footer>
+
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

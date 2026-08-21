@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum – b.ellers</title>
+  <meta name="description" content="Pflichtangaben nach § 5 TMG für das Café b.ellers, Stadtplatz 1 in Miesbach.">
+  <link rel="icon" href="assets/img/signet.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom
+       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer
+       einzigen Stelle und muss bei einem Domain-Umzug nur dort
+       geändert werden. -->
+  <link rel="canonical" href="https://bellers-cafe.de/impressum.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="b.ellers">
+  <meta property="og:title" content="Impressum – b.ellers">
+  <meta property="og:description" content="Pflichtangaben nach § 5 TMG für das Café b.ellers in Miesbach.">
+  <meta property="og:url" content="https://bellers-cafe.de/impressum.html">
+  <meta property="og:image" content="https://bellers-cafe.de/assets/img/vorschau.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo von b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+  <header class="kopfbereich">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/signet.png" alt="">
+        <span>b.ellers</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
+
+      <div class="nav-klapp" id="nav-klapp">
+        <div class="nav-werkzeuge">
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>Ansicht</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Ansicht anpassen</h2>
+              <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Schriftgröße</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Groß</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Kontrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Stark</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Bewegung</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">An</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+                </div>
+              </div>
+
+              <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inhalt" class="rechtsseite">
+    <a class="zurueck" href="index.html">&larr; Zurück zur Startseite</a>
+    <h1>Impressum</h1>
+
+    <p class="hinweis">
+      Hinweis: Dies ist eine Vorlage und keine Rechtsberatung. Bitte von der
+      Betreiberin ausfüllen bzw. im Zweifel rechtlich prüfen lassen (Angaben nach § 5 TMG).
+    </p>
+
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>
+      Birgit Eller<br>
+      b.ellers<br>
+      Stadtplatz 1<br>
+      83714 Miesbach
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      Telefon: 08025 9924355<br>
+      E-Mail: <a href="mailto:info@bellers-cafe.de">info@bellers-cafe.de</a>
+    </p>
+
+    <h2>Umsatzsteuer-ID</h2>
+    <!-- Hier gehört ausschließlich die Umsatzsteuer-Identifikationsnummer hin
+         (Format: DE + 9 Ziffern). Die Steuernummer vom Finanzamt (in Bayern
+         11 Ziffern, z. B. 123/456/78901) ist etwas anderes, im Impressum nicht
+         vorgeschrieben und sollte dort nicht veröffentlicht werden. -->
+    <p>
+      Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
+      DE457036331
+    </p>
+
+    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <p>
+      Birgit Eller<br>
+      Anschrift wie oben
+    </p>
+  </main>
+
+  <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
+    <p class="footer-links">
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+    <p>&copy; 2026 b.ellers</p>
+  </footer>
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

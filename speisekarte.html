@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speisekarte – b.ellers, das Café in Miesbach</title>
+  <meta name="description" content="Die Speisekarte von b.ellers in Miesbach: Frühstück, Eierspeisen, Kaffee, Tee und Getränke.">
+  <link rel="icon" href="assets/img/signet.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom
+       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer
+       einzigen Stelle und muss bei einem Domain-Umzug nur dort
+       geändert werden. -->
+  <link rel="canonical" href="https://bellers-cafe.de/speisekarte.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="b.ellers">
+  <meta property="og:title" content="Speisekarte – b.ellers in Miesbach">
+  <meta property="og:description" content="Frühstück, Mittagstisch, Kaffeespezialitäten und Getränke – die ganze Karte mit Preisen und Allergenen.">
+  <meta property="og:url" content="https://bellers-cafe.de/speisekarte.html">
+  <meta property="og:image" content="https://bellers-cafe.de/assets/img/vorschau.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo von b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="de" href="speisekarte.html">
+  <link rel="alternate" hreflang="en" href="menu-en.html">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+
+  <header class="kopfbereich">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/signet.png" alt="">
+        <span>b.ellers</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
+
+      <div class="nav-klapp" id="nav-klapp">
+        <ul class="nav-links">
+          <li><a href="index.html">Willkommen</a></li>
+          <li><a href="speisekarte.html">Speisekarte</a></li>
+          <li><a href="index.html#oeffnungszeiten">Öffnungszeiten</a></li>
+          <li><a href="index.html#anfahrt">Anfahrt</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+
+        <div class="nav-werkzeuge">
+          <div class="sprache">
+            <a href="speisekarte.html" aria-current="true">DE</a>
+            <span class="trennstrich" aria-hidden="true"></span>
+            <a href="menu-en.html" lang="en" hreflang="en">EN</a>
+          </div>
+
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>Ansicht</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Ansicht anpassen</h2>
+              <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Schriftgröße</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Groß</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Kontrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Stark</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Bewegung</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">An</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+                </div>
+              </div>
+
+              <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inhalt">
+
+    <div class="seiten-kopf">
+      <h1>Speisekarte</h1>
+      <p>Alles frisch, vieles hausgemacht – schaut vorbei!</p>
+      <p class="status" data-status hidden></p>
+      <p class="seiten-kopf-aktion">
+        <a class="button" href="index.html#reservierung" data-oeffnet="reservierung">Tisch reservieren</a>
+      </p>
+    </div>
+
+    <div class="container">
+
+
+      <section class="karte-bereich einblenden">
+        <h2>Frühstück</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Süßer Start <span class="allergene">(a, g)</span></span>
+            <span class="karte-beschreibung">Buttercroissant mit hausgemachtem Fruchtaufstrich</span>
+          </div>
+          <span class="karte-preis">3,90&nbsp;€</span>
+        </div>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Müsli Bircher Art <span class="allergene">(a, g, h)</span></span>
+            <span class="karte-beschreibung">hausgemacht mit Früchtetopping &amp; Granola</span>
+          </div>
+          <span class="karte-preis">6,90&nbsp;€</span>
+        </div>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">herzhaftes <span class="allergene">(a, g, c, d)</span></span>
+            <span class="karte-beschreibung">Schinken, Salami, Käse &amp; Butter, serviert mit Brotkorb</span>
+          </div>
+          <span class="karte-preis">9,90&nbsp;€</span>
+        </div>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Lieblingsbowl <span class="allergene">(a, e, h)</span></span>
+          </div>
+          <span class="karte-preis">9,90&nbsp;€</span>
+        </div>
+
+        <div class="karte-highlight">
+          <div class="karte-eintrag">
+            <div class="karte-text">
+              <span class="karte-name karte-name-gross">Avocado Royal <span class="allergene">(a, g, c, d)</span></span>
+              <span class="karte-beschreibung">knusprig geröstetes Dinkel-Roggen-Malzbrot mit körnigem Frischkäse, Cocktailtomaten, Rucola, Avocado, 2 Spiegel- oder Rühreier mit Balsamicotopping</span>
+            </div>
+            <span class="karte-preis">14,50&nbsp;€</span>
+          </div>
+          <div class="karte-zusatz">
+            <div class="karte-eintrag">
+              <div class="karte-text"><span class="karte-name">+ Schinken</span></div>
+              <span class="karte-preis">2,00&nbsp;€</span>
+            </div>
+            <div class="karte-eintrag">
+              <div class="karte-text"><span class="karte-name">+ Lachs</span></div>
+              <span class="karte-preis">3,50&nbsp;€</span>
+            </div>
+            <div class="karte-eintrag">
+              <div class="karte-text"><span class="karte-name">+ frisch gepresster Orangensaft</span></div>
+              <span class="karte-preis">4,20&nbsp;€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Gönnerbrunch <span class="allergene">(a, g, c, d)</span></span>
+            <span class="karte-beschreibung">Schinkenauswahl, Salami, Käseauswahl, Aufstrich des Tages, weichgekochtes Ei, hausgemachter Fruchtaufstrich &amp; Butter, serviert mit Brotkorb</span>
+          </div>
+          <span class="karte-preis">15,90&nbsp;€</span>
+        </div>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Vegetarisch <span class="allergene">(a, g, c, d)</span></span>
+            <span class="karte-beschreibung">Käseauswahl, Müsli, Aufstrich des Tages, Tomate-Mozzarella, weichgekochtes Ei, hausgemachter Fruchtaufstrich &amp; Butter, serviert mit Brotkorb</span>
+          </div>
+          <span class="karte-preis">18,90&nbsp;€</span>
+        </div>
+
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Frühstück für zwei <span class="allergene">(a, g, c, d)</span></span>
+            <span class="karte-beschreibung">Unser Schlemmer-Duo: Schinken, Salami, Käseauswahl, 2 weichgekochte Eier, 2 Müsli Bircher Art, Aufstrich des Tages, hausgemachter Fruchtaufstrich &amp; Butter, serviert mit Brotkorb</span>
+          </div>
+          <span class="karte-preis">27,90&nbsp;€</span>
+        </div>
+      </section>
+
+      <section class="karte-bereich einblenden">
+        <h2>Ei love eggs <span class="allergene">(a, c)</span></h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">weichgekochtes Ei</span></div>
+          <span class="karte-preis">2,50&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Rührei Natur (3 Eier) oder Spiegelei (2 Eier)</span></div>
+          <span class="karte-preis">5,90&nbsp;€ / 4,70&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Rührei mit Tomaten</span></div>
+          <span class="karte-preis">6,60&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Rührei mit Schinken</span></div>
+          <span class="karte-preis">7,60&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Rührei mit Tomaten &amp; Schinken</span></div>
+          <span class="karte-preis">8,60&nbsp;€</span>
+        </div>
+      </section>
+
+      <section class="karte-bereich einblenden">
+        <h2>Extras</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Fruchtaufstrich / Honig / Nutella <span class="allergene">(h, f)</span> / Dattel-Curry-Dip <span class="allergene">(a, g)</span> je</span></div>
+          <span class="karte-preis">1,40&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Butter <span class="allergene">(a, g)</span></span></div>
+          <span class="karte-preis">1,00&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Portion Schinken</span></div>
+          <span class="karte-preis">4,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Räucherlachs <span class="allergene">(d)</span> mit Meerrettich</span></div>
+          <span class="karte-preis">5,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Semmel Weizen</span></div>
+          <span class="karte-preis">1,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Breze</span></div>
+          <span class="karte-preis">1,50&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Dinkelvollkornsemmel</span></div>
+          <span class="karte-preis">1,50&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Croissant</span></div>
+          <span class="karte-preis">2,50&nbsp;€</span>
+        </div>
+      </section>
+
+      <section class="karte-bereich einblenden">
+        <h2>Kaffee &amp; Co.</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Espresso <span class="allergene">(7)</span></span></div>
+          <span class="karte-preis">2,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Doppio <span class="allergene">(7)</span></span></div>
+          <span class="karte-preis">3,90&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Espresso Macchiato <span class="allergene">(7, g)</span></span></div>
+          <span class="karte-preis">3,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Cappuccino klein <span class="allergene">(7, g)</span></span></div>
+          <span class="karte-preis">3,80&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Cappuccino groß <span class="allergene">(7, g)</span></span></div>
+          <span class="karte-preis">4,80&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Latte Macchiato <span class="allergene">(7, g)</span></span></div>
+          <span class="karte-preis">4,80&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Milchkaffee <span class="allergene">(7, g)</span></span></div>
+          <span class="karte-preis">4,80&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Kaffee Tasse</span></div>
+          <span class="karte-preis">3,50&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Kaffee Haferl</span></div>
+          <span class="karte-preis">4,50&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Chai Latte <span class="allergene">(7, 12, g, m)</span></span></div>
+          <span class="karte-preis">5,90&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Matcha Latte <span class="allergene">(7, 12, g, u)</span></span></div>
+          <span class="karte-preis">6,90&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Kindercappu <span class="allergene">(g)</span></span></div>
+          <span class="karte-preis">1,00&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Heißer Schokotrunk <span class="allergene">(g)</span></span></div>
+          <span class="karte-preis">4,80&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Tee von Bioteaque 0,5 l</span>
+            <span class="karte-beschreibung">Kräutertee, Früchtetee, schwarzer Tee, grüner Tee</span>
+          </div>
+          <span class="karte-preis">4,90&nbsp;€</span>
+        </div>
+
+        <p class="karte-badge">Hafermilch + 0,80 €</p>
+      </section>
+
+      <section class="karte-bereich einblenden">
+        <h2>Getränke</h2>
+        <p class="trenner" aria-hidden="true"><span>&#9825;</span></p>
+
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Wasser still 0,4 l</span></div>
+          <span class="karte-preis">3,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text"><span class="karte-name">Wasser Sprudel 0,4 l</span></div>
+          <span class="karte-preis">3,20&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Säfte 0,4 l</span>
+            <span class="karte-beschreibung">Apfel, Johannisbeere <span class="allergene">(13)</span>, Maracuja, Orange, Rhabarber</span>
+          </div>
+          <span class="karte-preis">4,60&nbsp;€</span>
+        </div>
+        <div class="karte-eintrag">
+          <div class="karte-text">
+            <span class="karte-name">Schorlen 0,4 l</span>
+            <span class="karte-beschreibung">Apfel, Johannisbeere, Maracuja, Orange, Rhabarber, Holler</span>
+          </div>
+          <span class="karte-preis">4,60&nbsp;€</span>
+        </div>
+      </section>
+
+      <div class="karte-hinweis">
+        <p>Falls wir gerade zu viel um die Ohren haben, meldet Euch gerne an der Theke.</p>
+        <p>Wir sind trotzdem gerne für Euch da und bringen Eure Bestellung dann zum Tisch!</p>
+      </div>
+
+      <div class="legende">
+        <p><strong>Kreuzkontaminationen und Spuren können vorhanden sein.</strong></p>
+        <!-- Hinweis: (5) und (6) kommen auf dieser Karte nirgends vor, deshalb fehlen sie hier.
+             TODO: Beim Matcha Latte steht "(u)" – dieser Buchstabe fehlt in der Legende.
+             Bitte klären, wofür (u) steht, und hier ergänzen. -->
+        <p>
+          (1) Konservierungsstoff, (2) mit Farbstoff, (3) mit Antioxidationsmittel, (4) mit Phosphat,
+          (7) mit Koffein, (8) mit Geschmacksverstärker, (9) geschwärzt, (10) gewachst, (11) mit Taurin,
+          (12) mit Süßungsmitteln, (13) mit Nitrat,
+          (a) Glutenhaltiges Getreide, (b) Krebstiere und daraus gewonnene Erzeugnisse,
+          (c) Eier und daraus gewonnene Erzeugnisse, (d) Fische und daraus gewonnene Erzeugnisse,
+          (e) Erdnüsse und daraus gewonnene Erzeugnisse, (f) Sojabohnen und daraus gewonnene Erzeugnisse,
+          (g) Milch und daraus gewonnene Erzeugnisse, (h) Schalenfrüchte,
+          (i) Sellerie und daraus gewonnene Erzeugnisse, (j) Senf und daraus gewonnene Erzeugnisse,
+          (k) Sesamsamen und daraus gewonnene Erzeugnisse, (l) Schwefeldioxid und Sulphite,
+          (m) Lupinen und daraus gewonnene Erzeugnisse, (n) Weichtiere und daraus gewonnene Erzeugnisse
+        </p>
+        <p>Alle Preise in Euro inkl. gesetzlicher Mehrwertsteuer. Änderungen vorbehalten.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
+    <p class="footer-links">
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+    <p>&copy; 2026 b.ellers</p>
+  </footer>
+
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+
+  <!-- Reservierungs-Dialog. Hier kann NICHT reserviert werden – er zeigt nur,
+       wie man uns erreicht. Ohne JavaScript wird er nie geöffnet; der Button
+       führt dann zum Abschnitt "Tisch reservieren" auf der Startseite. -->
+  <div class="dialog-hintergrund" hidden>
+    <div class="reservierung-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-titel">
+      <button type="button" class="dialog-schliessen" data-schliesst aria-label="Schließen">&times;</button>
+      <h2 id="dialog-titel">Tisch reservieren</h2>
+      <p class="dialog-kernsatz">
+        Meldet euch einfach kurz bei uns – wir finden einen Platz für euch.
+      </p>
+      <p class="status" data-status hidden></p>
+      <div class="dialog-wege">
+        <a class="button button-gross" href="tel:+4980259924355">Anrufen: 08025 9924355</a>
+        <a class="button button-hell" href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">
+          Auf Instagram schreiben
+        </a>
+      </div>
+      <p class="dialog-fuss">b.ellers · Stadtplatz 1 · 83714 Miesbach</p>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

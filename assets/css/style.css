@@ -1,0 +1,1892 @@
+/* =============================================================
+   b.ellers – Café Miesbach
+   Farben und Motive stammen aus dem Logo und der gedruckten Karte.
+
+   Aufbau:
+     1. Farben und Grundwerte
+     2. Ansicht-Einstellungen (Schriftgröße, Kontrast, Bewegung)
+     3. Grundlagen und Bedienbarkeit
+     4. Kopfbereich, Navigation, Ansicht-Bedienfeld
+     5. Hero mit Deko
+     6. Bausteine (Buttons, Karten, Tabellen ...)
+     7. Reservierung (Abschnitt und Dialog)
+     8. Speisekarte, Rechtsseiten, Footer
+     9. Effekte und deren Abschaltung
+   ============================================================= */
+
+/* ---------- 1. Farben und Grundwerte ---------- */
+
+:root {
+  /* Rosé = exakt der Hintergrund im freigestellten Logo (nach der
+     Farbreduktion beim Speichern gemessen). Die Buchstaben-Innenräume des
+     Logos sind mit genau diesem Ton gefüllt – dadurch sind sie auf der
+     Hero-Fläche unsichtbar – dort darf nichts durchscheinen. */
+  --rose: #fac3b7;
+  --rose-mittel: #fbd8d0;
+  --rose-light: #fdece7;
+  --creme: #fbf5f1;
+  --weiss: #ffffff;
+
+  --braun: #3c2a1e;
+  --braun-weich: #6b5344;
+
+  /* Terracotta-Skala: dunkel genug für weiße Schrift darauf (>= 4,5:1) */
+  --terracotta: #8a5a3c;
+  --terracotta-dunkel: #6f4830;
+  /* Nur für Linien und Rahmen – niemals für Text, der Kontrast reicht dafür nicht. */
+  --linie: #a66f4e;
+
+  --gruen: #3f6b48;
+
+  --schrift: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --schrift-titel: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+
+  --schatten-weich: 0 2px 12px rgba(60, 42, 30, 0.09);
+  --schatten-stark: 0 10px 30px rgba(60, 42, 30, 0.18);
+  --rund: 14px;
+
+  /* Wird vom Ansicht-Bedienfeld verändert. */
+  --skala: 1;
+  --grundschrift: 18px;
+
+  --fokus: #1d4ed8;
+}
+
+/* ---------- 2. Ansicht-Einstellungen ---------- */
+
+/* Schriftgröße: skaliert die gesamte Seite, weil alles in rem bemessen ist. */
+html[data-schrift="gross"]      { --skala: 1.15; }
+html[data-schrift="sehr-gross"] { --skala: 1.32; }
+
+/* Starker Kontrast: dunklere Schrift, kräftigere Rahmen, keine zarten Tönungen. */
+html[data-kontrast="stark"] {
+  --braun: #1f1710;
+  --braun-weich: #33261c;
+  --terracotta: #5f3d28;
+  --terracotta-dunkel: #4a2f1e;
+  --linie: #5f3d28;
+  --gruen: #244a2c;
+  --creme: #ffffff;
+  --rose-light: #ffffff;
+  --rose-mittel: #f6c9bd;
+  --schatten-weich: 0 0 0 1px #5f3d28;
+  --schatten-stark: 0 0 0 2px #5f3d28;
+}
+
+html[data-kontrast="stark"] .info-box,
+html[data-kontrast="stark"] .kontakt-karte,
+html[data-kontrast="stark"] .karte-highlight,
+html[data-kontrast="stark"] .oeffnungszeiten-tabelle,
+html[data-kontrast="stark"] .ansicht-panel,
+html[data-kontrast="stark"] .reservierung-dialog {
+  border: 2px solid var(--terracotta);
+  background: #fff;
+}
+
+html[data-kontrast="stark"] .koernung,
+html[data-kontrast="stark"] .hero-deko {
+  display: none;
+}
+
+html[data-kontrast="stark"] a { text-decoration-thickness: 2px; }
+
+/* ---------- 3. Grundlagen und Bedienbarkeit ---------- */
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: calc(var(--grundschrift) * var(--skala));
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--schrift);
+  color: var(--braun);
+  background: var(--creme);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+body > main { flex: 1 0 auto; }
+
+/* height: auto ist hier entscheidend. Ohne diese Zeile wirkt ein height="..."
+   im HTML als feste Höhe weiter, während die Breite aus dem CSS kommt – das
+   Bild wird dann seitlich gestaucht. Mit height: auto dienen die width/height-
+   Attribute nur noch als Seitenverhältnis-Hinweis: Sie reservieren den Platz
+   beim Laden, geben aber keine Größe vor. */
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Lange Wörter dürfen umbrechen, statt aus ihrem Kasten zu ragen – bei
+   Schriftgröße „sehr groß" auf einem schmalen Handy passt sonst kein
+   „Datenschutzerklärung" mehr in eine Zeile. Trennstriche nur in
+   Überschriften; im Fließtext wirken sie unruhig, dort genügt der Umbruch. */
+body { overflow-wrap: break-word; }
+h1, h2, h3 { hyphens: auto; }
+
+/* Links im Fließtext sind unterstrichen – Farbe allein genügt bei
+   Farbsehschwäche nicht. */
+a { color: var(--terracotta-dunkel); }
+
+main a:not(.button):not(.nav-links a):not(.zurueck) {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* Deutlich sichtbarer Fokusrahmen auf allem Bedienbaren. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--fokus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Sprunglink: erst bei Tastaturfokus sichtbar. */
+.sprunglink {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--weiss);
+  color: var(--braun);
+  padding: 0.9rem 1.4rem;
+  border-radius: 0 0 var(--rund) var(--rund);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--schatten-stark);
+  transition: top 0.2s ease;
+}
+
+.sprunglink:focus { top: 0; }
+
+.nur-fuer-screenreader {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- 4. Kopfbereich und Navigation ---------- */
+
+/* Lesefortschritt ganz oben */
+.fortschritt {
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--terracotta), var(--linie));
+  z-index: 60;
+  pointer-events: none;
+}
+
+.kopfbereich {
+  background: rgba(250, 195, 183, 0.94);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 0 rgba(60, 42, 30, 0.12);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.25rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  order: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--braun);
+  font-family: var(--schrift-titel);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  min-height: 48px;
+}
+
+.nav-logo img { height: 40px; width: 40px; object-fit: contain; }
+
+/* Links, Sprachumschalter und „Ansicht" stecken gemeinsam in .nav-klapp –
+   auf schmalen Geräten verschwindet damit alles zusammen hinter dem
+   Menüknopf, und oben bleibt nur Logo und Knopf stehen. */
+.nav-klapp {
+  /* Reihenfolge in der Leiste: Logo (1), Menüknopf (2), Rest (3). Ohne die
+     Angabe rutschte der Knopf vor das Logo – er steht im Quelltext davor,
+     damit die Tastatur ihn gleich nach dem Logo erreicht. */
+  order: 3;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.1rem;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.05rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  text-decoration: none;
+  color: var(--braun);
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--terracotta-dunkel);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after,
+.nav-links a.aktiv::after { transform: scaleX(1); }
+
+.nav-links a.aktiv { color: var(--terracotta-dunkel); }
+
+/* Umbrechen dürfen die Werkzeuge (Sprache, Ansicht) auch: bei großer Schrift
+   passen sie sonst neben den Links nicht mehr in eine Zeile. */
+.nav-werkzeuge {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ---------- Sprachumschalter ----------
+   Zwei schlichte Links – funktioniert damit auch ohne JavaScript, und die
+   gewählte Sprache steht schlicht in der Adresse. */
+
+.sprache {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.sprache a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  color: var(--braun);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.sprache a:hover { background: #fff; }
+
+.sprache a[aria-current="true"] {
+  background: var(--terracotta);
+  color: #fff;
+}
+
+.sprache .trennstrich {
+  width: 1px;
+  align-self: stretch;
+  background: var(--linie);
+  flex: none;
+}
+
+/* ---------- Ansicht-Bedienfeld ---------- */
+
+/* Ohne JavaScript bleibt der Knopf verborgen, statt wirkungslos dazustehen. */
+.ansicht { position: relative; display: none; }
+html.js .ansicht { display: block; }
+
+.ansicht-knopf,
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 48px;
+  padding: 0.4rem 0.85rem;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  color: var(--braun);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ansicht-knopf:hover,
+.nav-toggle:hover { background: #fff; }
+
+.ansicht-knopf .gross-a { font-size: 1.2em; font-weight: 700; line-height: 1; }
+.ansicht-knopf .klein-a { font-size: 0.85em; font-weight: 700; line-height: 1; }
+
+.nav-toggle { order: 2; display: none; font-size: 1.4rem; padding: 0.4rem 0.8rem; }
+
+.ansicht-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.6rem);
+  width: 19rem;
+  max-width: calc(100vw - 2rem);
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--rund);
+  box-shadow: var(--schatten-stark);
+  padding: 1.1rem;
+  z-index: 70;
+}
+
+.ansicht-panel[hidden] { display: none; }
+
+.ansicht-panel h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1.15rem;
+}
+
+.ansicht-panel > p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--braun-weich);
+}
+
+.ansicht-gruppe { margin-bottom: 1.1rem; }
+
+.ansicht-gruppe:last-of-type { margin-bottom: 0.5rem; }
+
+.ansicht-gruppe legend,
+.ansicht-gruppe .titel {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.45rem;
+  padding: 0;
+}
+
+.ansicht-wahl {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ansicht-wahl button {
+  flex: 1 1 auto;
+  min-height: 48px;
+  padding: 0.5rem 0.7rem;
+  background: var(--creme);
+  border: 2px solid var(--linie);
+  border-radius: 10px;
+  color: var(--braun);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ansicht-wahl button:hover { background: var(--rose-light); }
+
+.ansicht-wahl button[aria-pressed="true"] {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: #fff;
+}
+
+.ansicht-panel .zuruecksetzen {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.4rem;
+  background: none;
+  border: none;
+  color: var(--terracotta-dunkel);
+  font: inherit;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Ab hier passt die Leiste nicht mehr in eine Zeile: alles klappt hinter dem
+   Menüknopf zusammen, oben bleiben nur Logo und Knopf. */
+@media (max-width: 1230px) {
+  .nav-toggle { display: flex; margin-left: auto; }
+
+  .nav-klapp {
+    order: 4;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    /* Muss zurückgesetzt werden: Die Grundregel oben stellt für die Leiste am
+       Rechner »flex-end« ein. In einer Spalte schiebt das den Inhalt nach
+       unten – ist er höher als der Kasten, ragt er oben heraus, und über die
+       obere Kante hinaus lässt sich prinzipbedingt nicht scrollen. Die Links
+       standen dadurch weit oberhalb des Bildschirms und waren unerreichbar. */
+    justify-content: flex-start;
+    gap: 0;
+    width: 100%;
+    padding-bottom: 0.6rem;
+
+    /* Mit ausgeklapptem „Ansicht"-Feld wird das Menü höher als der Bildschirm.
+       Weil der Kopfbereich oben festklebt (position: sticky), wandert er beim
+       Scrollen nicht mit – man würde nur die Seite dahinter verschieben und
+       käme an die unteren Einträge nie heran. Deshalb scrollt das Menü in
+       sich selbst. dvh statt vh, weil auf dem Handy sonst die ein- und
+       ausfahrende Adressleiste mitgerechnet wird; vh darüber als Rückfall
+       für ältere Browser. */
+    max-height: calc(100vh - 5rem);
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
+    /* Ist das Menü zu Ende gescrollt, darf sich die Bewegung nicht auf die
+       Seite dahinter übertragen. */
+    overscroll-behavior: contain;
+  }
+
+  .nav-klapp.offen { display: flex; }
+
+  /* Ohne JavaScript kann nichts aufklappen. Dann steht das Menü offen da und
+     der Knopf verschwindet – sonst käme man an die Navigation nicht heran.
+     Ein dauerhaft offenes Menü macht den Kopfbereich allerdings sehr hoch;
+     als klebender Balken würde er den halben Bildschirm verdecken und die
+     obersten Inhalte unklickbar machen. Deshalb scrollt er dann einfach mit. */
+  html:not(.js) .nav-toggle { display: none; }
+  html:not(.js) .nav-klapp { display: flex; max-height: none; overflow: visible; }
+  html:not(.js) .kopfbereich { position: static; }
+
+  .nav-links {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .nav-links li { border-top: 1px solid rgba(60, 42, 30, 0.15); }
+
+  .nav-links a { padding: 0.35rem 0.25rem; min-height: 52px; }
+
+  .nav-links a::after { display: none; }
+
+  .nav-werkzeuge {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(60, 42, 30, 0.15);
+  }
+
+  /* Im aufgeklappten Menü schwebt das Ansicht-Feld nicht, sondern reiht sich
+     ein – als schwebendes Feld ragte es sonst über den Bildschirmrand. */
+  .ansicht { position: static; }
+
+  .ansicht-panel {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 0.6rem;
+    box-shadow: none;
+  }
+}
+
+/* ---------- 5. Hero ---------- */
+
+.hero {
+  background: var(--rose);
+  text-align: center;
+  padding: 3rem 1.25rem 0;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Schwebende Deko im Hintergrund (Bohnen, Brezn) */
+.hero-deko {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-deko img {
+  position: absolute;
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.hero-deko .d1 { width: 62px; top: 12%;  left: 7%;  animation: schweben 13s ease-in-out infinite; }
+.hero-deko .d2 { width: 46px; top: 62%;  left: 13%; animation: schweben 17s ease-in-out infinite 1.5s; }
+.hero-deko .d3 { width: 78px; top: 18%;  right: 8%; animation: schweben 15s ease-in-out infinite 0.8s; }
+.hero-deko .d4 { width: 54px; top: 68%;  right: 12%; animation: schweben 19s ease-in-out infinite 2.2s; }
+
+@keyframes schweben {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%      { transform: translate3d(0, -22px, 0) rotate(7deg); }
+}
+
+.hero-buehne {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+.hero-logo {
+  max-width: 340px;
+  width: min(78vw, 340px);
+  margin: 0 auto;
+}
+
+/* Der Kopfbereich hat einen Weichzeichner. Liegt der abgedunkelte
+   Dialog-Hintergrund darüber, wirkt er dadurch aufgehellt statt gedimmt.
+   Solange der Dialog offen ist, schalten wir ihn deshalb ab. */
+html.dialog-offen .kopfbereich { backdrop-filter: none; }
+
+/* Solange ein Dialog offen ist, hat der Zurück-nach-oben-Knopf nichts zu
+   suchen – er schimmert sonst durch den abgedunkelten Hintergrund. */
+html.dialog-offen .nach-oben { opacity: 0; visibility: hidden; }
+
+.hero h1 {
+  font-size: clamp(1.9rem, 5vw, 2.7rem);
+  margin: 0 0 0.35rem;
+}
+
+.hero .claim {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--terracotta-dunkel);
+  margin: 0 0 1.2rem;
+}
+
+.hero-text {
+  font-size: 1.06rem;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.hero-aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: 1.8rem 0 0;
+}
+
+.hero-welle {
+  display: block;
+  width: 100%;
+  height: 52px;
+  margin-top: 2.6rem;
+}
+
+.hero-welle path { fill: var(--creme); }
+
+/* ---------- Öffnungs-Status ---------- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  box-shadow: var(--schatten-weich);
+}
+
+.status-punkt {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--braun-weich);
+  flex: none;
+}
+
+.status.ist-offen { color: var(--gruen); }
+.status.ist-zu    { color: var(--braun-weich); }
+
+.status.ist-offen .status-punkt {
+  background: var(--gruen);
+  animation: pulsieren 2.4s infinite;
+}
+
+@keyframes pulsieren {
+  0%   { box-shadow: 0 0 0 0 rgba(63, 107, 72, 0.55); }
+  70%  { box-shadow: 0 0 0 9px rgba(63, 107, 72, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(63, 107, 72, 0); }
+}
+
+/* ---------- 6. Bausteine ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  background: var(--terracotta);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 1.7rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  box-shadow: var(--schatten-weich);
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--terracotta-dunkel);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--schatten-stark);
+}
+
+.button-hell {
+  background: var(--weiss);
+  color: var(--terracotta-dunkel);
+  border-color: var(--terracotta);
+}
+
+.button-hell:hover,
+.button-hell:focus-visible {
+  background: var(--weiss);
+  color: var(--braun);
+}
+
+.button-gross { font-size: 1.1rem; padding: 0.95rem 2rem; min-height: 60px; }
+
+section { padding: 3.5rem 0; }
+
+section h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin: 0 0 0.4rem;
+  text-align: center;
+}
+
+.trenner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: 0 auto 2rem;
+  max-width: 260px;
+  color: var(--linie);
+}
+
+.trenner::before,
+.trenner::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.trenner span { font-size: 1.05rem; line-height: 1; }
+
+main > section:nth-of-type(even) { background: var(--rose-light); }
+
+.oeffnungszeiten-tabelle {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: var(--weiss);
+  border-radius: var(--rund);
+  overflow: hidden;
+  box-shadow: var(--schatten-weich);
+}
+
+.oeffnungszeiten-tabelle th,
+.oeffnungszeiten-tabelle td {
+  padding: 0.85rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--rose-light);
+}
+
+.oeffnungszeiten-tabelle tr:last-child td { border-bottom: none; }
+
+.oeffnungszeiten-tabelle th {
+  background: var(--terracotta);
+  color: #fff;
+  font-family: var(--schrift-titel);
+}
+
+.oeffnungszeiten-tabelle tr.heute td {
+  background: var(--rose-light);
+  font-weight: 700;
+}
+
+.oeffnungszeiten-tabelle tr.heute td:first-child::after {
+  content: " · heute";
+  font-weight: 600;
+  color: var(--terracotta-dunkel);
+  font-size: 0.85em;
+}
+
+html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
+  content: " · today";
+}
+
+.hinweis-platzhalter {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--terracotta-dunkel);
+  margin-top: 0.8rem;
+}
+
+.info-boxen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+#oeffnungszeiten .info-boxen { margin-top: 2rem; margin-bottom: 0; }
+
+.info-box {
+  flex: 1 1 250px;
+  max-width: 350px;
+  background: var(--weiss);
+  border: 1px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 1.4rem;
+  text-align: center;
+  box-shadow: var(--schatten-weich);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.info-box h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--terracotta-dunkel);
+  font-family: var(--schrift);
+  font-weight: 700;
+}
+
+.info-box p { margin: 0.4rem 0; }
+
+.karte-teaser { text-align: center; }
+
+.karte-teaser p { max-width: 36rem; margin: 0 auto 1.4rem; }
+
+.anfahrt-inhalt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.anfahrt-text { flex: 1 1 250px; max-width: 330px; }
+
+.anfahrt-karte { flex: 1 1 340px; max-width: 540px; }
+
+.anfahrt-karte iframe {
+  width: 100%;
+  height: 330px;
+  border: 0;
+  border-radius: var(--rund);
+  box-shadow: var(--schatten-weich);
+}
+
+.karten-link { margin: 0.6rem 0 0; font-size: 0.95rem; }
+
+/* Versetztes Raster über CSS-Spalten: Jedes Foto behält sein echtes
+   Seitenverhältnis, Hoch- und Querformat stehen nebeneinander, nichts wird
+   abgeschnitten. Kommt ohne JavaScript aus. */
+.galerie-grid {
+  columns: 2;
+  column-gap: 1rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+  .galerie-grid { columns: 3; }
+}
+
+.galerie-bild {
+  break-inside: avoid;          /* kein Foto über zwei Spalten zerreißen */
+  -webkit-column-break-inside: avoid;
+  /* <figure> hat im Browser standardmäßig 40 px Rand links und rechts –
+     der muss weg, sonst füllen die Fotos ihre Spalte nicht aus. */
+  margin: 0 0 1rem;
+}
+
+/* Das ganze Foto ist die Fläche zum Anklicken – kein Knopf darauf. Der
+   Lupen-Zeiger sagt am Rechner, dass sich etwas vergrößern lässt. */
+.galerie-lupe {
+  display: block;
+  border-radius: var(--rund);
+  overflow: hidden;
+  box-shadow: var(--schatten-weich);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.galerie-bild img { width: 100%; display: block; }
+
+.galerie-hinweis { text-align: center; margin-top: 1.4rem; }
+
+/* ---------- Großansicht eines Fotos ---------- */
+
+.bild-hintergrund {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 14, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 95;
+}
+
+.bild-hintergrund[hidden] { display: none; }
+
+.bild-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bild-buehne {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  max-height: 100%;
+}
+
+/* Das Foto passt sich der Höhe an, damit auch Hochformate ganz zu sehen
+   sind – ohne die 4 rem, die Beschriftung und Knöpfe brauchen. */
+.bild-buehne img {
+  max-height: calc(100vh - 9rem);
+  max-width: 100%;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: var(--schatten-stark);
+}
+
+.bild-buehne figcaption {
+  color: #fff;
+  text-align: center;
+  font-size: 1.05rem;
+  max-width: 40rem;
+}
+
+.bild-knopf {
+  position: absolute;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(30, 20, 14, 0.75);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bild-knopf:hover { background: var(--terracotta-dunkel); }
+
+.bild-zu      { top: 0; right: 0; }
+.bild-zurueck { left: 0;  top: 50%; transform: translateY(-50%); }
+.bild-vor     { right: 0; top: 50%; transform: translateY(-50%); }
+
+/* Auf schmalen Geräten stehen die Blätterknöpfe unten nebeneinander –
+   an den Seiten würden sie sonst auf dem Foto liegen. */
+@media (max-width: 640px) {
+  .bild-zurueck, .bild-vor {
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+  .bild-zurueck { left: 20%; }
+  .bild-vor     { right: 20%; }
+  .bild-buehne img { max-height: calc(100vh - 12rem); }
+}
+
+.kontakt-inhalt { text-align: center; max-width: 34rem; margin: 0 auto; }
+
+.kontakt-karte {
+  background: var(--weiss);
+  border-radius: var(--rund);
+  padding: 1.9rem 1.6rem;
+  box-shadow: var(--schatten-weich);
+}
+
+.kontakt-karte a { font-weight: 700; }
+
+.kontakt-aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+/* ---------- 7. Reservierung ---------- */
+
+/* Sichtbarer Abschnitt – dient zugleich als Ziel, wenn kein JavaScript läuft. */
+.reservierung-inhalt {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reservierung-hinweis {
+  background: var(--weiss);
+  border: 2px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 1.5rem;
+  box-shadow: var(--schatten-weich);
+}
+
+.reservierung-hinweis .wichtig {
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.reservierung-wege {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: 1.3rem 0 0.6rem;
+}
+
+/* Dialogfenster */
+.dialog-hintergrund {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 30, 22, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 90;
+}
+
+.dialog-hintergrund[hidden] { display: none; }
+
+.reservierung-dialog {
+  background: var(--creme);
+  border-radius: 18px;
+  box-shadow: var(--schatten-stark);
+  width: 100%;
+  max-width: 30rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: 1.8rem 1.6rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.reservierung-dialog h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.5rem;
+}
+
+.dialog-schliessen {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--braun);
+  cursor: pointer;
+}
+
+.dialog-schliessen:hover { background: var(--rose-light); }
+
+.dialog-kernsatz {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 1rem 0;
+}
+
+.dialog-wege {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 1.3rem 0;
+}
+
+.dialog-fuss {
+  font-size: 0.95rem;
+  color: var(--braun-weich);
+  border-top: 1px solid var(--rose-mittel);
+  padding-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* ---------- 8. Speisekarte, Rechtsseiten, Footer ---------- */
+
+.seiten-kopf {
+  background: var(--rose);
+  text-align: center;
+  padding: 2.8rem 1.25rem 2.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.seiten-kopf h1 { margin: 0 0 0.4rem; font-size: clamp(1.8rem, 4.5vw, 2.4rem); }
+
+.seiten-kopf p { margin: 0; }
+
+.karte-bereich { padding: 0 0 2.8rem; }
+
+.karte-bereich h2 {
+  font-size: 1.55rem;
+  text-align: left;
+  margin-bottom: 0.2rem;
+  color: var(--braun);
+}
+
+.karte-bereich > h2 + .trenner { margin: 0 0 1.2rem; max-width: 100%; }
+
+.karte-eintrag {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px dotted var(--rose-mittel);
+}
+
+.karte-eintrag:last-child { border-bottom: none; }
+
+.karte-text { flex: 1 1 auto; min-width: 0; }
+
+.karte-name { display: block; font-weight: 700; }
+
+.karte-name-gross { font-size: 1.25rem; font-family: var(--schrift-titel); }
+
+.karte-beschreibung {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--braun-weich);
+  margin-top: 0.15rem;
+}
+
+.allergene {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--terracotta-dunkel);
+}
+
+.karte-preis {
+  flex: 0 0 auto;
+  font-weight: 700;
+  white-space: nowrap;
+  font-family: var(--schrift-titel);
+}
+
+.karte-highlight {
+  background: linear-gradient(135deg, var(--rose-light), var(--weiss));
+  border: 1px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 1.3rem;
+  margin: 1.4rem 0;
+  box-shadow: var(--schatten-weich);
+}
+
+.karte-zusatz {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px dotted var(--linie);
+}
+
+.karte-zusatz .karte-eintrag { border-bottom: none; padding: 0.3rem 0; }
+
+.karte-zusatz .karte-name { font-weight: 400; }
+
+.karte-zusatz .karte-name::before {
+  content: "\2661\00a0";
+  color: var(--terracotta);
+}
+
+.karte-badge {
+  display: inline-block;
+  margin-top: 1.2rem;
+  border: 2px solid var(--terracotta);
+  border-radius: 999px;
+  padding: 0.5rem 1.3rem;
+  font-weight: 700;
+  color: var(--terracotta-dunkel);
+  background: var(--weiss);
+}
+
+.karte-hinweis {
+  background: var(--rose-light);
+  border-radius: var(--rund);
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.karte-hinweis p { margin: 0.4rem 0; }
+
+.legende {
+  font-size: 0.88rem;
+  color: var(--braun-weich);
+  line-height: 1.6;
+  padding-bottom: 3rem;
+}
+
+/* ---------- Aktions-Banner (z. B. Speed Dating) ----------
+   Nachgebaut nach dem Flyer: dunkler Café-Abend, Neon-Schriftzug, Rosé.
+   Der Rest der Seite ist hell – dadurch sticht der Hinweis heraus, ohne zu
+   blinken. Bewusst als HTML statt als Bild, damit er auf jedem Bildschirm
+   scharf bleibt und sich umbrechen kann. */
+
+.aktion-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 2.2rem;
+  padding: 1.35rem 1.5rem 1.45rem;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  /* Warmes Dunkel mit einem Lichtschein oben in der Mitte – wie eine
+     Leuchtreklame, die den Raum hinter sich anstrahlt. */
+  background:
+    radial-gradient(70% 130% at 50% -20%, rgba(255, 138, 165, 0.28) 0%, rgba(255, 138, 165, 0) 70%),
+    linear-gradient(180deg, #33222a 0%, #241a17 100%);
+}
+
+/* Die feine Leuchtlinie oben und unten fasst den Streifen ein. */
+.aktion-banner::before,
+.aktion-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(255, 194, 207, 0) 0%,
+    rgba(255, 194, 207, 0.75) 50%,
+    rgba(255, 194, 207, 0) 100%);
+}
+
+.aktion-banner::before { top: 0; }
+.aktion-banner::after  { bottom: 0; }
+
+.aktion-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.aktion-marke {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffc2cf;
+}
+
+/* Herzchen links und rechts der Zeile – dieselbe Handschrift wie der Flyer. */
+.aktion-marke::before,
+.aktion-marke::after {
+  content: "\2661";
+  letter-spacing: 0;
+  font-size: 1.1em;
+}
+
+/* Der Neon-Schriftzug. Serifen und Neon vertragen sich nicht – deshalb hier
+   bewusst die Grotesk, versal und weit gesperrt, mit gestaffeltem Schein. */
+.aktion-titel {
+  font-family: var(--schrift);
+  font-size: clamp(1.35rem, 3.6vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.85),
+    0 0 12px rgba(255, 138, 165, 0.95),
+    0 0 28px rgba(255, 138, 165, 0.6),
+    0 0 54px rgba(255, 138, 165, 0.35);
+}
+
+.aktion-daten {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem 0.7rem;
+  font-size: 0.97rem;
+  color: #f3dbe0;
+}
+
+.aktion-daten strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Trennpunkte zwischen den Angaben, die beim Umbruch nicht stören. */
+.aktion-daten span + span::before {
+  content: "\00b7";
+  margin-right: 0.7rem;
+  color: rgba(255, 194, 207, 0.7);
+}
+
+.aktion-mehr {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0.5rem 1.4rem;
+  border-radius: 999px;
+  background: #ffc2cf;
+  color: #241a17;
+  font-weight: 700;
+  font-size: 0.97rem;
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(255, 138, 165, 0.35);
+}
+
+.aktion-banner:hover .aktion-mehr,
+.aktion-banner:focus-visible .aktion-mehr {
+  background: #fff;
+  box-shadow: 0 0 26px rgba(255, 138, 165, 0.55);
+}
+
+.aktion-mehr .pfeil { transition: transform 0.2s ease; }
+.aktion-banner:hover .aktion-mehr .pfeil { transform: translateX(4px); }
+
+/* Auf dem Handy stapelt sich alles ohnehin – dann darf der Knopf die volle
+   Breite bekommen, das trifft man mit dem Daumen sicherer. */
+@media (max-width: 560px) {
+  .aktion-banner { gap: 0.9rem; padding: 1.2rem 1.25rem 1.35rem; }
+  .aktion-mehr { width: 100%; justify-content: center; }
+
+  /* Untereinander statt nebeneinander – sonst rutschen die Trennpunkte an
+     den Zeilenanfang, weil die Zeile umbricht. */
+  .aktion-daten { flex-direction: column; gap: 0.1rem; }
+  .aktion-daten span + span::before { content: none; }
+}
+
+/* Im Modus „starker Kontrast" fällt der Schein weg – er verwischt die
+   Buchstabenkanten, und genau darauf ist der Modus nicht angewiesen. */
+html[data-kontrast="stark"] .aktion-banner {
+  background: #17100e;
+  border-top: 2px solid #ffc2cf;
+  border-bottom: 2px solid #ffc2cf;
+}
+
+html[data-kontrast="stark"] .aktion-banner::before,
+html[data-kontrast="stark"] .aktion-banner::after { display: none; }
+
+html[data-kontrast="stark"] .aktion-titel { text-shadow: none; }
+html[data-kontrast="stark"] .aktion-mehr { box-shadow: none; }
+
+/* ---------- Events und Feiern ---------- */
+
+.events-seite .container { max-width: 860px; padding-bottom: 1rem; }
+
+.events-einstieg {
+  max-width: 40rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+/* Auf dieser Seite stehen die Überschriften mittig – die Abschnitte sind
+   kurz und wirken zentriert ruhiger als linksbündig mit mittiger Zierlinie. */
+.events-seite .karte-bereich h2 { text-align: center; }
+
+/* Zwei Spalten statt drei: Bei drei Spalten brach jede Zeile nach drei
+   Wörtern um, das las sich zerhackt. */
+.anlass-gitter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 1.2rem;
+}
+
+.anlass {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--rose-light) 0%, var(--weiss) 55%);
+  border-radius: var(--rund);
+  padding: 1.5rem 1.6rem 1.6rem;
+  box-shadow: var(--schatten-weich);
+}
+
+/* Großes, blasses Herz als Hintergrundmotiv in der Ecke – Deko, keine
+   Information, deshalb für Screenreader unsichtbar. */
+.anlass::after {
+  content: "\2665";
+  position: absolute;
+  /* Läuft mit der Spitze unten aus der Ecke heraus. Oben angeschnitten sähe
+     das Herz aus wie versehentlich abgeschnitten. */
+  right: -0.8rem;
+  bottom: -2.4rem;
+  font-size: 5.5rem;
+  line-height: 1;
+  transform: rotate(-14deg);
+  color: var(--rose-mittel);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.anlass h3 {
+  position: relative;
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: var(--terracotta-dunkel);
+}
+
+.anlass p {
+  position: relative;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Nummerierte Schritte. Die Zahlen kommen aus einem Zähler, damit sie auch
+   bei großer Schrift sauber neben dem Text stehen. */
+.ablauf {
+  list-style: none;
+  counter-reset: schritt;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 40rem;
+}
+
+.ablauf li {
+  counter-increment: schritt;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 1.1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rose-mittel);
+}
+
+.ablauf li:last-child { border-bottom: none; }
+
+.ablauf li::before {
+  content: counter(schritt);
+  grid-row: span 2;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.ablauf strong { align-self: end; font-size: 1.12rem; }
+
+.ablauf span { color: var(--braun-weich); line-height: 1.6; }
+
+.events-wege {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+
+/* ---------- Hervorgehobener Termin auf der Events-Seite ----------
+   Dieselbe Optik wie der Banner oben, damit beides zusammengehört. */
+
+.termin {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 90% at 50% 0%, rgba(255, 138, 165, 0.3) 0%, rgba(255, 138, 165, 0) 70%),
+    linear-gradient(180deg, #33222a 0%, #241a17 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2.6rem 1.7rem 2.4rem;
+  margin: 0 0 3.2rem;
+  text-align: center;
+  box-shadow: var(--schatten-stark);
+}
+
+.termin .aktion-marke { margin: 0 0 0.7rem; }
+
+.termin .aktion-titel {
+  display: block;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  margin-bottom: 0.5rem;
+}
+
+.termin-claim {
+  font-family: var(--schrift-titel);
+  font-style: italic;
+  font-size: clamp(1.15rem, 3.6vw, 1.5rem);
+  color: #ffc2cf;
+  margin: 0 0 1.9rem;
+}
+
+.termin-daten {
+  display: grid;
+  gap: 0;
+  max-width: 27rem;
+  margin: 0 auto 1.8rem;
+  text-align: left;
+}
+
+.termin-daten div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.6rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 194, 207, 0.22);
+}
+
+.termin-daten div:last-child { border-bottom: none; }
+
+.termin-daten .titel {
+  color: #ffc2cf;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-top: 0.25rem;
+}
+
+.termin-satz {
+  font-family: var(--schrift-titel);
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: #f6e3e6;
+  max-width: 26rem;
+  margin: 0 auto;
+}
+
+.termin-vorteile {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.3rem;
+  margin: 2rem 0 0;
+  padding: 1.8rem 0 0;
+  border-top: 1px solid rgba(255, 194, 207, 0.22);
+  list-style: none;
+}
+
+.termin-vorteile strong {
+  display: block;
+  color: #ffc2cf;
+  margin-bottom: 0.25rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.termin-vorteile span { font-size: 0.98rem; line-height: 1.55; color: #f0dde0; }
+
+.termin-hinweis {
+  margin: 2rem 0 0;
+  font-weight: 700;
+  color: #ffc2cf;
+  letter-spacing: 0.02em;
+}
+
+.termin-wege {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+
+/* Der helle Knopf steht hier auf dunklem Grund – der normale Rahmen wäre
+   darauf kaum zu sehen. */
+.termin-wege .button-hell {
+  background: transparent;
+  border-color: rgba(255, 194, 207, 0.7);
+  color: #fff;
+}
+
+.termin-wege .button-hell:hover,
+.termin-wege .button-hell:focus-visible {
+  background: #ffc2cf;
+  border-color: #ffc2cf;
+  color: #241a17;
+}
+
+/* Auf schmalen Geräten passt die feste Spalte für die Beschriftung nicht
+   mehr neben den Text – dann untereinander. */
+@media (max-width: 560px) {
+  .termin { padding: 2rem 1.25rem; }
+  .termin-daten div { grid-template-columns: 1fr; gap: 0.1rem; }
+  .termin-daten .titel { padding-top: 0; }
+}
+
+html[data-kontrast="stark"] .termin {
+  background: #17100e;
+  border: 2px solid #ffc2cf;
+}
+
+html[data-kontrast="stark"] .termin .aktion-titel { text-shadow: none; }
+
+html[data-kontrast="stark"] .anlass {
+  background: #fff;
+  border: 2px solid var(--terracotta);
+}
+
+html[data-kontrast="stark"] .anlass::after { display: none; }
+
+/* ---------- Jobs ---------- */
+
+.jobs-seite .container { max-width: 780px; padding-bottom: 1rem; }
+
+.jobs-seite .info-boxen { margin-bottom: 3.2rem; }
+
+/* Vier Kästchen nebeneinander wären zu schmal – zwei Reihen à zwei lesen sich
+   besser, auf dem Handy stehen sie ohnehin untereinander. */
+.jobs-seite .info-box { flex: 1 1 280px; }
+
+.job-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.job-liste li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.9rem;
+  border-bottom: 1px solid var(--rose-mittel);
+}
+
+.job-liste li:last-child { border-bottom: none; }
+
+.job-liste li::before {
+  content: "\2661";                /* dasselbe Herz wie auf der Speisekarte */
+  position: absolute;
+  left: 0.2rem;
+  color: var(--terracotta);
+}
+
+.bewerbung {
+  background: linear-gradient(135deg, var(--rose-light), var(--weiss));
+  border: 1px solid var(--rose-mittel);
+  border-radius: var(--rund);
+  padding: 2rem 1.6rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  box-shadow: var(--schatten-weich);
+}
+
+.bewerbung h2 { margin: 0 0 0.6rem; font-size: 1.55rem; }
+
+.bewerbung p { max-width: 34rem; margin: 0 auto; }
+
+/* Diese drei Regeln brauchen den zusätzlichen ».bewerbung«-Vorsatz. Ohne ihn
+   sind sie nur eine Klasse breit und damit weniger spezifisch als
+   ».bewerbung p« darüber – dessen »margin: 0 auto« gewann und setzte jeden
+   senkrechten Abstand im Kasten auf null. Der Anruf-Knopf klebte dadurch
+   ohne eine einzige Lücke am Knopf »E-Mail schreiben«. */
+.bewerbung .bewerbung-aktion { margin: 1.4rem auto 0; }
+
+/* Deutlich mehr Luft als die 0.7rem *innerhalb* der Zeile darunter, damit der
+   große Knopf und die beiden kleinen als zwei Stufen lesbar bleiben und nicht
+   als eine gedrängte Masse. */
+.bewerbung .events-wege { margin: 1.3rem auto 0; }
+
+.bewerbung .bewerbung-fuss { margin-top: 1.2rem; }
+
+/* Die Adresse ist lang – auf einem schmalen Handy muss sie umbrechen dürfen,
+   sonst sprengt der Knopf den Bildschirm. */
+.bewerbung-aktion .button { max-width: 100%; }
+
+.bewerbung-fuss {
+  font-size: 0.95rem;
+  color: var(--braun-weich);
+}
+
+/* width: 100% ist hier nötig, nicht bloß Angewohnheit: durch »margin: 0 auto«
+   wird dieses Flex-Element nicht auf die Rumpfbreite gedehnt, sondern nach
+   seinem Inhalt bemessen – und dessen Untergrenze ist das längste Wort. Bei
+   Schriftgröße „sehr groß" wurde die Seite dadurch breiter als das Handy. */
+.rechtsseite {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.rechtsseite h1 { margin-top: 0; }
+
+.rechtsseite .zurueck { display: inline-block; margin-bottom: 1.5rem; min-height: 44px; }
+
+.rechtsseite .hinweis {
+  background: var(--rose-light);
+  border-left: 4px solid var(--terracotta);
+  padding: 1rem 1.2rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  border-radius: 0 8px 8px 0;
+}
+
+footer {
+  background: var(--braun);
+  color: var(--rose-light);
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+footer a { color: var(--rose-light); }
+
+footer a:hover { color: #fff; }
+
+footer .footer-links { margin-top: 0.8rem; }
+
+footer .footer-links a { margin: 0 0.5rem; display: inline-block; min-height: 44px; }
+
+.footer-signet { width: 48px; height: 48px; margin: 0 auto 1rem; opacity: 0.9; }
+
+/* ---------- 9. Effekte ---------- */
+
+/* Feine Körnung – gibt den Flächen eine Papieranmutung. */
+.koernung {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.32;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23r)' opacity='0.32'/%3E%3C/svg%3E");
+}
+
+/* Zurück nach oben */
+.nach-oben {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--terracotta);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: var(--schatten-stark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 45;
+}
+
+.nach-oben.sichtbar { opacity: 1; visibility: visible; transform: none; }
+
+.nach-oben:hover { background: var(--terracotta-dunkel); }
+
+/* Einblenden beim Scrollen.
+   Wichtig: Inhalt ist standardmäßig SICHTBAR. Erst wenn das Skript nachweislich
+   läuft, setzt es "anim-bereit" auf <html>. Ohne JavaScript oder bei einem
+   Fehler bleibt alles lesbar – niemals eine leere Seite. */
+html.anim-bereit .einblenden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+html.anim-bereit .einblenden.sichtbar { opacity: 1; transform: none; }
+
+/* Gestaffeltes Erscheinen der Kinder eines Abschnitts */
+html.anim-bereit .staffeln > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+html.anim-bereit .staffeln.sichtbar > * { opacity: 1; transform: none; }
+
+html.anim-bereit .staffeln.sichtbar > *:nth-child(1) { transition-delay: 0.05s; }
+html.anim-bereit .staffeln.sichtbar > *:nth-child(2) { transition-delay: 0.14s; }
+html.anim-bereit .staffeln.sichtbar > *:nth-child(3) { transition-delay: 0.23s; }
+html.anim-bereit .staffeln.sichtbar > *:nth-child(4) { transition-delay: 0.32s; }
+
+/* Leichte Neigung bei Mauskontakt – nur auf Geräten mit echter Maus. */
+@media (hover: hover) and (pointer: fine) {
+  html[data-bewegung="an"] .info-box:hover,
+  html:not([data-bewegung]) .info-box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--schatten-stark);
+  }
+
+  /* Nur das Foto neigt sich, die Beschriftung darunter bleibt gerade stehen. */
+  html[data-bewegung="an"] .galerie-lupe:hover,
+  html:not([data-bewegung]) .galerie-lupe:hover {
+    transform: translateY(-5px) rotate(-1.2deg);
+    box-shadow: var(--schatten-stark);
+  }
+}
+
+/* ---------- Bewegung abschalten ----------
+   Zwei Wege: die Systemeinstellung und der Schalter im Ansicht-Bedienfeld.
+   Beide führen zum selben Ergebnis. */
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-bewegung="an"]) { scroll-behavior: auto; }
+
+  html:not([data-bewegung="an"]) .einblenden,
+  html:not([data-bewegung="an"]) .staffeln > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  html:not([data-bewegung="an"]) .hero-deko img,
+  html:not([data-bewegung="an"]) .status-punkt { animation: none !important; }
+
+  html:not([data-bewegung="an"]) * { transition-duration: 0.01ms !important; }
+}
+
+html[data-bewegung="reduziert"] { scroll-behavior: auto; }
+
+html[data-bewegung="reduziert"] .einblenden,
+html[data-bewegung="reduziert"] .staffeln > * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-bewegung="reduziert"] .hero-deko img,
+html[data-bewegung="reduziert"] .status-punkt { animation: none !important; }
+
+html[data-bewegung="reduziert"] .fortschritt { display: none; }
+
+html[data-bewegung="reduziert"] .button:hover,
+html[data-bewegung="reduziert"] .info-box:hover,
+html[data-bewegung="reduziert"] .galerie-lupe:hover { transform: none; }
+
+html[data-bewegung="reduziert"] * {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ---------- Druckansicht ---------- */
+
+@media print {
+  .kopfbereich, .fortschritt, .koernung, .nach-oben, .hero-deko,
+  .hero-welle, .sprunglink, .ansicht, .dialog-hintergrund { display: none !important; }
+
+  body { background: #fff; color: #000; }
+
+  .einblenden, .staffeln > * { opacity: 1 !important; transform: none !important; }
+
+  a { text-decoration: underline; }
+
+  .karte-eintrag { break-inside: avoid; }
+}
+
+/* Aktionsknopf im Kopf einer Unterseite */
+.seiten-kopf-aktion { margin: 1.3rem 0 0; }
+
+.seiten-kopf .status { margin-top: 1.2rem; }
+
+/* Hinweis im Fuß der englischen Seiten, dass die Rechtstexte deutsch sind */
+.rechtshinweis {
+  font-size: 0.88rem;
+  opacity: 0.85;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ---------- Galerieseite ---------- */
+
+.galerie-seite .galerie-grid { max-width: 100%; }
+
+@media (min-width: 1000px) {
+  .galerie-seite .galerie-grid { columns: 3; }
+}
+
+.galerie-aktion { text-align: center; margin-top: 2rem; }

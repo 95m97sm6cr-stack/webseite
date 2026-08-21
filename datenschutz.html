@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutz – b.ellers</title>
+  <meta name="description" content="Datenschutzerklärung des Cafés b.ellers in Miesbach – keine Cookies, kein Tracking.">
+  <link rel="icon" href="assets/img/signet.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Für Suchmaschinen und fürs Teilen in Messengern. Erzeugt vom
+       Skript werkzeuge-seo.py – die Basisadresse steht dort an einer
+       einzigen Stelle und muss bei einem Domain-Umzug nur dort
+       geändert werden. -->
+  <link rel="canonical" href="https://bellers-cafe.de/datenschutz.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="b.ellers">
+  <meta property="og:title" content="Datenschutz – b.ellers">
+  <meta property="og:description" content="Wie diese Website mit Daten umgeht: keine Cookies, kein Tracking.">
+  <meta property="og:url" content="https://bellers-cafe.de/datenschutz.html">
+  <meta property="og:image" content="https://bellers-cafe.de/assets/img/vorschau.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo von b.ellers – Kaffeetasse mit Herz, Kaffeebohnen und Brezn">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Setzt die gespeicherte Ansicht, BEVOR die Seite gezeichnet wird.
+       Ohne das würde beim Laden kurz die Standardansicht aufblitzen. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var w = JSON.parse(localStorage.getItem("bellers-ansicht")) || {};
+        d.setAttribute("data-schrift", w.schrift || "normal");
+        d.setAttribute("data-kontrast", w.kontrast || "normal");
+        // Bewegung nur setzen, wenn aktiv gewählt – sonst gilt die Systemeinstellung.
+        if (w.bewegung) d.setAttribute("data-bewegung", w.bewegung);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+  <div class="fortschritt" aria-hidden="true"></div>
+  <div class="koernung" aria-hidden="true"></div>
+  <header class="kopfbereich">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/signet.png" alt="">
+        <span>b.ellers</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-klapp">&#9776;</button>
+
+      <div class="nav-klapp" id="nav-klapp">
+        <div class="nav-werkzeuge">
+          <div class="ansicht">
+            <button class="ansicht-knopf" aria-expanded="false" aria-controls="ansicht-panel">
+              <span class="klein-a" aria-hidden="true">A</span><span class="gross-a" aria-hidden="true">A</span>
+              <span>Ansicht</span>
+            </button>
+
+            <div class="ansicht-panel" id="ansicht-panel" hidden>
+              <h2>Ansicht anpassen</h2>
+              <p>Die Einstellung bleibt für alle Seiten gespeichert.</p>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-schrift">Schriftgröße</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-schrift">
+                  <button type="button" data-setzt="schrift:normal">Normal</button>
+                  <button type="button" data-setzt="schrift:gross">Groß</button>
+                  <button type="button" data-setzt="schrift:sehr-gross">Sehr groß</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-kontrast">Kontrast</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-kontrast">
+                  <button type="button" data-setzt="kontrast:normal">Normal</button>
+                  <button type="button" data-setzt="kontrast:stark">Stark</button>
+                </div>
+              </div>
+
+              <div class="ansicht-gruppe">
+                <span class="titel" id="titel-bewegung">Bewegung</span>
+                <div class="ansicht-wahl" role="group" aria-labelledby="titel-bewegung">
+                  <button type="button" data-setzt="bewegung:an">An</button>
+                  <button type="button" data-setzt="bewegung:reduziert">Reduziert</button>
+                </div>
+              </div>
+
+              <button type="button" class="zuruecksetzen">Auf Standard zurücksetzen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inhalt" class="rechtsseite">
+    <a class="zurueck" href="index.html">&larr; Zurück zur Startseite</a>
+    <h1>Datenschutzerklärung</h1>
+
+    <p class="hinweis">
+      Hinweis: Dies ist eine vereinfachte Vorlage und keine Rechtsberatung.
+      Bitte von der Betreiberin ausfüllen bzw. im Zweifel rechtlich prüfen lassen.
+    </p>
+
+    <h2>Verantwortliche Stelle</h2>
+    <p>
+      Birgit Eller<br>
+      b.ellers<br>
+      Stadtplatz 1<br>
+      83714 Miesbach<br>
+      E-Mail: <a href="mailto:info@bellers-cafe.de">info@bellers-cafe.de</a>
+    </p>
+
+    <h2>Keine Cookies, kein Tracking</h2>
+    <p>
+      Diese Website verwendet keine Cookies und kein Analyse- oder Tracking-Tool.
+      Es werden keine personenbezogenen Daten der Besucherinnen und Besucher gespeichert
+      oder ausgewertet.
+    </p>
+
+    <h2>Eingebundene Kartenansicht (OpenStreetMap)</h2>
+    <p>
+      Auf der Startseite ist im Bereich „Anfahrt" eine Kartenansicht von
+      OpenStreetMap eingebunden. Beim Aufruf dieser Seite wird eine Verbindung
+      zu Servern der OpenStreetMap Foundation aufgebaut, wodurch technische
+      Daten wie die IP-Adresse an den Anbieter übermittelt werden können.
+      Weitere Informationen:
+      <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">
+        Datenschutzerklärung von OpenStreetMap
+      </a>.
+    </p>
+
+    <h2>Hosting (GitHub Pages)</h2>
+    <p>
+      Diese Website wird über GitHub Pages bereitgestellt, einen Dienst der
+      GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA
+      (ein Unternehmen der Microsoft Corporation). Beim Aufruf der Seite
+      werden vom Server automatisch technisch notwendige Zugriffsdaten in
+      sogenannten Server-Logdateien verarbeitet: IP-Adresse, Datum und Uhrzeit
+      des Zugriffs, die abgerufene Datei, der verwendete Browser und das
+      Betriebssystem. Diese Daten dienen ausschließlich dem sicheren und
+      stabilen Betrieb der Website sowie der Abwehr von Missbrauch und werden
+      von uns nicht mit anderen Daten zusammengeführt.
+    </p>
+    <p>
+      Rechtsgrundlage ist unser berechtigtes Interesse an einer sicheren und
+      zuverlässigen Bereitstellung dieser Website (Art. 6 Abs. 1 lit. f DSGVO).
+    </p>
+    <p>
+      Da GitHub seinen Sitz in den USA hat, können diese Daten in die USA
+      übermittelt werden. GitHub ist unter dem EU-U.S. Data Privacy Framework
+      zertifiziert; die Europäische Kommission hat für auf dieser Grundlage
+      übermittelte Daten ein angemessenes Datenschutzniveau festgestellt.
+      Näheres in der
+      <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">
+        Datenschutzerklärung von GitHub
+      </a>.
+    </p>
+
+    <h2>Ihre Rechte</h2>
+    <p>
+      Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder
+      Einschränkung der Verarbeitung Ihrer bei uns gespeicherten Daten sowie
+      ein Beschwerderecht bei einer Aufsichtsbehörde. Bei Fragen wenden Sie
+      sich bitte an die oben genannte E-Mail-Adresse.
+    </p>
+  </main>
+
+  <footer>
+    <img src="assets/img/signet.png" alt="" class="footer-signet">
+    <p><strong>b.ellers</strong> – Stadtplatz 1, 83714 Miesbach · Tel. <a href="tel:+4980259924355">08025 9924355</a></p>
+    <p><a href="https://www.instagram.com/b.ellers_cafe/" target="_blank" rel="noopener">@b.ellers_cafe auf Instagram</a></p>
+    <p class="footer-links">
+      <a href="impressum.html">Impressum</a> ·
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+    <p>&copy; 2026 b.ellers</p>
+  </footer>
+  <button class="nach-oben" aria-label="Zurück nach oben">&#8593;</button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

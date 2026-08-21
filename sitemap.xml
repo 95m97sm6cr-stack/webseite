@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://bellers-cafe.de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/index-en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/index-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/index-en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/speisekarte.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/speisekarte.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/menu-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/menu-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/speisekarte.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/menu-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/galerie.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/galerie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/gallery-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/gallery-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/galerie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/gallery-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/events.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/events.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/events-en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/events-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/events.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/events-en.html"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/jobs.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/jobs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/jobs-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/jobs-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/jobs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/jobs-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/impressum.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/datenschutz.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
