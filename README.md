@@ -29,6 +29,10 @@ CNAME                 die eigene Domain für GitHub Pages (bellers-cafe.de)
 robots.txt            Regeln für Suchmaschinen
 sitemap.xml           Liste aller Seiten für Suchmaschinen
 werkzeuge-seo.py      erzeugt beides und die Suchmaschinen-Angaben in den Seiten
+werkzeuge/            Prüfskripte und der Generator für das Menü oben
+                      (siehe werkzeuge/README.md)
+CLAUDE.md             die festen Regeln des Projekts, für die Arbeit mit Claude
+INHALTE-BEARBEITEN.md Anleitung zum Ändern von Texten, Preisen und Fotos
 ```
 
 Die Navigation ist auf allen Seiten gleich aufgebaut. Ab 1230 px Fensterbreite

@@ -2,9 +2,13 @@
 
 Diese Anleitung erklärt in einfachen Worten, wie man Texte, Öffnungszeiten,
 Adresse und Fotos auf der Website ändert. Man braucht dafür keine
-Programmierkenntnisse – nur einen normalen Texteditor (z. B. Editor unter
-Windows, TextEdit unter Mac, oder den Datei-Manager des Hosters mit
-eingebautem Editor).
+Programmierkenntnisse.
+
+Am bequemsten geht es **direkt im Browser auf github.com** – dort ist ein
+Editor eingebaut, man muss nichts herunterladen und nichts installieren (siehe
+„Änderungen ins Internet stellen" ganz unten). Wer die Dateien lieber auf dem
+eigenen Rechner bearbeitet, nimmt einen normalen Texteditor: Editor unter
+Windows, TextEdit unter Mac.
 
 ## ⚠️ Zuerst lesen: Es gibt die Seite zweimal
 
@@ -382,11 +386,69 @@ direkt im Browser:
    **Strg + F5** (am Mac: **Cmd + Shift + R**) neu laden, sonst zeigt der
    Browser eventuell noch die alte, zwischengespeicherte Version.
 
-> **Wenn das zu umständlich ist:** Am einfachsten bleibt es, Änderungswünsche
-> einfach hier in diesem Gespräch zu nennen – dann werden sie eingebaut,
-> geprüft und veröffentlicht, ohne dass selbst etwas auf github.com bedient
-> werden muss.
-
 Wichtig: Immer nur die Dateien austauschen, die man wirklich geändert hat.
 Der Ordner `assets` muss dabei so bleiben, wie er ist (dort liegen Bilder und
 das Design).
+
+## Wie es weitergeht
+
+Diese Website wurde zusammen mit Claude gebaut. Ein solches Gespräch ist aber
+nicht dauerhaft – es läuft irgendwann aus, und dann gibt es niemanden mehr,
+der sich an die Absprachen erinnert. Deshalb hier die drei Wege, die danach
+offenstehen.
+
+### 1. Nichts tun
+
+Das ist eine echte Möglichkeit, keine Notlösung. Die Seite läuft von selbst
+weiter: Sie besteht aus einfachen Dateien, die GitHub kostenlos ausliefert.
+Es gibt nichts, was abläuft, aktualisiert oder gewartet werden müsste. Die
+einzige wiederkehrende Sache ist die **Domain bei IONOS**, die sich jährlich
+verlängert.
+
+### 2. Selbst ändern
+
+Alles in dieser Anleitung ist so gemeint, dass man es ohne Hilfe schafft –
+Texte, Preise, Öffnungszeiten, Fotos. Der Weg über github.com steht im
+Abschnitt direkt darüber.
+
+### 3. Eine neue Unterhaltung mit Claude beginnen
+
+Auf [claude.ai/code](https://claude.ai/code) eine neue Sitzung starten, dort
+das Repository `95m97sm6cr-stack/webseite` auswählen und einfach beschreiben,
+was geändert werden soll – in normalen Worten, so wie beim letzten Mal.
+
+**Ehrlich dazu:** Eine neue Sitzung kennt die früheren Gespräche **nicht**.
+Sie weiß nicht, worüber schon gesprochen wurde und was verworfen wurde.
+
+Sie liest aber alles, was im Projekt liegt, und das ist genau deshalb so
+ausführlich geschrieben:
+
+- `CLAUDE.md` – die festen Regeln des Projekts (nur eigene Fotos, keine echte
+  Online-Reservierung, kein Alkohol, beide Sprachfassungen gleichzeitig, kein
+  Cookie-Banner) samt Begründung
+- diese Anleitung
+- `README.md` und `werkzeuge/README.md`
+- die Kommentare im Quelltext und die Beschreibungen aller Änderungen im
+  Änderungsverlauf
+
+Man muss also nicht alles neu erklären. Es hilft aber, den Wunsch klar zu
+sagen und bei Wichtigem dazuzuschreiben, warum – dann landet der Grund
+ebenfalls im Verlauf und geht nicht wieder verloren.
+
+## Was noch offen ist
+
+Stand August 2026, in der Reihenfolge, in der es sich lohnt:
+
+- **Allergen `(u)` bei der Matcha Latte.** Der Buchstabe steht auf der Karte,
+  fehlt aber in der Legende – auf der deutschen und der englischen Seite.
+  Sobald klar ist, wofür er steht, gehört er in beide Legenden. Das ist der
+  einzige offene Punkt, bei dem es nicht um Optik geht.
+- **Der Terminhinweis zum Speed Dating** oben auf der Startseite gilt für den
+  2. Oktober 2026. Danach sollte dort der nächste Termin stehen – oder der
+  Streifen weg. Wie das geht, steht im Abschnitt „Terminhinweis oben auf der
+  Startseite".
+- **Fünf weitere Fotos.** Zehn von fünfzehn angekündigten sind eingebaut.
+- **Die Karte unter „Anfahrt"** zeigt eine ungefähre Position am Stadtplatz,
+  nicht genau die Haustür (siehe „Karte aktualisieren").
+- **Bei „Feiern & Events"** stehen fünf Karten, wodurch in der letzten Reihe
+  eine allein steht. Eine sechste würde das Bild schließen.
