@@ -777,13 +777,6 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
   content: " · today";
 }
 
-.hinweis-platzhalter {
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--terracotta-dunkel);
-  margin-top: 0.8rem;
-}
-
 .info-boxen {
   display: flex;
   flex-wrap: wrap;

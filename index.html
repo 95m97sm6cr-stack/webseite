@@ -103,7 +103,7 @@
 
       <div class="nav-klapp" id="nav-klapp">
         <ul class="nav-links">
-          <li><a href="#hero">Willkommen</a></li>
+          <li><a href="gutscheine.html">Gutscheine</a></li>
           <li><a href="speisekarte.html">Speisekarte</a></li>
           <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
           <li><a href="#anfahrt">Anfahrt</a></li>
@@ -163,10 +163,13 @@
     </nav>
   </header>
 
-  <!-- Hinweis auf den nächsten Termin. Fällt dieser Termin weg, kann der
-       ganze <a class="aktion-banner">-Block gelöscht werden – siehe
-       INHALTE-BEARBEITEN.md, Abschnitt "Terminhinweis oben". -->
-  <a class="aktion-banner" href="events.html#speed-dating">
+  <!-- Hinweis auf den nächsten Termin. data-gilt-bis sorgt dafür, dass er
+       am Tag nach dem Datum von selbst verschwindet – sonst stünde hier
+       wochenlang eine Einladung zu einem Termin, der vorbei ist. Für einen
+       neuen Termin einfach Texte und Datum ändern; soll gar keiner mehr
+       erscheinen, kann der ganze <a class="aktion-banner">-Block weg.
+       Siehe INHALTE-BEARBEITEN.md, Abschnitt "Terminhinweis oben". -->
+  <a class="aktion-banner" href="events.html#speed-dating" data-gilt-bis="2026-10-02">
     <span class="aktion-text">
       <span class="aktion-marke">Save the date</span>
       <span class="aktion-titel">Speed Dating</span>

@@ -72,6 +72,20 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://bellers-cafe.de/gutscheine.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/gutscheine.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/vouchers-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bellers-cafe.de/vouchers-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bellers-cafe.de/gutscheine.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellers-cafe.de/vouchers-en.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://bellers-cafe.de/impressum.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>

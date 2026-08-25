@@ -23,7 +23,12 @@ TEXTE = {
         "kontrast": "Kontrast", "stark": "Stark",
         "bewegung": "Bewegung", "an": "An", "reduziert": "Reduziert",
         "zuruecksetzen": "Auf Standard zurücksetzen",
-        "punkte": [("Willkommen", "index.html", "#hero"),
+        # "Willkommen" stand hier einmal und zeigte auf #hero – dorthin
+        # führt aber schon das Logo links daneben. Der Platz war doppelt
+        # belegt und wurde für "Gutscheine" frei gemacht: Ein neunter Punkt
+        # hätte die Leiste auf zwei Zeilen gesprengt (gemessen: 1353 px
+        # nötig, 1280 erlaubt).
+        "punkte": [("Gutscheine", "gutscheine.html", None),
                    ("Speisekarte", "speisekarte.html", None),
                    ("Öffnungszeiten", "index.html#oeffnungszeiten", "#oeffnungszeiten"),
                    ("Anfahrt", "index.html#anfahrt", "#anfahrt"),
@@ -43,7 +48,7 @@ TEXTE = {
         "kontrast": "Contrast", "stark": "Strong",
         "bewegung": "Motion", "an": "On", "reduziert": "Reduced",
         "zuruecksetzen": "Back to standard",
-        "punkte": [("Welcome", "index-en.html", "#hero"),
+        "punkte": [("Vouchers", "vouchers-en.html", None),
                    ("Menu", "menu-en.html", None),
                    ("Opening hours", "index-en.html#oeffnungszeiten", "#oeffnungszeiten"),
                    ("Getting here", "index-en.html#anfahrt", "#anfahrt"),
@@ -67,6 +72,8 @@ SEITEN = {
     "events-en.html":  ("en", False, "", ("events.html", "events-en.html")),
     "jobs.html":       ("de", False, "", ("jobs.html", "jobs-en.html")),
     "jobs-en.html":    ("en", False, "", ("jobs.html", "jobs-en.html")),
+    "gutscheine.html": ("de", False, "", ("gutscheine.html", "vouchers-en.html")),
+    "vouchers-en.html": ("en", False, "", ("gutscheine.html", "vouchers-en.html")),
     "impressum.html":  ("de", False, "", None),
     "datenschutz.html": ("de", False, "", None),
     # Die Fehlerseite kann unter jeder Adresse ausgeliefert werden, deshalb

@@ -70,7 +70,7 @@ beim nächsten Umbau wegoptimiert.
 
 ## Vor jedem Push
 
-Die drei Prüfskripte laufen lassen. Sie brauchen einen lokalen Server im
+Die vier Prüfskripte laufen lassen. Sie brauchen einen lokalen Server im
 Wurzelverzeichnis:
 
 ```
@@ -78,13 +78,14 @@ python3 -m http.server 8765
 node werkzeuge/pruefen.js
 node werkzeuge/nav_pruefen.js
 node werkzeuge/gross_pruefen.js
+node werkzeuge/ablauf_pruefen.js
 ```
 
 Details und die Anpassung an andere Umgebungen: `werkzeuge/README.md`.
 
 ## Zwei Fallen
 
-- **Das Menü oben** steht in allen 13 Seiten und wird von
+- **Das Menü oben** steht in allen 15 Seiten und wird von
   `werkzeuge/nav_bauen.py` erzeugt. Änderungen dort machen, nicht in den
   HTML-Dateien – sonst überschreibt der nächste Lauf sie wieder.
 - **`404.html` braucht absolute Pfade**, weil der Browser bei einer falschen

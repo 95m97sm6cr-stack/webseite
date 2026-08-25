@@ -12,7 +12,9 @@ const CHROMIUM = process.env.CHROMIUM_PFAD === undefined
 
 const SEITEN = ['index.html', 'index-en.html', 'speisekarte.html', 'menu-en.html',
                 'galerie.html', 'gallery-en.html', 'events.html', 'events-en.html',
-                'jobs.html', 'jobs-en.html', 'impressum.html', 'datenschutz.html',
+                'jobs.html', 'jobs-en.html',
+                'gutscheine.html', 'vouchers-en.html',
+                'impressum.html', 'datenschutz.html',
                 '404.html'];
 const BREITEN = [390, 768, 1280];
 const BASIS = process.env.BASIS_ADRESSE || 'http://localhost:8765/';

@@ -557,10 +557,44 @@
   }
 
   /* ===========================================================
+     6. Abgelaufene Terminhinweise entfernen
+     =========================================================== */
+
+  /* Ein Element mit data-gilt-bis="JJJJ-MM-TT" verschwindet am Tag nach
+     diesem Datum von selbst. Gedacht für den Streifen oben auf der
+     Startseite und den Termin-Kasten auf der Events-Seite: Sonst stünde
+     dort nach der Veranstaltung wochenlang eine Einladung zu einem Termin,
+     der längst vorbei ist.
+
+     Verglichen wird in Ortszeit und auf den Tag genau – der Termin selbst
+     soll den ganzen Tag über noch sichtbar sein, erst danach fällt er weg.
+
+     Einschränkung, ehrlich benannt: Ohne JavaScript bleibt der Hinweis
+     stehen. Wer ihn verlässlich loswerden will, löscht den Block im HTML
+     (siehe INHALTE-BEARBEITEN.md, „Terminhinweis oben auf der Startseite"). */
+  function abgelaufenesEntfernen() {
+    var heute = new Date();
+    heute.setHours(0, 0, 0, 0);
+
+    $$("[data-gilt-bis]").forEach(function (el) {
+      var teile = (el.getAttribute("data-gilt-bis") || "").split("-");
+      if (teile.length !== 3) return;
+
+      // Monat ist bei Date 0-basiert. Bewusst nicht new Date("2026-10-02"):
+      // das läge in UTC und wäre je nach Zeitzone einen Tag daneben.
+      var bis = new Date(+teile[0], +teile[1] - 1, +teile[2]);
+      if (isNaN(bis.getTime())) return;
+
+      if (heute > bis) el.remove();
+    });
+  }
+
+  /* ===========================================================
      Start
      =========================================================== */
 
   document.addEventListener("DOMContentLoaded", function () {
+    abgelaufenesEntfernen();
     ansichtVorbereiten();
     menueVorbereiten();
     dialogVorbereiten();

@@ -21,10 +21,11 @@ auf der englischen Seite wären schlimmer als gar keine englische Seite.
 |---|---|
 | **Öffnungszeiten** | `index.html`, `index-en.html` **und** `assets/js/main.js` |
 | **Preise, Gerichte** | `speisekarte.html` **und** `menu-en.html` |
-| **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `jobs.html`, `jobs-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
-| **E-Mail-Adresse** | `index.html`, `index-en.html`, `jobs.html`, `jobs-en.html`, `impressum.html`, `datenschutz.html` |
+| **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `jobs.html`, `jobs-en.html`, `gutscheine.html`, `vouchers-en.html`, `events.html`, `events-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
+| **E-Mail-Adresse** | `index.html`, `index-en.html`, `jobs.html`, `jobs-en.html`, `gutscheine.html`, `vouchers-en.html`, `events.html`, `events-en.html`, `impressum.html`, `datenschutz.html` |
 | **Fotos in der Galerie** | `index.html`, `index-en.html`, `galerie.html` **und** `gallery-en.html` |
 | **Stellenanzeige** | `jobs.html` **und** `jobs-en.html` |
+| **Gutscheine** | `gutscheine.html` **und** `vouchers-en.html` |
 | **Feiern / Events** | `events.html` **und** `events-en.html` |
 | **Terminhinweis oben** | `index.html` **und** `index-en.html` |
 | **Einträge im Menü oben** | in **allen** Seiten – der Block `<nav class="nav">` ist überall gleich |
@@ -38,6 +39,7 @@ Welche Datei zu welcher gehört:
 | `galerie.html` | `gallery-en.html` |
 | `events.html` | `events-en.html` |
 | `jobs.html` | `jobs-en.html` |
+| `gutscheine.html` | `vouchers-en.html` |
 | `impressum.html`, `datenschutz.html` | *(bleiben deutsch)* |
 
 Impressum und Datenschutz gibt es bewusst nur auf Deutsch – das ist bei
@@ -61,6 +63,9 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
   jeweils nächsten Termin, **`events-en.html`** dieselbe auf Englisch.
 - **`jobs.html`** – die Stellenanzeige, **`jobs-en.html`** dieselbe auf
   Englisch. Wenn keine Stelle mehr frei ist, siehe unten „Stellenanzeige".
+- **`gutscheine.html`** – die Seite über Gutscheine, **`vouchers-en.html`**
+  dieselbe auf Englisch. Bestellen kann man dort bewusst nichts; die Seite
+  nennt nur, dass es Gutscheine gibt und wie man an einen kommt.
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
 - **`assets/img/galerie/`** – die Fotos der Galerie (`foto-01.jpg` bis
@@ -284,10 +289,28 @@ Ganz oben auf beiden Startseiten liegt ein dunkler Balken, der auf den
 nächsten Termin hinweist (aktuell das Speed Dating am 2. Oktober 2026). Er
 führt auf die Events-Seite direkt zum Termin.
 
+### Er räumt sich selbst weg
+
+Im Balken steht `data-gilt-bis="2026-10-02"`. **Am Tag nach diesem Datum
+verschwindet der Hinweis von selbst** – auf beiden Startseiten und ebenso der
+Termin-Kasten auf der Events-Seite. Man muss also nach der Veranstaltung
+nichts tun; es steht nie eine Einladung zu einem Termin da, der vorbei ist.
+
+Am Tag der Veranstaltung selbst ist er noch sichtbar, erst danach fällt er weg.
+
+> **Eine Einschränkung, ehrlich gesagt:** Das erledigt ein kleines Skript.
+> Bei den sehr wenigen Besuchern, die JavaScript abgeschaltet haben, bleibt
+> der Balken stehen. Wer ganz sichergehen will, löscht ihn zusätzlich von
+> Hand (siehe „Kein Termin mehr").
+
+### Was man wo ändert
+
 - **Termin ändern:** In `index.html` und `index-en.html` den Block
   `<a class="aktion-banner" …>` suchen und Datum, Uhrzeit und Zielgruppe
-  anpassen. Denselben Text auch im Abschnitt `id="speed-dating"` in
-  `events.html` bzw. `events-en.html` ändern.
+  anpassen – **und das `data-gilt-bis` auf das neue Datum setzen**, sonst
+  verschwindet der neue Termin sofort oder zu spät. Denselben Text und
+  dasselbe Datum auch im Abschnitt `id="speed-dating"` in `events.html`
+  bzw. `events-en.html` ändern.
 - **Kein Termin mehr:** Den ganzen `<a class="aktion-banner">`-Block aus
   beiden Startseiten löschen – vom öffnenden `<a` bis zum `</a>`. Der Rest
   der Seite bleibt davon unberührt.
@@ -443,10 +466,9 @@ Stand August 2026, in der Reihenfolge, in der es sich lohnt:
   fehlt aber in der Legende – auf der deutschen und der englischen Seite.
   Sobald klar ist, wofür er steht, gehört er in beide Legenden. Das ist der
   einzige offene Punkt, bei dem es nicht um Optik geht.
-- **Der Terminhinweis zum Speed Dating** oben auf der Startseite gilt für den
-  2. Oktober 2026. Danach sollte dort der nächste Termin stehen – oder der
-  Streifen weg. Wie das geht, steht im Abschnitt „Terminhinweis oben auf der
-  Startseite".
+- **Ein neuer Termin für den Balken oben.** Der Speed-Dating-Hinweis räumt
+  sich nach dem 2. Oktober 2026 selbst weg, dort geht also nichts kaputt –
+  aber schöner wäre es, wenn danach die nächste Veranstaltung dort stünde.
 - **Fünf weitere Fotos.** Zehn von fünfzehn angekündigten sind eingebaut.
 - **Die Karte unter „Anfahrt"** zeigt eine ungefähre Position am Stadtplatz,
   nicht genau die Haustür (siehe „Karte aktualisieren").

@@ -51,6 +51,16 @@ SEITEN = {
                      "We are looking for service staff, kitchen staff and a barista – "
                      "mini-job or part-time, starting by arrangement.",
                      "jobs.html"),
+    "gutscheine.html": ("de", "Gutscheine – b.ellers in Miesbach",
+                       "Gutscheine für das Café am Stadtplatz – Betrag nach Wunsch, "
+                       "einlösbar für alles auf der Karte. Im Café erhältlich oder "
+                       "telefonisch vorbestellen.",
+                       "vouchers-en.html"),
+    "vouchers-en.html": ("en", "Gift vouchers – b.ellers in Miesbach",
+                        "Gift vouchers for the café on the Stadtplatz – any amount, "
+                        "valid for everything on the menu. Available at the café or "
+                        "by phone.",
+                        "gutscheine.html"),
     "impressum.html": ("de", "Impressum – b.ellers",
                        "Pflichtangaben nach § 5 TMG für das Café b.ellers in Miesbach.",
                        None),
@@ -67,6 +77,7 @@ WANDEL = {
     "galerie.html": "monthly", "gallery-en.html": "monthly",
     "events.html": "weekly", "events-en.html": "weekly",
     "jobs.html": "monthly", "jobs-en.html": "monthly",
+    "gutscheine.html": "monthly", "vouchers-en.html": "monthly",
     "impressum.html": "yearly", "datenschutz.html": "yearly",
 }
 

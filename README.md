@@ -15,8 +15,9 @@ menu-en.html          dieselbe Karte auf Englisch
 galerie.html          Galerie mit allen Fotos, gallery-en.html auf Englisch
 events.html           Feiern & Events inkl. nächstem Termin, events-en.html englisch
 jobs.html             Stellenanzeige, jobs-en.html auf Englisch
-impressum.html        Impressum (Vorlage, muss ausgefüllt werden)
-datenschutz.html      Datenschutzerklärung (Vorlage, muss ausgefüllt werden)
+gutscheine.html       Gutscheine, vouchers-en.html auf Englisch
+impressum.html        Impressum (ausgefüllt)
+datenschutz.html      Datenschutzerklärung (ausgefüllt)
 404.html              Fehlerseite bei falsch eingetippter Adresse
 .htaccess             Servereinstellungen (HTTPS, Caching, Fehlerseite)
 assets/css/style.css  Gesamtes Styling

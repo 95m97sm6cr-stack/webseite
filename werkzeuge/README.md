@@ -6,7 +6,7 @@ den Fall gedacht, dass jemand am Aufbau der Seite arbeitet.
 
 ## Die Prüfskripte
 
-Drei Skripte steuern einen echten Browser fern und sehen sich die Seiten an.
+Vier Skripte steuern einen echten Browser fern und sehen sich die Seiten an.
 Sie haben in der Vergangenheit Fehler gefunden, die beim bloßen Draufschauen
 niemandem aufgefallen sind: vertauschte Bildbeschreibungen, ein verzerrtes
 Logo, ein Einstellungsfeld, das auf dem Handy nicht erreichbar war, und zwei
@@ -14,9 +14,10 @@ Knöpfe ohne einen Pixel Abstand.
 
 | Skript | Was es prüft |
 |---|---|
-| `pruefen.js` | Alle 13 Seiten in 390, 768 und 1280 px Breite: JavaScript-Fehler, waagerechter Überlauf (auch bei Schriftgröße „sehr groß"), fehlende oder verzerrte Bilder, leere `alt`-Texte, tote Verweise |
+| `pruefen.js` | Alle 15 Seiten in 390, 768 und 1280 px Breite: JavaScript-Fehler, waagerechter Überlauf (auch bei Schriftgröße „sehr groß"), fehlende oder verzerrte Bilder, leere `alt`-Texte, tote Verweise |
 | `nav_pruefen.js` | Menü auf- und zuklappen, „Ansicht" auf dem Handy erreichbar, alle Ziele der Navigation existieren wirklich, Inhalte der Jobs- und Events-Seite |
 | `gross_pruefen.js` | Großansicht der Fotos samt Beschriftung – auch mit abgeschaltetem JavaScript |
+| `ablauf_pruefen.js` | Terminhinweise mit `data-gilt-bis` verschwinden am richtigen Tag – geprüft mit gefälschter Browser-Uhr, statt Wochen zu warten |
 
 ### Ausführen
 
@@ -34,6 +35,7 @@ Dann in einem zweiten Fenster, ebenfalls im Wurzelverzeichnis:
 node werkzeuge/pruefen.js
 node werkzeuge/nav_pruefen.js
 node werkzeuge/gross_pruefen.js
+node werkzeuge/ablauf_pruefen.js
 ```
 
 Jedes endet entweder mit `Alles in Ordnung.` oder listet die Fundstellen auf
@@ -61,7 +63,7 @@ export CHROMIUM_PFAD=
 
 ## `nav_bauen.py` – Navigation neu erzeugen
 
-Das Menü oben ist auf allen 13 Seiten identisch und wurde früher von Hand
+Das Menü oben ist auf allen 15 Seiten identisch und wurde früher von Hand
 kopiert. Das ging schief: Auf den Galerieseiten zeigten Links auf Anker wie
 `#oeffnungszeiten`, die es dort gar nicht gibt, und ein Eintrag fehlte ganz.
 Seitdem gibt es genau eine Quelle dafür.
