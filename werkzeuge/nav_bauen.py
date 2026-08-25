@@ -23,19 +23,19 @@ TEXTE = {
         "kontrast": "Kontrast", "stark": "Stark",
         "bewegung": "Bewegung", "an": "An", "reduziert": "Reduziert",
         "zuruecksetzen": "Auf Standard zurücksetzen",
-        # "Willkommen" stand hier einmal und zeigte auf #hero – dorthin
-        # führt aber schon das Logo links daneben. Der Platz war doppelt
-        # belegt und wurde für "Gutscheine" frei gemacht: Ein neunter Punkt
-        # hätte die Leiste auf zwei Zeilen gesprengt (gemessen: 1353 px
-        # nötig, 1280 erlaubt).
-        "punkte": [("Gutscheine", "gutscheine.html", None),
-                   ("Speisekarte", "speisekarte.html", None),
+        # Acht Punkte sind das Maximum: Ein neunter sprengt die Leiste auf
+        # zwei Zeilen, bei jeder Bildschirmbreite (gemessen 1353 px nötig
+        # bei 1280 erlaubten). Der Platz für "Gutscheine" kam von
+        # "Willkommen" – das zeigte auf #hero, wohin das Logo links daneben
+        # ohnehin schon führt.
+        "punkte": [("Speisekarte", "speisekarte.html", None),
                    ("Öffnungszeiten", "index.html#oeffnungszeiten", "#oeffnungszeiten"),
                    ("Anfahrt", "index.html#anfahrt", "#anfahrt"),
                    ("Galerie", "galerie.html", "#galerie"),
                    ("Events", "events.html", None),
                    ("Jobs", "jobs.html", None),
-                   ("Kontakt", "index.html#kontakt", "#kontakt")],
+                   ("Kontakt", "index.html#kontakt", "#kontakt"),
+                   ("Gutscheine", "gutscheine.html", None)],
     },
     "en": {
         "nav": "Main navigation",
@@ -48,14 +48,14 @@ TEXTE = {
         "kontrast": "Contrast", "stark": "Strong",
         "bewegung": "Motion", "an": "On", "reduziert": "Reduced",
         "zuruecksetzen": "Back to standard",
-        "punkte": [("Vouchers", "vouchers-en.html", None),
-                   ("Menu", "menu-en.html", None),
+        "punkte": [("Menu", "menu-en.html", None),
                    ("Opening hours", "index-en.html#oeffnungszeiten", "#oeffnungszeiten"),
                    ("Getting here", "index-en.html#anfahrt", "#anfahrt"),
                    ("Gallery", "gallery-en.html", "#galerie"),
                    ("Events", "events-en.html", None),
                    ("Jobs", "jobs-en.html", None),
-                   ("Contact", "index-en.html#kontakt", "#kontakt")],
+                   ("Contact", "index-en.html#kontakt", "#kontakt"),
+                   ("Vouchers", "vouchers-en.html", None)],
     },
 }
 
