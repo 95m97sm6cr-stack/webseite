@@ -1195,7 +1195,17 @@ html[lang="en"] .oeffnungszeiten-tabelle tr.heute td:first-child::after {
   padding-bottom: 3rem;
 }
 
-/* ---------- Aktions-Banner (z. B. Speed Dating) ----------
+/* ---------- Aktions-Banner und Termin-Kasten ----------
+   ACHTUNG, KEIN TOTER CODE: Diese Regeln werden derzeit von keiner Seite
+   benutzt und sind trotzdem absichtlich aufgehoben. Sie gestalten den
+   Terminhinweis oben auf der Startseite und den passenden Kasten auf der
+   Events-Seite. Zuletzt lief darüber das Speed Dating; nach der
+   Veranstaltung wurden die Inhalte entfernt, die Gestaltung nicht.
+
+   Der fertige HTML-Block zum Wiedereinsetzen steht in INHALTE-BEARBEITEN.md,
+   Abschnitt „Terminhinweis oben auf der Startseite". Wer hier aufräumt,
+   macht damit auch jene Vorlage kaputt.
+
    Nachgebaut nach dem Flyer: dunkler Café-Abend, Neon-Schriftzug, Rosé.
    Der Rest der Seite ist hell – dadurch sticht der Hinweis heraus, ohne zu
    blinken. Bewusst als HTML statt als Bild, damit er auf jedem Bildschirm

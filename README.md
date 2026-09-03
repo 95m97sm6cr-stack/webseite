@@ -13,7 +13,7 @@ index-en.html         dieselbe Startseite auf Englisch
 speisekarte.html      Speisekarte deutsch, inkl. Preise und Allergen-Legende
 menu-en.html          dieselbe Karte auf Englisch
 galerie.html          Galerie mit allen Fotos, gallery-en.html auf Englisch
-events.html           Feiern & Events inkl. nächstem Termin, events-en.html englisch
+events.html           Feiern & Events, events-en.html auf Englisch
 jobs.html             Stellenanzeige, jobs-en.html auf Englisch
 gutscheine.html       Gutscheine, vouchers-en.html auf Englisch
 impressum.html        Impressum (ausgefüllt)

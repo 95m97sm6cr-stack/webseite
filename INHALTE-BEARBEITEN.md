@@ -59,8 +59,9 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 - **`galerie.html`** – die Galerieseite mit allen Fotos, **`gallery-en.html`**
   dieselbe auf Englisch. Auf den Startseiten steht nur eine Auswahl mit einem
   Knopf „Alle Bilder ansehen".
-- **`events.html`** – die Seite „Events" mit den Anlässen zum Feiern und dem
-  jeweils nächsten Termin, **`events-en.html`** dieselbe auf Englisch.
+- **`events.html`** – die Seite „Events" mit den Anlässen zum Feiern,
+  **`events-en.html`** dieselbe auf Englisch. Steht eine Veranstaltung an,
+  kommt hier auch der hervorgehobene Termin-Kasten hin.
 - **`jobs.html`** – die Stellenanzeige, **`jobs-en.html`** dieselbe auf
   Englisch. Wenn keine Stelle mehr frei ist, siehe unten „Stellenanzeige".
 - **`gutscheine.html`** – die Seite über Gutscheine, **`vouchers-en.html`**
@@ -285,46 +286,78 @@ Werte stehen im Klartext da (`telephone`, `opens`, `closes` …).
 
 ## Terminhinweis oben auf der Startseite
 
-Ganz oben auf beiden Startseiten liegt ein dunkler Balken, der auf den
-nächsten Termin hinweist (aktuell das Speed Dating am 2. Oktober 2026). Er
-führt auf die Events-Seite direkt zum Termin.
+**Aktuell gibt es keinen.** Zuletzt lief dort das Speed Dating; nach der
+Veranstaltung wurden die Inhalte entfernt.
 
-### Er räumt sich selbst weg
+Die **Gestaltung ist absichtlich aufgehoben** – der dunkle Balken mit
+Neon-Schrift ist aufwendig abgestimmt und wartet in `assets/css/style.css`
+auf den nächsten Termin. Unten steht der fertige Block zum Einfügen.
 
-Im Balken steht `data-gilt-bis="2026-10-02"`. **Am Tag nach diesem Datum
-verschwindet der Hinweis von selbst** – auf beiden Startseiten und ebenso der
-Termin-Kasten auf der Events-Seite. Man muss also nach der Veranstaltung
-nichts tun; es steht nie eine Einladung zu einem Termin da, der vorbei ist.
+### So kommt ein neuer Termin auf die Seite
 
-Am Tag der Veranstaltung selbst ist er noch sichtbar, erst danach fällt er weg.
+Den folgenden Block in **`index.html`** einfügen, und zwar direkt nach
+`</header>` (also nach dem Menü, vor dem großen Bild). Danach dasselbe in
+**`index-en.html`** mit englischem Text.
+
+```html
+  <a class="aktion-banner" href="events.html#termin" data-gilt-bis="2027-03-14">
+    <span class="aktion-text">
+      <span class="aktion-marke">Save the date</span>
+      <span class="aktion-titel">Name der Veranstaltung</span>
+      <span class="aktion-daten">
+        <span><strong>Samstag, 14. März 2027</strong></span>
+        <span>18:30 – 20:30 Uhr</span>
+        <span>kurze Zusatzangabe</span>
+      </span>
+    </span>
+    <span class="aktion-mehr">Mehr erfahren <span class="pfeil" aria-hidden="true">&rarr;</span></span>
+  </a>
+```
+
+Zu ändern sind nur die Texte und die beiden Daten. Die Klassennamen
+(`aktion-banner`, `aktion-titel` …) bitte stehen lassen – daran hängt die
+gesamte Gestaltung.
+
+### `data-gilt-bis` – der Balken räumt sich selbst weg
+
+Das Datum in `data-gilt-bis="2027-03-14"` ist der **letzte Tag, an dem der
+Balken zu sehen ist**. Am Tag danach verschwindet er von selbst. Man muss
+nach der Veranstaltung also nichts tun; es steht nie eine Einladung zu einem
+Termin da, der vorbei ist.
+
+Das Format ist `Jahr-Monat-Tag` mit Bindestrichen und führenden Nullen:
+`2027-03-14`, nicht `14.3.2027`.
 
 > **Eine Einschränkung, ehrlich gesagt:** Das erledigt ein kleines Skript.
 > Bei den sehr wenigen Besuchern, die JavaScript abgeschaltet haben, bleibt
-> der Balken stehen. Wer ganz sichergehen will, löscht ihn zusätzlich von
-> Hand (siehe „Kein Termin mehr").
+> der Balken stehen. Wer ganz sichergehen will, löscht ihn nach der
+> Veranstaltung zusätzlich von Hand – vom öffnenden `<a` bis zum `</a>`.
 
-### Was man wo ändert
+### Passender Kasten auf der Events-Seite
 
-- **Termin ändern:** In `index.html` und `index-en.html` den Block
-  `<a class="aktion-banner" …>` suchen und Datum, Uhrzeit und Zielgruppe
-  anpassen – **und das `data-gilt-bis` auf das neue Datum setzen**, sonst
-  verschwindet der neue Termin sofort oder zu spät. Denselben Text und
-  dasselbe Datum auch im Abschnitt `id="speed-dating"` in `events.html`
-  bzw. `events-en.html` ändern.
-- **Kein Termin mehr:** Den ganzen `<a class="aktion-banner">`-Block aus
-  beiden Startseiten löschen – vom öffnenden `<a` bis zum `</a>`. Der Rest
-  der Seite bleibt davon unberührt.
-- **Neuer Termin später:** Den Block wieder einfügen und den Abschnitt auf
-  der Events-Seite entsprechend austauschen.
+Der Balken führt über `href="events.html#termin"` auf die Events-Seite. Dort
+sollte es also einen Abschnitt mit dieser Kennung geben, sonst landet man nur
+oben auf der Seite. Wie ein solcher Kasten aussah, zeigt der Änderungsverlauf:
+im Commit *„Speed Dating entfernen"* steht der komplette Block, den man mit
+neuem Text wieder einsetzen kann. Er verwendet die Klassen `termin`,
+`termin-daten`, `termin-vorteile` und `termin-wege`, die ebenfalls noch im
+CSS liegen.
+
+Wichtig: Wenn der Kasten ein eigenes `data-gilt-bis` bekommt, muss dort
+**dasselbe Datum** stehen wie im Balken – sonst verschwindet das eine früher
+als das andere.
 
 ## Feiern und Events
 
 Die Seite `events.html` (englisch `events-en.html`) hat drei Teile:
 
-1. den **hervorgehobenen Termin** (dunkler Kasten, `id="speed-dating"`),
-2. die **Anlässe** – je ein `<div class="anlass">` mit Überschrift und einem
+1. die **Anlässe** – je ein `<div class="anlass">` mit Überschrift und einem
    Satz. Zum Streichen den ganzen Block löschen, zum Ergänzen einen kopieren,
+2. den **Ablauf** in drei Schritten (`<ol class="ablauf">`),
 3. den Kasten **„Anfrage stellen"** mit Telefon, E-Mail und Instagram.
+
+Steht eine Veranstaltung an, kommt oben zusätzlich ein hervorgehobener
+Termin-Kasten hinzu – siehe „Terminhinweis oben auf der Startseite".
 
 Gebucht werden kann hier bewusst nichts – die Seite sammelt nur Anfragen.
 
@@ -466,9 +499,9 @@ Stand August 2026, in der Reihenfolge, in der es sich lohnt:
   fehlt aber in der Legende – auf der deutschen und der englischen Seite.
   Sobald klar ist, wofür er steht, gehört er in beide Legenden. Das ist der
   einzige offene Punkt, bei dem es nicht um Optik geht.
-- **Ein neuer Termin für den Balken oben.** Der Speed-Dating-Hinweis räumt
-  sich nach dem 2. Oktober 2026 selbst weg, dort geht also nichts kaputt –
-  aber schöner wäre es, wenn danach die nächste Veranstaltung dort stünde.
+- **Ein Termin für den Balken oben.** Derzeit steht dort nichts. Die
+  Gestaltung liegt bereit, die Vorlage zum Einfügen steht im Abschnitt
+  „Terminhinweis oben auf der Startseite".
 - **Fünf weitere Fotos.** Zehn von fünfzehn angekündigten sind eingebaut.
 - **Die Karte unter „Anfahrt"** zeigt eine ungefähre Position am Stadtplatz,
   nicht genau die Haustür (siehe „Karte aktualisieren").

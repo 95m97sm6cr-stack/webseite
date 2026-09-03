@@ -202,37 +202,26 @@ function meldung(t) { console.log('  FEHLER: ' + t); fehler++; }
     await ctx.close();
   }
 
-  // 5. Events-Seite und der Terminhinweis auf der Startseite
-  for (const [start, events] of [['index.html', 'events.html'],
-                                 ['index-en.html', 'events-en.html']]) {
+  // 5. Events-Seite
+  //
+  // Der Terminhinweis auf der Startseite wurde hier früher mitgeprüft.
+  // Seit dem Ende des Speed Datings gibt es keinen; die Gestaltung dafür
+  // liegt aber weiter bereit (siehe Kommentar über .aktion-banner in
+  // style.css). Ob die Ablauf-Mechanik funktioniert, prüft ablauf_pruefen.js
+  // eigenständig – unabhängig davon, ob gerade ein Termin läuft.
+  for (const events of ['events.html', 'events-en.html']) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await ctx.newPage();
-    await page.goto(BASIS + start, { waitUntil: 'networkidle' });
-    const banner = await page.evaluate(() => {
-      const a = document.querySelector('.aktion-banner');
-      if (!a) return null;
-      const r = a.getBoundingClientRect();
-      return { ziel: a.getAttribute('href'), sichtbar: r.height > 0,
-               obenAufDerSeite: r.top < 200, text: a.innerText.replace(/\s+/g, ' ').trim() };
-    });
-    if (!banner) { meldung(`${start}: kein Terminhinweis`); await ctx.close(); continue; }
-    if (!banner.sichtbar) meldung(`${start}: Terminhinweis unsichtbar`);
-    if (!banner.obenAufDerSeite) meldung(`${start}: Terminhinweis steht nicht oben`);
-    if (!/Speed/i.test(banner.text)) meldung(`${start}: Terminhinweis ohne Anlass`);
-    // Anklicken muss auf der Events-Seite beim Termin landen
-    await page.click('.aktion-banner');
-    await page.waitForLoadState('networkidle');
-    if (!page.url().includes(events + '#speed-dating'))
-      meldung(`${start}: Terminhinweis führt nach ${page.url()}`);
-    const termin = await page.evaluate(() => {
-      const s = document.querySelector('#speed-dating');
-      return s ? { da: true, anlaesse: document.querySelectorAll('.anlass').length,
-                   schritte: document.querySelectorAll('.ablauf li').length } : { da: false };
-    });
-    if (!termin.da) meldung(`${events}: Abschnitt #speed-dating fehlt`);
-    if (termin.anlaesse !== 5) meldung(`${events}: ${termin.anlaesse} Anlässe statt 5`);
-    if (termin.schritte !== 3) meldung(`${events}: ${termin.schritte} Schritte statt 3`);
-    console.log(`${events}: Termin und ${termin.anlaesse} Anlässe geprüft`);
+    await page.goto(BASIS + events, { waitUntil: 'networkidle' });
+    const inhalt = await page.evaluate(() => ({
+      anlaesse: document.querySelectorAll('.anlass').length,
+      schritte: document.querySelectorAll('.ablauf li').length,
+      anfrage: !!document.querySelector('.bewerbung a[href^="tel:"]')
+    }));
+    if (inhalt.anlaesse !== 5) meldung(`${events}: ${inhalt.anlaesse} Anlässe statt 5`);
+    if (inhalt.schritte !== 3) meldung(`${events}: ${inhalt.schritte} Schritte statt 3`);
+    if (!inhalt.anfrage) meldung(`${events}: keine Telefonnummer im Anfrage-Kasten`);
+    console.log(`${events}: ${inhalt.anlaesse} Anlässe und ${inhalt.schritte} Schritte geprüft`);
     await ctx.close();
   }
 

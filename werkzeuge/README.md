@@ -17,7 +17,7 @@ Knöpfe ohne einen Pixel Abstand.
 | `pruefen.js` | Alle 15 Seiten in 390, 768 und 1280 px Breite: JavaScript-Fehler, waagerechter Überlauf (auch bei Schriftgröße „sehr groß"), fehlende oder verzerrte Bilder, leere `alt`-Texte, tote Verweise |
 | `nav_pruefen.js` | Menü auf- und zuklappen, „Ansicht" auf dem Handy erreichbar, alle Ziele der Navigation existieren wirklich, Inhalte der Jobs- und Events-Seite |
 | `gross_pruefen.js` | Großansicht der Fotos samt Beschriftung – auch mit abgeschaltetem JavaScript |
-| `ablauf_pruefen.js` | Terminhinweise mit `data-gilt-bis` verschwinden am richtigen Tag – geprüft mit gefälschter Browser-Uhr, statt Wochen zu warten |
+| `ablauf_pruefen.js` | Die Mechanik hinter `data-gilt-bis`: Ein selbst eingehängtes Testelement muss am richtigen Tag verschwinden – geprüft mit gefälschter Browser-Uhr, statt Wochen zu warten. Echte Terminhinweise werden zusätzlich geprüft, sobald es wieder welche gibt |
 
 ### Ausführen
 
