@@ -18,13 +18,13 @@
      Tabelle in index.html anpassen.
      =========================================================== */
   var OEFFNUNGSZEITEN = [
-    { von: "08:00", bis: "17:00" }, // Sonntag
+    { von: "08:30", bis: "17:00" }, // Sonntag
     null,                            // Montag – Ruhetag
-    { von: "07:00", bis: "17:00" }, // Dienstag
-    { von: "07:00", bis: "17:00" }, // Mittwoch
-    { von: "07:00", bis: "17:00" }, // Donnerstag
-    { von: "07:00", bis: "17:00" }, // Freitag
-    { von: "08:00", bis: "17:00" }  // Samstag
+    { von: "08:00", bis: "17:00" }, // Dienstag
+    { von: "08:00", bis: "17:00" }, // Mittwoch
+    { von: "08:00", bis: "17:00" }, // Donnerstag
+    { von: "08:00", bis: "17:00" }, // Freitag
+    { von: "08:30", bis: "17:00" }  // Samstag
   ];
 
   var SPEICHER = "bellers-ansicht";

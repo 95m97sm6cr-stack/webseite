@@ -98,26 +98,50 @@ Einfach die Uhrzeiten bzw. Wochentage ersetzen. Das `data-tage` bitte stehen
 lassen – daran erkennt die Seite, welcher Tag heute hervorgehoben wird
 (0 = Sonntag, 1 = Montag … 6 = Samstag).
 
-## Öffnungszeiten ändern – bitte an DREI Stellen
+## Öffnungszeiten ändern – bitte an VIER Stellen
 
-Die Öffnungszeiten stehen an drei Orten, und alle drei müssen zusammenpassen:
+Die Öffnungszeiten stehen an vier Orten, und alle vier müssen zusammenpassen:
 
 1. **`index.html`** – die sichtbare Tabelle im Bereich „Öffnungszeiten".
 2. **`index-en.html`** – dieselbe Tabelle auf Englisch.
 3. **`assets/js/main.js`** – ganz oben in der Liste `OEFFNUNGSZEITEN`. Daraus
    berechnet die Seite den Hinweis „Jetzt geöffnet · bis 17:00 Uhr" bzw.
    „Geschlossen · öffnet in 2 Std 15 Min" und hebt den heutigen Tag hervor.
+4. **`werkzeuge-seo.py`** – der Block `openingHoursSpecification`. **Das ist
+   die Stelle, die man am leichtesten vergisst, und die mit der größten
+   Wirkung nach außen:** Daraus baut Google die Zeiten, die *neben dem
+   Suchergebnis* stehen. Wer nur die Website ändert, hat eine richtige Seite –
+   und Google schickt die Leute weiter zur falschen Zeit vorbei.
 
 In `main.js` sieht eine Zeile so aus (die Reihenfolge ist Sonntag, Montag,
 Dienstag ... Samstag; `null` bedeutet Ruhetag):
 
 ```
-{ von: "07:00", bis: "17:00" }, // Dienstag
+{ von: "08:00", bis: "17:00" }, // Dienstag
 ```
 
-Wenn nur eine Tabelle geändert wird, stimmt der Hinweis oben nicht mehr oder
-die englische Seite zeigt falsche Zeiten – deshalb bitte immer alle drei
-Stellen anpassen.
+In `werkzeuge-seo.py` sieht derselbe Tag so aus (Uhrzeiten immer vierstellig
+mit führender Null, `00:00` bis `00:00` bedeutet Ruhetag):
+
+```python
+{
+  "@type": "OpeningHoursSpecification",
+  "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+  "opens": "08:00",
+  "closes": "17:00"
+},
+```
+
+**Nach einer Änderung an Punkt 4** einmal das Skript laufen lassen, damit die
+Angaben in die Seiten geschrieben werden:
+
+```
+python3 werkzeuge-seo.py
+```
+
+Wenn nur eine Tabelle geändert wird, stimmt der Hinweis oben nicht mehr, die
+englische Seite zeigt falsche Zeiten, oder Google nennt weiter die alten –
+deshalb bitte immer alle vier Stellen anpassen.
 
 ## Adresse ändern
 

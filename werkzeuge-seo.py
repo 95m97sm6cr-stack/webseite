@@ -144,13 +144,13 @@ def strukturierte_daten():
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:00",
+        "opens": "08:00",
         "closes": "17:00"
       },
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "08:00",
+        "opens": "08:30",
         "closes": "17:00"
       },
       {
