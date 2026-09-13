@@ -21,7 +21,7 @@ function meldung(t) { console.log('  FEHLER: ' + t); fehler++; }
   /* Erwartete Anzahl je Seite. Absichtlich fest eingetragen: Verschwindet ein
      Foto versehentlich aus dem HTML, faellt das nur hier auf. Kommen Fotos
      dazu, sind GALERIE und AUSWAHL nachzuziehen. */
-  const GALERIE = 13;   // alle Fotos auf den Galerieseiten
+  const GALERIE = 17;   // alle Fotos auf den Galerieseiten
   const AUSWAHL = 6;    // die Auswahl auf den beiden Startseiten
 
   for (const [seite, fotos, anzahl] of [['galerie.html', GALERIE, 0], ['index.html', AUSWAHL, 0],

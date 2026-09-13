@@ -70,7 +70,7 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
 - **`assets/img/galerie/`** – die Fotos der Galerie (`foto-01.jpg` bis
-  `foto-13.jpg`)
+  `foto-17.jpg`)
 - **`assets/img/`** – der Ordner mit den übrigen Bildern:
   - `logo.jpeg` – das Original-Logo mit rosa Hintergrund (wird auf der Website
     nicht direkt verwendet, ist aber als Vorlage aufgehoben)
@@ -172,8 +172,8 @@ Miesbach. Sobald die echte Adresse feststeht:
 
 
 Die Fotos liegen in `assets/img/galerie/` und heißen `foto-01.jpg`,
-`foto-02.jpg` und so weiter – derzeit sind es dreizehn. Auf den Galerieseiten
-stehen alle dreizehn, auf den beiden Startseiten sechs davon als Auswahl.
+`foto-02.jpg` und so weiter – derzeit sind es siebzehn. Auf den Galerieseiten
+stehen alle siebzehn, auf den beiden Startseiten sechs davon als Auswahl.
 
 **Jedes Foto gibt es zweimal:**
 
