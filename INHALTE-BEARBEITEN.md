@@ -19,7 +19,7 @@ auf der englischen Seite wären schlimmer als gar keine englische Seite.
 
 | Was sich ändert | Wo überall anpassen |
 |---|---|
-| **Öffnungszeiten** | `index.html`, `index-en.html` **und** `assets/js/main.js` |
+| **Öffnungszeiten** | `index.html`, `index-en.html`, `assets/js/main.js` **und** `werkzeuge-seo.py` (dann das Skript laufen lassen) |
 | **Preise, Gerichte** | `speisekarte.html` **und** `menu-en.html` |
 | **Telefon, Adresse** | `index.html`, `index-en.html`, `speisekarte.html`, `menu-en.html`, `jobs.html`, `jobs-en.html`, `gutscheine.html`, `vouchers-en.html`, `events.html`, `events-en.html`, `impressum.html`, `datenschutz.html`, `404.html` |
 | **E-Mail-Adresse** | `index.html`, `index-en.html`, `jobs.html`, `jobs-en.html`, `gutscheine.html`, `vouchers-en.html`, `events.html`, `events-en.html`, `impressum.html`, `datenschutz.html` |
@@ -70,7 +70,7 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 - **`impressum.html`** – das Impressum (Pflichtangaben).
 - **`datenschutz.html`** – die Datenschutzerklärung.
 - **`assets/img/galerie/`** – die Fotos der Galerie (`foto-01.jpg` bis
-  `foto-10.jpg`)
+  `foto-13.jpg`)
 - **`assets/img/`** – der Ordner mit den übrigen Bildern:
   - `logo.jpeg` – das Original-Logo mit rosa Hintergrund (wird auf der Website
     nicht direkt verwendet, ist aber als Vorlage aufgehoben)
@@ -91,7 +91,7 @@ Fassung. Auf den englischen Seiten steht ein Hinweis dazu im Fußbereich.
 Beispiel – Öffnungszeiten in `index.html` (rund um `id="oeffnungszeiten"`):
 
 ```
-<tr data-tage="2,3,4,5"><td>Dienstag – Freitag</td><td>7:00 – 17:00 Uhr</td></tr>
+<tr data-tage="2,3,4,5"><td>Dienstag – Freitag</td><td>8:00 – 17:00 Uhr</td></tr>
 ```
 
 Einfach die Uhrzeiten bzw. Wochentage ersetzen. Das `data-tage` bitte stehen
@@ -172,8 +172,8 @@ Miesbach. Sobald die echte Adresse feststeht:
 
 
 Die Fotos liegen in `assets/img/galerie/` und heißen `foto-01.jpg`,
-`foto-02.jpg` und so weiter – derzeit sind es zehn. Auf den Galerieseiten
-stehen alle zehn, auf den beiden Startseiten sechs davon als Auswahl.
+`foto-02.jpg` und so weiter – derzeit sind es dreizehn. Auf den Galerieseiten
+stehen alle dreizehn, auf den beiden Startseiten sechs davon als Auswahl.
 
 **Jedes Foto gibt es zweimal:**
 
@@ -526,7 +526,6 @@ Stand August 2026, in der Reihenfolge, in der es sich lohnt:
 - **Ein Termin für den Balken oben.** Derzeit steht dort nichts. Die
   Gestaltung liegt bereit, die Vorlage zum Einfügen steht im Abschnitt
   „Terminhinweis oben auf der Startseite".
-- **Fünf weitere Fotos.** Zehn von fünfzehn angekündigten sind eingebaut.
 - **Die Karte unter „Anfahrt"** zeigt eine ungefähre Position am Stadtplatz,
   nicht genau die Haustür (siehe „Karte aktualisieren").
 - **Bei „Feiern & Events"** stehen fünf Karten, wodurch in der letzten Reihe

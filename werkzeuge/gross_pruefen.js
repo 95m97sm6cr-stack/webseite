@@ -18,8 +18,14 @@ function meldung(t) { console.log('  FEHLER: ' + t); fehler++; }
 
   // Seite, Anzahl Fotos, sichtbare Beschriftungen unter dem Foto – überall
   // keine, der Text gehört ausschließlich in die Großansicht
-  for (const [seite, fotos, anzahl] of [['galerie.html', 10, 0], ['index.html', 6, 0],
-                                        ['gallery-en.html', 10, 0], ['index-en.html', 6, 0]]) {
+  /* Erwartete Anzahl je Seite. Absichtlich fest eingetragen: Verschwindet ein
+     Foto versehentlich aus dem HTML, faellt das nur hier auf. Kommen Fotos
+     dazu, sind GALERIE und AUSWAHL nachzuziehen. */
+  const GALERIE = 13;   // alle Fotos auf den Galerieseiten
+  const AUSWAHL = 6;    // die Auswahl auf den beiden Startseiten
+
+  for (const [seite, fotos, anzahl] of [['galerie.html', GALERIE, 0], ['index.html', AUSWAHL, 0],
+                                        ['gallery-en.html', GALERIE, 0], ['index-en.html', AUSWAHL, 0]]) {
     for (const breite of [390, 1280]) {
       const ctx = await browser.newContext({ viewport: { width: breite, height: 800 } });
       const page = await ctx.newPage();
