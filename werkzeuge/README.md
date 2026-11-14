@@ -44,21 +44,28 @@ und gibt einen Fehlercode zurück.
 ### In einer anderen Umgebung
 
 Die Skripte brauchen [Playwright](https://playwright.dev) und einen
-Chromium-Browser. In der Umgebung, in der sie entstanden sind, liegen beide
-unter `/opt`; diese Pfade stehen als Vorgabe im Kopf jedes Skripts. Anderswo
-setzt man vorher drei Umgebungsvariablen:
+Chromium-Browser. **Den Browser sucht Playwright selbst** – im Normalfall ist
+dafür nichts zu tun.
+
+> **Bitte hier keinen festen Pfad eintragen.** Genau das stand hier einmal
+> (`/opt/pw-browsers/chromium-1194/chrome-linux/chrome`). Beim Wechsel auf
+> einen neuen Container hieß der Ordner `chromium-1243/chrome-linux64`, und
+> alle vier Skripte brachen beim Start ab. Ein Pfad mit einer Versionsnummer
+> darin veraltet zwangsläufig.
+
+Nur wenn Playwright woanders liegt oder seinen Browser ausnahmsweise nicht
+findet, setzt man vorher eine dieser Variablen:
 
 ```
-export PLAYWRIGHT_MODUL=/pfad/zu/node_modules/playwright
-export CHROMIUM_PFAD=            # leer = Playwright nimmt seinen eigenen Browser
-export BASIS_ADRESSE=http://localhost:8765/
+export PLAYWRIGHT_MODUL=playwright          # oder /pfad/zu/node_modules/playwright
+export CHROMIUM_PFAD=/pfad/zu/chrome        # nur im Ausnahmefall
+export BASIS_ADRESSE=http://localhost:8765/ # anderer Port
 ```
 
-Ist Playwright regulär per `npm install playwright` installiert, genügt meist:
+Ist Playwright regulär per `npm install playwright` installiert, genügt:
 
 ```
 export PLAYWRIGHT_MODUL=playwright
-export CHROMIUM_PFAD=
 ```
 
 ## `nav_bauen.py` – Navigation neu erzeugen

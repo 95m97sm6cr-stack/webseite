@@ -13,9 +13,13 @@
 
    Umgebungsabhängige Pfade siehe werkzeuge/README.md. */
 const { chromium } = require(process.env.PLAYWRIGHT_MODUL || '/opt/node22/lib/node_modules/playwright');
-const CHROMIUM = process.env.CHROMIUM_PFAD === undefined
-  ? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
-  : (process.env.CHROMIUM_PFAD || undefined);
+// Kein fester Pfad zum Browser: Playwright sucht seinen eigenen. Hier stand
+// einmal /opt/pw-browsers/chromium-1194/chrome-linux/chrome – das hat den
+// Wechsel auf einen neuen Container nicht ueberlebt (daraus wurde
+// chromium-1243/chrome-linux64), und alle vier Skripte brachen ab.
+// CHROMIUM_PFAD setzt man nur, wenn Playwright seinen Browser ausnahmsweise
+// nicht selbst findet.
+const CHROMIUM = process.env.CHROMIUM_PFAD || undefined;
 const BASIS = process.env.BASIS_ADRESSE || 'http://localhost:8765/';
 
 const SEITEN = ['index.html', 'index-en.html', 'events.html', 'events-en.html'];
