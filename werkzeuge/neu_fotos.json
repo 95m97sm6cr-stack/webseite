@@ -1,0 +1,308 @@
+[
+ {
+  "name": "foto-01",
+  "breite": 1536,
+  "hoehe": 1024,
+  "breiten": [
+   480,
+   800,
+   1350
+  ],
+  "titel": {
+   "de": "Unser Café am Stadtplatz",
+   "en": "Our café on the Stadtplatz"
+  },
+  "alt": {
+   "de": "Außenansicht des Cafés b.ellers mit Markise, Lichterkette und Sitzbänken davor",
+   "en": "Street view of café b.ellers with its awning, fairy lights and benches outside"
+  }
+ },
+ {
+  "name": "foto-02",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Frühstücksplatte",
+   "en": "Breakfast platter"
+  },
+  "alt": {
+   "de": "Lange Holztafel mit Lachs, Käse, Aufschnitt, Avocado und frischen Semmeln",
+   "en": "A long wooden table laid with salmon, cheese, cold cuts, avocado and fresh rolls"
+  }
+ },
+ {
+  "name": "foto-03",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Frühstück in großer Runde",
+   "en": "Breakfast for a big table"
+  },
+  "alt": {
+   "de": "Reich gedeckter Frühstückstisch mit Wurst- und Käseplatte, Brotkorb und Müslischalen",
+   "en": "A generously laid breakfast table with cold cuts, cheese, a bread basket and muesli bowls"
+  }
+ },
+ {
+  "name": "foto-04",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Gedeckt für jeden Anlass",
+   "en": "Laid for any occasion"
+  },
+  "alt": {
+   "de": "Gedeckter Frühstückstisch am Abend unter einem Kronleuchter, mit Etagere und Brotkorb",
+   "en": "Breakfast table in the evening under a chandelier, with a tiered stand and bread basket"
+  }
+ },
+ {
+  "name": "foto-05",
+  "breite": 1012,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1012
+  ],
+  "titel": {
+   "de": "Cappuccino für zwei",
+   "en": "Cappuccino for two"
+  },
+  "alt": {
+   "de": "Zwei Cappuccino in Keramikbechern mit Keksen auf Holzbrettchen, dahinter eine Kanne und Blumen",
+   "en": "Two cappuccinos in ceramic cups with cookies on wooden boards, a coffee pot and flowers behind"
+  }
+ },
+ {
+  "name": "foto-06",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Platz am Fenster",
+   "en": "A seat by the window"
+  },
+  "alt": {
+   "de": "Fensterplatz mit Croissant und Cappuccino auf der Holztheke, dahinter die rosa Wand mit einem Bild vom Miesbacher Marktplatz",
+   "en": "Window seat with a croissant and a cappuccino on the wooden counter, the pink wall behind with a picture of the market square in Miesbach"
+  }
+ },
+ {
+  "name": "foto-07",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Matcha Latte",
+   "en": "Matcha latte"
+  },
+  "alt": {
+   "de": "Matcha Latte mit Herz im Milchschaum, dahinter ein Matcha-Croissant auf einem Holzbrett",
+   "en": "Matcha latte with a heart in the milk foam, a matcha croissant on a wooden board behind"
+  }
+ },
+ {
+  "name": "foto-08",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Tiramisu vom Blech",
+   "en": "Tiramisu from the tray"
+  },
+  "alt": {
+   "de": "Blech mit Tiramisu, bestäubt mit Kakao und garniert mit Beeren, Orangenspalten und Physalis",
+   "en": "A tray of tiramisu dusted with cocoa and topped with berries, orange slices and physalis"
+  }
+ },
+ {
+  "name": "foto-09",
+  "breite": 1350,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1350
+  ],
+  "titel": {
+   "de": "Schnitzel mit Kartoffelsalat",
+   "en": "Schnitzel with potato salad"
+  },
+  "alt": {
+   "de": "Paniertes Schnitzel mit Kartoffelsalat, Preiselbeeren und einer Zitronenscheibe",
+   "en": "Breaded schnitzel with potato salad, cranberry sauce and a slice of lemon"
+  }
+ },
+ {
+  "name": "foto-10",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Cappuccino mit Herz",
+   "en": "Cappuccino with a heart"
+  },
+  "alt": {
+   "de": "Cappuccino mit Herz im rosa Becher, daneben eine gehäkelte Rose und ein Windlicht",
+   "en": "Cappuccino with a heart in a pink cup, next to a crocheted rose and a candle lantern"
+  }
+ },
+ {
+  "name": "foto-11",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Frühstück für die ganze Runde",
+   "en": "Breakfast for the whole table"
+  },
+  "alt": {
+   "de": "Holzbretter mit Croissants in mehreren Sorten und Schälchen mit Joghurt, Granola, Beeren und Physalis",
+   "en": "Wooden boards with croissants in several varieties and small bowls of yoghurt, granola, berries and physalis"
+  }
+ },
+ {
+  "name": "foto-12",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Overnight Oats",
+   "en": "Overnight oats"
+  },
+  "alt": {
+   "de": "Tablett mit Schälchen Overnight Oats, belegt mit Erdbeere, Heidelbeeren, Granatapfel und Granola",
+   "en": "Tray of small bowls of overnight oats topped with strawberry, blueberries, pomegranate and granola"
+  }
+ },
+ {
+  "name": "foto-13",
+  "breite": 1350,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1350
+  ],
+  "titel": {
+   "de": "Matcha mit Erdbeere",
+   "en": "Matcha with strawberry"
+  },
+  "alt": {
+   "de": "Glas mit Matcha auf Erdbeersauce und Milch, mit Glasstrohhalm, auf einem Tisch im Freien",
+   "en": "Glass of matcha layered over strawberry sauce and milk, with a glass straw, on a table outside"
+  }
+ },
+ {
+  "name": "foto-14",
+  "breite": 1350,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1350
+  ],
+  "titel": {
+   "de": "Couscous-Salat",
+   "en": "Couscous salad"
+  },
+  "alt": {
+   "de": "Couscous-Salat mit Gurke, Melone, Erdbeeren, Heidelbeeren und Feta auf einem türkisen Teller",
+   "en": "Couscous salad with cucumber, melon, strawberries, blueberries and feta on a turquoise plate"
+  }
+ },
+ {
+  "name": "foto-15",
+  "breite": 1350,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1350
+  ],
+  "titel": {
+   "de": "Kaspressknödel mit Krautsalat",
+   "en": "Kaspressknödel with coleslaw"
+  },
+  "alt": {
+   "de": "Goldbraun gebratene Kaspressknödel auf Krautsalat, angerichtet in Schachteln zum Mitnehmen",
+   "en": "Golden-fried Kaspressknödel, cheese dumplings, on coleslaw, served in boxes to take away"
+  }
+ },
+ {
+  "name": "foto-16",
+  "breite": 1350,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1350
+  ],
+  "titel": {
+   "de": "Matcha-Croissant am Stadtplatz",
+   "en": "Matcha croissant on the Stadtplatz"
+  },
+  "alt": {
+   "de": "Matcha-Croissant auf einem gemusterten Teller, dahinter Blumenkästen und die Häuser am Miesbacher Stadtplatz",
+   "en": "Matcha croissant on a patterned plate, with flower boxes and the houses of Miesbach's town square behind"
+  }
+ },
+ {
+  "name": "foto-17",
+  "breite": 1013,
+  "hoehe": 1800,
+  "breiten": [
+   480,
+   800,
+   1013
+  ],
+  "titel": {
+   "de": "Zwei Cappuccino",
+   "en": "Two cappuccinos"
+  },
+  "alt": {
+   "de": "Zwei Cappuccino von oben, beide mit einem Muster aus Milchschaum in der Crema",
+   "en": "Two cappuccinos seen from above, both with a milk foam pattern in the crema"
+  }
+ }
+]
