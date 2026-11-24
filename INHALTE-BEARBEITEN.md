@@ -310,8 +310,16 @@ Werte stehen im Klartext da (`telephone`, `opens`, `closes` …).
 
 ## Terminhinweis oben auf der Startseite
 
-**Aktuell gibt es keinen.** Zuletzt lief dort das Speed Dating; nach der
-Veranstaltung wurden die Inhalte entfernt.
+**Aktuell: Lesung mit Ella Green am 6. Februar 2027.** Streifen auf beiden
+Startseiten, Kasten mit dem Flyer (`assets/img/termine/`) oben auf beiden
+Events-Seiten (`id="lesung"`). Beide tragen `data-gilt-bis="2027-02-06"` und
+verschwinden am 7. Februar von selbst. Danach können Streifen, Kasten und
+die vier Flyer-Dateien bei Gelegenheit gelöscht werden.
+
+Anders als beim Speed Dating steht hier der **Flyer selbst als Bild** – so
+gewünscht. Die Angaben stehen trotzdem zusätzlich als Text daneben, weil
+Vorleseprogramme Schrift im Bild nicht lesen können. Die Gestaltung des
+Kastens liegt in `assets/css/style.css` bei `.lesung`.
 
 Die **Gestaltung ist absichtlich aufgehoben** – der dunkle Balken mit
 Neon-Schrift ist aufwendig abgestimmt und wartet in `assets/css/style.css`

@@ -1605,6 +1605,42 @@ html[data-kontrast="stark"] .aktion-mehr { box-shadow: none; }
   .termin-daten .titel { padding-top: 0; }
 }
 
+/* Lesung: der Flyer als Bild neben den Angaben. Die Angaben stehen bewusst
+   zusätzlich als Text daneben – Schrift im Bild können Vorleseprogramme
+   nicht lesen, und auf dem Handy ist sie im Bild sehr klein. */
+.lesung {
+  display: grid;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.lesung-flyer img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(255, 194, 207, 0.35), 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.lesung-titel {
+  font-family: var(--schrift-titel);
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  line-height: 1.15;
+  color: #fff;
+  margin: 0 0 0.6rem;
+}
+
+.lesung .termin-claim { margin-bottom: 1.4rem; }
+
+@media (min-width: 860px) {
+  .lesung { grid-template-columns: 300px 1fr; gap: 2.6rem; text-align: left; padding: 2.6rem 2.6rem; }
+  .lesung .lesung-titel { text-align: left; }
+  .lesung .termin-daten { margin-left: 0; }
+  .lesung .termin-wege { justify-content: flex-start; }
+  .lesung .aktion-marke { justify-content: flex-start; }
+}
+
 html[data-kontrast="stark"] .termin {
   background: #17100e;
   border: 2px solid #ffc2cf;
